@@ -21,7 +21,10 @@ async function importData() {
     const rawData = await fs.readFile(jsonFilePath, 'utf8');
     const data = JSON.parse(rawData);
 
-    // Insert data into MongoDB
+    // Delete all existing documents in the collection
+    await collection.deleteMany({});
+
+    // Insert new data into MongoDB
     const result = await collection.insertMany(data);
     console.log(`${result.insertedCount} documents inserted`);
   } catch (err) {
