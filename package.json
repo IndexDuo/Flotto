@@ -1,13 +1,13 @@
 {
   "dependencies": {
     "mongodb": "^6.1.0",
-    "pdf-parse": "^1.1.1"
+    "pdf-parse": "^1.1.1",
+    "prettier": "^3.0.3"
   },
   "type": "module",
   "name": "knighthacks2023",
   "description": "",
   "version": "1.0.0",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
