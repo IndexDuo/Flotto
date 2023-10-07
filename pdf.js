@@ -43,7 +43,7 @@ pdf(pdfDataBuffer)
         const line = filteredLines[i];
 
         // Define a regular expression to match the date format (e.g., 10/06/2023)
-        const datePattern = /\d{2}\/\d{2}\/\d{4}/;
+        const datePattern = /\d{1,2}\/\d{1,2}\/\d{4}/;
 
         // Check if the line matches the date format
         if (datePattern.test(line)) {
@@ -55,8 +55,11 @@ pdf(pdfDataBuffer)
 
             // Check if the previous line starts with a number
             if (!numberPattern.test(previousLine)) {
-                // Add a newline before the number
-                filteredLines[i - 1] = '\n' + previousLine;
+                // Find within the previousLine where the number starts, and add a newline before the start of the number
+                if (!numberPattern.test(previousLine)) {
+                    const newLinePreviousLine = previousLine.replace(/(\d)/, '\n$1');
+                    filteredLines[i - 1] = newLinePreviousLine;
+                }
             }
         }
     }
