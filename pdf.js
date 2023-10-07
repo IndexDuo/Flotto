@@ -52,27 +52,7 @@ pdf(pdfDataBuffer)
     }
 
     // if the line starts with a dollar sign, then check if the next character is a number until there's a letter. If so, add a new line character after the number and before the letter. If the character after the letter is a number, then add a new line character after the letter and before the number.
-for (let i = 0; i < filteredLines.length; i++) {
-    if (filteredLines[i].startsWith('$')) {
-        let j = 1;
-        console.log(`Line ${i + 1} starts with a dollar sign.`);
-        while (j < filteredLines[i].length && !isNaN(filteredLines[i][j])) {
-            j++;
-        }
-        if (j < filteredLines[i].length && /[a-zA-Z]/.test(filteredLines[i][j])) {
-            filteredLines[i] = filteredLines[i].substring(0, j) + '\n' + filteredLines[i].substring(j);
-            if (j + 1 < filteredLines[i].length && !isNaN(filteredLines[i][j + 1])) {
-                let k = j + 1;
-                while (k < filteredLines[i].length && !isNaN(filteredLines[i][k])) {
-                    k++;
-                }
-                if (k < filteredLines[i].length && /[a-zA-Z]/.test(filteredLines[i][k])) {
-                    filteredLines[i] = filteredLines[i].substring(0, k) + '\n' + filteredLines[i].substring(k);
-                }
-            }
-        }
-    }
-}
+
     pdfText = filteredLines.join('\n');
 
     // Write the processed text to a .txt file (output.txt)
