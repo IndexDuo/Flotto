@@ -1,38 +1,34 @@
 import { exec } from 'child_process';
 import fs from 'fs';
 
-// Run pdf.js using the child_process module
+// Run pdf.js using child_process module
 exec('node pdf.js', (error, stdout, stderr) => {
     if (error) {
         console.error(`Error running pdf.js: ${error.message}`);
         return;
     }
 
-    // Read data from pdfoutput.txt
+    // read data from pdfoutput.txt
     fs.readFile('pdfoutput.txt', 'utf8', (err, data) => {
         if (err) {
             console.error(`Error reading pdfoutput.txt: ${err.message}`);
             return;
         }
 
-        // Split data into entries based on the date
-        const entries = data.split(/\d{1,2}\/\d{1,2}\/\d{4}/);
+        // Split the data into entries based on the date
+        const entries = data.split(/\d{2}\/\d{2}\/\d{4}/); // Assumes date format MM/DD/YYYY
 
-        // Process each entry separately
-        const results = entries.map(entry => {
-            try {
-                return processData(entry);
-            } catch (e) {
-                console.error(`Error processing data: ${e.message}`);
-                return null;
-            }
-        });
+        // Filter out any empty entries
+        const validEntries = entries.filter(entry => entry.trim().length > 0);
 
-        // Filter out any null entries (entries that couldn't be processed)
-        const processedData = results.filter(entry => entry !== null);
+        // Process each entry
+        const results = validEntries.map(processData);
+
+        // Flatten the array of results if needed
+        const flattenedResults = [].concat(...results);
 
         // Write processed data to lottery-result.json
-        fs.writeFile('lottery-result.json', JSON.stringify(processedData, null, 2), (err) => {
+        fs.writeFile('lottery-result.json', JSON.stringify(flattenedResults, null, 2), (err) => {
             if (err) {
                 console.error(`Error writing to lottery-result.json: ${err.message}`);
                 return;
@@ -43,18 +39,12 @@ exec('node pdf.js', (error, stdout, stderr) => {
     });
 });
 
-// Define data processing logic
+// define data processing logic
 function processData(entry) {
     const entryData = {};
 
     // Split the entry into lines
     const lines = entry.trim().split('\n');
-
-    // Ensure that there are at least 8 lines in the entry
-    if (lines.length < 8) {
-        console.error(`Invalid entry format: ${entry}`);
-        return null;
-    }
 
     // Check if the entry is unclaimed or expired, and skip it
     if (lines[1].trim() === 'UNCLAIMED AT THIS TIME' || lines[1].trim() === 'EXPIRED') {
@@ -68,10 +58,10 @@ function processData(entry) {
     entryData.jackpot = lines[3].trim();    // Jackpot
     entryData.pay = lines[4].trim();        // Pay
     entryData.prize = lines[5].trim();      // Prize
-    entryData.quickPlay = lines[6].trim() === "Quick Pick"; // QuickPlay
+    entryData.quickPlay = lines[6].trim() === "Quick Pick"; //QuickPlay
     entryData.tickets = parseInt(lines[7].trim());  // Tickets
-
-    // Ensure that lines[9] exists before accessing it
+        
+    // Check if lines[9] exists before accessing it
     if (lines.length >= 10) {
         entryData.buyerAddress = lines[8].trim();  // Buyer Address
         entryData.sellerAddress = lines[9].trim();  // Seller Address
@@ -79,6 +69,5 @@ function processData(entry) {
         entryData.buyerAddress = ''; // Set to an empty string if not available
         entryData.sellerAddress = ''; // Set to an empty string if not available
     }
-
     return entryData;
 }
