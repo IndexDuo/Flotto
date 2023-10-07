@@ -70,18 +70,28 @@ function processData(entryLines) {
         entryData.jackpot = entryLines[3].trim(); // Jackpot
         entryData.pay = ""; // Set pay to empty string
         entryData.prize = ""; // Set prize to empty string
-        entryData.quickPick = ""; // Set quickPick to empty string
+        // Set quickPick to empty string initially
+        entryData.quickPick = "";
         entryData.tickets = 0; // Set tickets to 0
         entryData.buyerAddress = ""; // Set buyerAddress to empty string
-        
+
         // Check if the prize is present and set it accordingly
         for (let i = 4; i < entryLines.length; i++) {
             const trimmedLine = entryLines[i].trim();
             if (trimmedLine.includes('$')) {
                 entryData.prize = trimmedLine;
                 // Increment line number for sellerAddress
-                entryData.sellerAddress = entryLines[i + 1].trim(); // Assuming sellerAddress is the line after prize
+                entryData.sellerAddress = entryLines[i + 3].trim(); // Assuming sellerAddress is the line after prize
                 break; // Break the loop when prize is found
+            }
+        }
+
+        // Check if the quickPick is present and set it accordingly
+        for (let i = 4; i < entryLines.length; i++) {
+            const trimmedLine = entryLines[i].trim();
+            if (trimmedLine === "Y" || trimmedLine === "N" || trimmedLine === "Y-Free") {
+                entryData.quickPick = trimmedLine;
+                break; // Break the loop when quickPick is found
             }
         }
     } else {
