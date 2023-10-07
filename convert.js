@@ -60,8 +60,15 @@ function processData(entry) {
     entryData.prize = lines[5].trim();      // Prize
     entryData.quickPlay = lines[6].trim() === "Quick Pick"; //QuickPlay
     entryData.tickets = parseInt(lines[7].trim());  // Tickets
-    entryData.buyerAddress = lines[8].trim();  // Buyer Address
-    entryData.sellerAddress = lines[9].trim();  // Seller Address
-
+ 
+    // Check if lines[9] exists before accessing it
+    if (lines.length >= 10) {
+        entryData.buyerAddress = lines[8].trim();  // Buyer Address
+        entryData.sellerAddress = lines[9].trim();  // Seller Address
+    } else {
+        entryData.buyerAddress = ''; // Set to an empty string if not available
+        entryData.sellerAddress = ''; // Set to an empty string if not available
+    }
+    
     return entryData;
 }
