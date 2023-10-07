@@ -72,7 +72,17 @@ function processData(entryLines) {
                 }
                 break;
             case 1:
-                entryData.buyer = trimmedLine; // Buyer
+                if (trimmedLine === "EXPIRED" || trimmedLine === "UNCLAIMED AT THIS TIME") {
+                    entryData.buyer = trimmedLine; // Buyer
+
+                    // Fill in default values for skipped fields
+                    entryData.buyerAddress = "";
+                    entryData.pay = "";
+                    entryData.prize = "";
+
+                } else {
+                    entryData.buyer = trimmedLine; // Buyer
+                }
                 break;
             case 2:
                 entryData.seller = trimmedLine; // Seller
