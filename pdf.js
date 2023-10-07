@@ -51,7 +51,6 @@ pdf(pdfDataBuffer)
         }
     }
 
-    // if the line starts with a dollar sign, then check if the next character is a letter, and check the next character until there's a letter or till the end of the line. If so, add a new line character before where the letter starts. Then, if the character after the letter is a number, then add a new line character after the letter and before the number.
     for (let i = 0; i < filteredLines.length; i++) {
         if (filteredLines[i].startsWith('$')) {
             let j = 1;
@@ -59,18 +58,14 @@ pdf(pdfDataBuffer)
                 j++;
             }
             if (j < filteredLines[i].length) {
-                filteredLines[i] = filteredLines[i].substring(0, j) + '\n' + filteredLines[i].substring(j);
-                if (j + 1 < filteredLines[i].length && /\d/.test(filteredLines[i][j + 1])) {
-                    let k = j + 1;
-                    while (k < filteredLines[i].length && /\d/.test(filteredLines[i][k])) {
-                        k++;
-                    }
-                    filteredLines[i] = filteredLines[i].substring(0, j + 1) + '\n' + filteredLines[i].substring(j + 1, k) + filteredLines[i].substring(k);
+                if (/\d/.test(filteredLines[i][filteredLines[i].length - 1])) {
+                    filteredLines[i] = filteredLines[i].substring(0, j) + '\n' + filteredLines[i].substring(j, filteredLines[i].length - 1) + '\n' + filteredLines[i].substring(filteredLines[i].length - 1);
+                } else {
+                    filteredLines[i] = filteredLines[i].substring(0, j) + '\n' + filteredLines[i].substring(j);
                 }
             }
         }
     }
-    pdfText = filteredLines.join('\n');
    
     
     pdfText = filteredLines.join('\n');
