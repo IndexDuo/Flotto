@@ -24,6 +24,18 @@
     "sellerAddress": "14630 SW 26TH STREET, MIAMI"
   },
   {
+    "date": "6/14/2023",
+    "buyer": "UNCLAIMED AT THIS TIME",
+    "seller": "SUNOCO EXPRESS",
+    "jackpot": "$44,000,000",
+    "pay": "",
+    "prize": "",
+    "quickPick": "",
+    "tickets": 0,
+    "buyerAddress": "",
+    "sellerAddress": "$0.00"
+  },
+  {
     "date": "12/24/2022",
     "buyer": "DARREN JOSEPH MARTINI",
     "seller": "PUBLIX #1007",
@@ -96,6 +108,18 @@
     "sellerAddress": "7230 W ATLANTIC BOULEVARD, MARGATE"
   },
   {
+    "date": "9/15/2021",
+    "buyer": "EXPIRED",
+    "seller": "CITGO",
+    "jackpot": "$1,250,000",
+    "pay": "",
+    "prize": "",
+    "quickPick": "",
+    "tickets": 0,
+    "buyerAddress": "",
+    "sellerAddress": "$0.00"
+  },
+  {
     "date": "9/8/2021",
     "buyer": "E B HUDSON",
     "seller": "PUBLIX #698",
@@ -130,6 +154,16 @@
     "tickets": 1,
     "buyerAddress": "ORLANDO, FL 32839",
     "sellerAddress": "2655 S US HIGHWAY 17-92, CASSELBERRY"
+  },
+  {
+    "date": "3/27/2021",
+    "buyer": "HANS NANIK MOORJANI",
+    "seller": "MOORJANI",
+    "jackpot": "GRIFFIN 441 SHELL",
+    "pay": "$28,000,000",
+    "prize": "CASH OPTION",
+    "buyerAddress": "1",
+    "sellerAddress": "COLON, UN 4801 S STATE ROAD 7, DAVIE"
   },
   {
     "date": "12/2/2020",
@@ -358,6 +392,16 @@
     "tickets": 1,
     "buyerAddress": "FORT LAUDERDALE, FL 33316",
     "sellerAddress": "3801 NW 9TH AVENUE, OAKLAND PARK"
+  },
+  {
+    "date": "5/15/2019",
+    "buyer": "THEODORE ROOSEVELT",
+    "seller": "VAUGHAN",
+    "jackpot": "PUBLIX #1387",
+    "pay": "$6,000,000",
+    "prize": "CASH OPTION",
+    "buyerAddress": "1",
+    "sellerAddress": "ORLANDO, FL 32817"
   },
   {
     "date": "4/17/2019",
@@ -840,6 +884,18 @@
     "sellerAddress": "1401 MONZA AVENUE, CORAL GABLES"
   },
   {
+    "date": "4/22/2015",
+    "buyer": "EXPIRED",
+    "seller": "THE BEER & LIQUOR STORE",
+    "jackpot": "$15,000,000",
+    "pay": "",
+    "prize": "",
+    "quickPick": "",
+    "tickets": 0,
+    "buyerAddress": "",
+    "sellerAddress": "Y1"
+  },
+  {
     "date": "3/4/2015",
     "buyer": "ARNALDO ESTEVEZ",
     "seller": "AFG ADVANCE CORPORATION",
@@ -850,6 +906,16 @@
     "tickets": 1,
     "buyerAddress": "MIAMI, FL 33173",
     "sellerAddress": "4401 SW 8TH STREET, MIAMI"
+  },
+  {
+    "date": "1/3/2015",
+    "buyer": "AS TRUSTEE OF THE BILLY",
+    "seller": "DOUGLAS LIVING TRUST",
+    "jackpot": "FCE #1050",
+    "pay": "$9,000,000",
+    "prize": "CASH OPTION",
+    "buyerAddress": "1",
+    "sellerAddress": "JACKSONVILLE, FL 32224"
   },
   {
     "date": "12/6/2014",
@@ -874,6 +940,30 @@
     "tickets": 2,
     "buyerAddress": "LEESBURG, FL 34748",
     "sellerAddress": "1302 S 14TH STREET, LEESBURG"
+  },
+  {
+    "date": "11/19/2014",
+    "buyer": "EXPIRED",
+    "seller": "STATELINE LIQUORS",
+    "jackpot": "$48,000,000",
+    "pay": "",
+    "prize": "",
+    "quickPick": "",
+    "tickets": 0,
+    "buyerAddress": "",
+    "sellerAddress": "N1"
+  },
+  {
+    "date": "6/28/2014",
+    "buyer": "EXPIRED",
+    "seller": "1534 7-ELEVEN #29325",
+    "jackpot": "$12,000,000",
+    "pay": "",
+    "prize": "",
+    "quickPick": "",
+    "tickets": 0,
+    "buyerAddress": "",
+    "sellerAddress": "$0.00"
   },
   {
     "date": "5/21/2014",
@@ -910,6 +1000,16 @@
     "tickets": 1,
     "buyerAddress": "ORLANDO, FL 32806",
     "sellerAddress": "2704 S FERNCREEK AVENUE, ORLANDO"
+  },
+  {
+    "date": "8/31/2013",
+    "buyer": "TRUST AGREEMENT OF JAMES D",
+    "seller": "BOZEMAN JR",
+    "jackpot": "1501 7-ELEVEN #39318H",
+    "pay": "$3,000,000",
+    "prize": "ANNUAL PAYMENT",
+    "buyerAddress": "1",
+    "sellerAddress": "ORLANDO, FL 32839"
   },
   {
     "date": "8/24/2013",
