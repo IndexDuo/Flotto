@@ -48,35 +48,27 @@ exec('node pdf.js', (error, stdout, stderr) => {
 
 function processData(data) {
     const processedData = [];
-    
-    // Split the data into individual entries based on "Date:"
-    const entries = data.split("Date:");
-    
-    console.log('Split entries:');
-    console.log(entries); // Add this line to check the split data
 
-    // Iterate through each entry and process it (start from index 1 to skip the first empty entry)
-    for (let i = 1; i < entries.length; i++) {
-        const entryData = {};
-        
-        // Extract lines from the entry
-        const lines = entries[i].trim().split('\n');
-        
-        // Process lines and populate entryData with desired fields (same as before)
-        entryData.date = lines[0].trim();
-        entryData.buyer = lines[1].trim();
-        entryData.seller = lines[2].trim();
-        entryData.jackpot = lines[3].trim();
-        entryData.pay = lines[4].trim();
-        entryData.prize = lines[5].trim();
-        entryData.quickPlay = lines[6].trim() === "Quick Pick";
-        entryData.tickets = parseInt(lines[7].trim());
-        entryData.buyerAddress = lines[8].trim();
-        entryData.sellerAddress = lines[9].trim();
-        
-        // Add the processed entryData to the processedData array
+    // Use regular expression to match each entry
+    const entryRegex = /Date:(.*?)Buyer:(.*?)Seller:(.*?)Jackpot:(.*?)Pay:(.*?)Prize:(.*?)Quick Pick:(.*?)Tickets:(.*?)Buyer Address:(.*?)Seller Address:(.*?)\n/g;
+
+    let match;
+    while ((match = entryRegex.exec(data)) !== null) {
+        const entryData = {
+            date: match[1].trim(),
+            buyer: match[2].trim(),
+            seller: match[3].trim(),
+            jackpot: match[4].trim(),
+            pay: match[5].trim(),
+            prize: match[6].trim(),
+            quickPlay: match[7].trim() === "Quick Pick",
+            tickets: parseInt(match[8].trim()),
+            buyerAddress: match[9].trim(),
+            sellerAddress: match[10].trim(),
+        };
+
         processedData.push(entryData);
     }
-    
+
     return processedData;
 }
