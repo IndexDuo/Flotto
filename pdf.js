@@ -52,7 +52,7 @@ pdf(pdfDataBuffer)
         currentSection = line;
       } else {
         // Append the current line to the current section
-        currentSection += `\n${line}`;
+        currentSection += ` ${line}`;
       }
     }
 
