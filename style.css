@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+#map {
+    height: 480px;
+    width: 480px;
+}
