@@ -2,7 +2,7 @@ import fs from 'fs'
 import pdf from 'pdf-parse'
 
 // Read the PDF file
-const pdfDataBuffer = fs.readFileSync('dataPDF/lottowinners_floridalotto.pdf')
+const pdfDataBuffer = fs.readFileSync('./rawData/lottowinners_floridalotto.pdf')
 
 // Parse the PDF content
 pdf(pdfDataBuffer)

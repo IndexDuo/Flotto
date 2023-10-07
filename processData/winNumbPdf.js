@@ -2,7 +2,7 @@ import fs from 'fs'
 import cheerio from 'cheerio'
 
 // Read the HTML content from the file
-const htmlContent = fs.readFileSync('dataPDF/winningNumber.htm', 'utf8')
+const htmlContent = fs.readFileSync('rawData/winningNumber.htm', 'utf8')
 
 // Parse the HTML content with cheerio
 const $ = cheerio.load(htmlContent)
@@ -72,7 +72,7 @@ $('td[width="47"]').each((i, dateTd) => {
 console.log(winningNumbers)
 
 // If you want to write the winning numbers to a JSON file
-fs.writeFile('winningNumbers.json', JSON.stringify(winningNumbers), (err) => {
+fs.writeFile('./dataJSON/winningNumbers.json', JSON.stringify(winningNumbers), (err) => {
   if (err) throw err
   console.log('Winning numbers saved to winningNumbers.json')
 })

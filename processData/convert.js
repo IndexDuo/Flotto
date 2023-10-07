@@ -2,14 +2,14 @@ import { exec } from 'child_process';
 import fs from 'fs';
 
 // Run pdf.js using child_process module
-exec('node pdf.js', (error, stdout, stderr) => {
+exec('node processData/pdf.js', (error, stdout, stderr) => {
     if (error) {
         console.error(`Error running pdf.js: ${error.message}`);
         return;
     }
 
     // read data from pdfoutput.txt
-    fs.readFile('pdfoutput.txt', 'utf8', (err, data) => {
+    fs.readFile('./pdfoutput.txt', 'utf8', (err, data) => {
         if (err) {
             console.error(`Error reading pdfoutput.txt: ${err.message}`);
             return;
@@ -47,13 +47,13 @@ exec('node pdf.js', (error, stdout, stderr) => {
         }
 
         // Write processed data to lottery-result.json
-        fs.writeFile('lottery-result.json', JSON.stringify(entries, null, 2), (err) => {
+        fs.writeFile('./dataJSON/lottery-result.json', JSON.stringify(entries, null, 2), (err) => {
             if (err) {
-                console.error(`Error writing to lottery-result.json: ${err.message}`);
+                console.error(`Error writing to ./dataJSON/lottery-result.json: ${err.message}`);
                 return;
             }
 
-            console.log('Data has been converted and saved to lottery-result.json');
+            console.log('Data has been converted and saved to ./dataJSON/lottery-result.json');
         });
     });
 });

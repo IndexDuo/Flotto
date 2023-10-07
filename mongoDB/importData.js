@@ -5,7 +5,7 @@ import fs from 'fs/promises'; // Use fs/promises for async file operations
 const uri = "mongodb+srv://indexduo:index2012512@flottery.c5klhwf.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp";
 
 // JSON file containing winningNumbers data
-const jsonFilePath = 'winningNumbers.json';
+const jsonFilePath = './dataJSON/winningNumbers.json';
 
 async function importData() {
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
