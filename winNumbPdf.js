@@ -9,9 +9,6 @@ const $ = cheerio.load(htmlContent)
 
 const winningNumbers = []
 
-let currentType = ''
-let currentNumbers = []
-
 $('td[width="47"]').each((i, dateTd) => {
   let drawDate = ''
   const date = $(dateTd).text().trim()
@@ -43,31 +40,26 @@ $('td[width="47"]').each((i, dateTd) => {
 
     // If the td tag is found, store the play type in currentType
     if (tdTag.length) {
-      currentType = tdTag.find('font').text().trim()
+      const currentType = tdTag.find('font').text().trim()
+      // Push the drawDate, currentNumbers, and currentType to the winningNumbers array as an object
+      winningNumbers.push({
+        date: drawDate,
+        numbers: currentNumbers,
+        type: currentType,
+      })
     }
-
-    // Push the drawDate, currentNumbers, and currentType to the winningNumbers array
-    winningNumbers.push({
-      date: drawDate,
-      numbers: currentNumbers,
-      type: currentType,
-    })
   }
 })
 
-// if (currentNumbers.length === 6) {
-//   winningNumbers.push({
-//     date: drawDate,
-//     numbers: currentNumbers,
-//   })
-// }
+// Wrap the winningNumbers array in an object
+const result = { winningNumbers }
 
 // All lines have been processed
-// You can now work with the `winningNumbers` array or perform further actions
-console.log(winningNumbers)
+// You can now work with the `result` object or perform further actions
+console.log(result)
 
-// If you want to write the winning numbers to a JSON file
-fs.writeFile('winningNumbers.json', JSON.stringify(winningNumbers), (err) => {
+// If you want to write the result to a JSON file
+fs.writeFile('winningNumbers.json', JSON.stringify(result), (err) => {
   if (err) throw err
-  console.log('Winning numbers saved to winningNumbers.json')
+  console.log('Result saved to winningNumbers.json')
 })
