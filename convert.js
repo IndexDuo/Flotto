@@ -47,10 +47,10 @@ function processData(data) {
 
         // extract info from the entry
         const lines = entry.trim().split('\n');
-        
+
         // Check if the entry is unclaimed or expired, and skip it
         if (lines[1].trim() === 'UNCLAIMED AT THIS TIME' || lines[1].trim() === 'EXPIRED') {
-            console.log("inside if statement");
+            console.log("in if statement");
             continue; // Skip this entry and move to the next one
         }
 
