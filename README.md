@@ -14,5 +14,5 @@
 
  The result is updated in the **pdfoutput.txt** folder.
 
- Every time you do **node pdf.js** in you terminal, **pdfoutput.txt** will be updated.
+ Every time you do *node pdf.js* in you terminal, **pdfoutput.txt** will be updated.
 ```
