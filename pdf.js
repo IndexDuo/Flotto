@@ -55,12 +55,11 @@ pdf(pdfDataBuffer)
 
             // Check if the previous line starts with a number
             if (!numberPattern.test(previousLine)) {
-                if (!numberPattern.test(previousLine)) {
-                    // Get the index of where the number starts within the previous line
-                    const numberIndex = previousLine.search(/\d/);
-                    console.log(numberIndex);
-                }
+                // Get the index of where the number starts within the previous line
+                const numberIndex = previousLine.search(/\d/);
+                console.log(numberIndex);
             }
+            
         }
     }
 
