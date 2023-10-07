@@ -38,18 +38,41 @@ pdf(pdfDataBuffer)
     // Add a newline after the 5th digit of the ZIP code
     pdfText = pdfText.replace(/(\d{5})(\d+)/g, '$1\n$2');
 
-    //if the line equals "EXEMPT PURSUANT TO F.S." then remove the newline after it
+    //if the line equals "EXEMPT PURSUANT TO F.S." then check if the the next line is "24.1051", if so combine the two lines into one line by adding the next line to the current line after removing the new line character
     for (let i = 0; i < filteredLines.length; i++) {
         if (filteredLines[i].includes("EXEMPT PURSUANT TO F.S.")) {
             if (filteredLines[i + 1] === "24.1051") {
-                filteredLines.replace(/\n/g, '');
-            }else{
-                console.log("Error: Line after EXEMPT PURSUANT TO F.S. is not blank.");
+                filteredLines[i] = filteredLines[i].replace(/\n/g, '') + filteredLines[i + 1];
+                filteredLines.splice(i + 1, 1);
+                console.log(`Line after "EXEMPT PURSUANT TO F.S." is "24.1051". New line removed and combined with previous line.`);
+            } else {
+                console.log(`Error: Line after "EXEMPT PURSUANT TO F.S." is not blank.`);
             }
         }
     }
 
-    // Join the filtered lines to form the final text
+    // if the line starts with a dollar sign, then check if the next character is a number until there's a letter. If so, add a new line character after the number and before the letter. If the character after the letter is a number, then add a new line character after the letter and before the number.
+for (let i = 0; i < filteredLines.length; i++) {
+    if (filteredLines[i].startsWith('$')) {
+        let j = 1;
+        console.log(`Line ${i + 1} starts with a dollar sign.`);
+        while (j < filteredLines[i].length && !isNaN(filteredLines[i][j])) {
+            j++;
+        }
+        if (j < filteredLines[i].length && /[a-zA-Z]/.test(filteredLines[i][j])) {
+            filteredLines[i] = filteredLines[i].substring(0, j) + '\n' + filteredLines[i].substring(j);
+            if (j + 1 < filteredLines[i].length && !isNaN(filteredLines[i][j + 1])) {
+                let k = j + 1;
+                while (k < filteredLines[i].length && !isNaN(filteredLines[i][k])) {
+                    k++;
+                }
+                if (k < filteredLines[i].length && /[a-zA-Z]/.test(filteredLines[i][k])) {
+                    filteredLines[i] = filteredLines[i].substring(0, k) + '\n' + filteredLines[i].substring(k);
+                }
+            }
+        }
+    }
+}
     pdfText = filteredLines.join('\n');
 
     // Write the processed text to a .txt file (output.txt)
