@@ -32,18 +32,37 @@ pdf(pdfDataBuffer)
     // Filter out blank lines
     const filteredLines = lines.filter(line => line.trim() !== '');
 
-    // Join the filtered lines to form the final text
-    pdfText = filteredLines.join('\n');
+    // Create an array to store the reformatted sections
+    const reformattedSections = [];
 
-    // Add a newline after the 5th digit of the ZIP code
-    pdfText = pdfText.replace(/(\d{5})(\d+)/g, '$1\n$2');
+    let currentSection = '';
 
-    //if the line matches the date format, get the previous line and check if it starts with a number. If it does, do nothing. If it doesn't, add a newline before the number.  
+    // Iterate through the lines to reformat the sections
+    for (let i = 0; i < filteredLines.length; i++) {
+      const line = filteredLines[i];
+      const currentDateRegex = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
 
-    // Write the processed text to a .txt file (output.txt)
-    fs.writeFileSync('output.txt', pdfText);
+      if (currentDateRegex.test(line)) {
+        // If it's a date, add the current section to the array
+        if (currentSection !== '') {
+          reformattedSections.push(currentSection.trim());
+        }
 
-    console.log('Text with content between "10/06/2023 as of" and "Tickets" removed, blank lines removed, and ZIP code formatted.');
+        // Start a new section with the date
+        currentSection = line;
+      } else {
+        // Append the current line to the current section
+        currentSection += ` ${line}`;
+      }
+    }
+
+    // Add the last section
+    reformattedSections.push(currentSection.trim());
+
+    // Write the reformatted sections to a .txt file (output.txt)
+    fs.writeFileSync('output.txt', reformattedSections.join('\n\n'));
+
+    console.log('Text with content between "10/06/2023 as of" and "Tickets" removed, blank lines removed, and reorganized as per your specified structure.');
     console.log('Updated output.txt file.');
   })
   .catch(error => {
