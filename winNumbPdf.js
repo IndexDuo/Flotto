@@ -9,6 +9,9 @@ const $ = cheerio.load(htmlContent)
 
 const winningNumbers = []
 
+let currentType = ''
+let currentNumbers = []
+
 $('td[width="47"]').each((i, dateTd) => {
   let drawDate = ''
   const date = $(dateTd).text().trim()
@@ -34,32 +37,42 @@ $('td[width="47"]').each((i, dateTd) => {
 
   if (currentNumbers.length === 6) {
     // Find the td tag that contains the play type
-    while (tdTag.length && !(tdTag.attr('width') === '131')) {
+    while (
+      tdTag.length &&
+      !(tdTag.attr('width') === '131')
+    ) {
       tdTag = tdTag.next()
     }
 
     // If the td tag is found, store the play type in currentType
     if (tdTag.length) {
-      const currentType = tdTag.find('font').text().trim()
-      // Push the drawDate, currentNumbers, and currentType to the winningNumbers array as an object
-      winningNumbers.push({
-        date: drawDate,
-        numbers: currentNumbers,
-        type: currentType,
-      })
+      currentType = tdTag.find('font').text().trim()
     }
+
+    // Push the drawDate, currentNumbers, and currentType to the winningNumbers array
+    winningNumbers.push({
+      date: drawDate,
+      numbers: currentNumbers,
+      type: currentType,
+    })
   }
 })
 
-// Wrap the winningNumbers array in an object
-const result = { winningNumbers }
+
+
+  // if (currentNumbers.length === 6) {
+  //   winningNumbers.push({
+  //     date: drawDate,
+  //     numbers: currentNumbers,
+  //   })
+  // }
 
 // All lines have been processed
-// You can now work with the `result` object or perform further actions
-console.log(result)
+// You can now work with the `winningNumbers` array or perform further actions
+console.log(winningNumbers)
 
-// If you want to write the result to a JSON file
-fs.writeFile('winningNumbers.json', JSON.stringify(result), (err) => {
+// If you want to write the winning numbers to a JSON file
+fs.writeFile('winningNumbers.json', JSON.stringify(winningNumbers), (err) => {
   if (err) throw err
-  console.log('Result saved to winningNumbers.json')
+  console.log('Winning numbers saved to winningNumbers.json')
 })
