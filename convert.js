@@ -47,6 +47,12 @@ function processData(data) {
 
         // extract info from the entry
         const lines = entry.trim().split('\n');
+        
+        // ignore entries that have been unclaimed or expired
+        if (entryData.buyer === 'UNCLAIMED AT THIS TIME' || entryData.buyer === 'EXPIRED') {
+            console.log("Entered if statement");
+            return;
+        }
 
         // process lines and populate entryData with desired fields
         entryData.date = lines[0].trim();       // Date
