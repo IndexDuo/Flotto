@@ -7,7 +7,8 @@
 3. to run the .js files,  do node "file-name"
 
 very very important!!
-after
+after you do npm i, be sure to go to your node_modules\pdf-parse\index.js
+and change let isDebugMode = !module.parent; to let isDebugMode = false;
 
 ### What's each file for?
 
