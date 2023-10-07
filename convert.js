@@ -21,17 +21,20 @@ exec('node pdf.js', (error, stdout, stderr) => {
         const entries = [];
 
         for (const line of lines) {
-            // Check if the line matches the date format MM/DD/YYYY
-            if (/^\d{2}\/\d{2}\/\d{4}$/.test(line)) {
+            // Use a regular expression to match the date format MM/DD/YYYY
+            if (/^\d{2}\/\d{2}\/\d{4}$/.test(line.trim())) {
                 // If a new date is encountered, process the previous entry
                 if (currentEntry.length > 0) {
                     const entry = processData(currentEntry);
                     if (entry) {
                         entries.push(entry);
                     }
+                    // Start a new entry with the current line as the date
+                    currentEntry = [line];
+                } else {
+                    // If there's no previous entry, start a new one
+                    currentEntry.push(line);
                 }
-                // Start a new entry with the current line as the date
-                currentEntry = [line];
             } else {
                 // Add the line to the current entry
                 currentEntry.push(line);
