@@ -52,6 +52,9 @@ function processData(data) {
     // Split the data into individual entries based on "Date:"
     const entries = data.split("Date:");
     
+    console.log('Split entries:');
+    console.log(entries); // Add this line to check the split data
+
     // Iterate through each entry and process it (start from index 1 to skip the first empty entry)
     for (let i = 1; i < entries.length; i++) {
         const entryData = {};
