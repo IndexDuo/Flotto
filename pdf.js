@@ -38,7 +38,19 @@ pdf(pdfDataBuffer)
     // Add a newline after the 5th digit of the ZIP code
     pdfText = pdfText.replace(/(\d{5})(\d+)/g, '$1\n$2');
 
-    //if the line matches the date format, get the previous line and check if it starts with a number. If it does, do nothing. If it doesn't, add a newline before the number.  
+    //if the line equals "EXEMPT PURSUANT TO F.S." then remove the newline after it
+    for (let i = 0; i < filteredLines.length; i++) {
+        if (filteredLines[i].includes("EXEMPT PURSUANT TO F.S.")) {
+            if (filteredLines[i + 1] === "24.1051") {
+                filteredLines.splice(i + 1, 1);
+            }else{
+                console.log("Error: Line after EXEMPT PURSUANT TO F.S. is not blank.");
+            }
+        }
+    }
+
+    // Join the filtered lines to form the final text
+    pdfText = filteredLines.join('\n');
 
     // Write the processed text to a .txt file (output.txt)
     fs.writeFileSync('output.txt', pdfText);
