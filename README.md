@@ -23,4 +23,4 @@ do "git push origin main"
 
 ## How to pull the code from another branch so i have the most up-to-date code?
 
-do "git pull <branch name>"
+do "git pull -branch name here-"
