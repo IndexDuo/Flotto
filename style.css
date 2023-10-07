@@ -5,9 +5,3 @@
     height: 480px;
     width: 480px;
 }
-
-.bg-cloud-footer {
-    background-image: url('/assets/images/cloud-footer.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
