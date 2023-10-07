@@ -62,17 +62,67 @@ exec('node pdf.js', (error, stdout, stderr) => {
 function processData(entryLines) {
     const entryData = {};
 
-    // Process lines and populate entryData with desired fields
-    entryData.date = entryLines[0].trim();       // Date
-    entryData.buyer = entryLines[1].trim();      // Buyer
-    entryData.seller = entryLines[2].trim();     // Seller
-    entryData.jackpot = entryLines[3].trim();    // Jackpot
-    entryData.pay = entryLines[4].trim();        // Pay
-    entryData.prize = entryLines[5].trim();      // Prize
-    entryData.quickPlay = entryLines[6].trim() === "Y"; // QuickPlay
-    entryData.tickets = parseInt(entryLines[7].trim());  // Tickets
-    entryData.buyerAddress = entryLines[8].trim();  // Buyer Address
-    entryData.sellerAddress = entryLines[9].trim();
+    // Dynamically assign values based on line numbers and check line format
+    entryLines.forEach((line, index) => {
+        const trimmedLine = line.trim();
+        switch (index) {
+            case 0:
+                if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(trimmedLine)) {
+                    entryData.date = trimmedLine; // Date
+                }
+                break;
+            case 1:
+                entryData.buyer = trimmedLine; // Buyer
+                break;
+            case 2:
+                entryData.seller = trimmedLine; // Seller
+                break;
+            case 3:
+                entryData.jackpot = trimmedLine; // Jackpot
+                break;
+            case 4:
+                entryData.pay = trimmedLine; // Pay
+                break;
+            case 5:
+                entryData.prize = trimmedLine; // Prize
+                break;
+            case 6:
+                if (trimmedLine === "Y" || trimmedLine === "N") {
+                    entryData.quickPlay = trimmedLine === "Y"; // QuickPlay
+                }
+                break;
+            case 7:
+                if (/^\d+$/.test(trimmedLine)) {
+                    entryData.tickets = parseInt(trimmedLine); // Tickets
+                }
+                break;
+            case 8:
+                entryData.buyerAddress = trimmedLine; // Buyer Address
+                break;
+            case 9:
+                entryData.sellerAddress = trimmedLine; // Seller Address
+                break;
+            default:
+                // Handle additional lines if needed
+                break;
+        }
+    });
 
-    return entryData;
+    // Check if all required fields are present, otherwise return null
+    if (
+        entryData.date &&
+        entryData.buyer &&
+        entryData.seller &&
+        entryData.jackpot &&
+        entryData.pay &&
+        entryData.prize &&
+        entryData.hasOwnProperty('quickPlay') &&
+        entryData.hasOwnProperty('tickets') &&
+        entryData.buyerAddress &&
+        entryData.sellerAddress
+    ) {
+        return entryData;
+    } else {
+        return null; // Skip incomplete entries
+    }
 }
