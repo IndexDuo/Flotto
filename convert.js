@@ -16,7 +16,7 @@ exec('node pdf.js', (error, stdout, stderr) => {
         }
 
         // Split the data into entries based on the date
-        const entries = data.split(/\d{1,2}\/\d{1,2}\/\d{4}/); // Assumes date format MM/DD/YYYY
+        const entries = data.split(/\d{2}\/\d{2}\/\d{4}/); // Assumes date format MM/DD/YYYY
 
         // Filter out any empty entries
         const validEntries = entries.filter(entry => entry.trim().length > 0);
