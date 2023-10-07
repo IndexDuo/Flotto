@@ -72,7 +72,21 @@ pdf(pdfDataBuffer)
         filteredLines[i] = filteredLines[i].replace(/(\d{5})(\d+)/g, '$1\n$2');
     }
     
-    //if the line before the equals to the date format, then check if the previous line start with a number, if not, then check if the line before that starts with a number, if so, then combine the two lines into one line by adding the previous line to the current line after removing the new line character
+    for (let i = 1; i < filteredLines.length; i++) {
+        if (/^\d{2}\/\d{2}\/\d{4}$/.test(filteredLines[i])) {
+            if (i > 1 && /^\D/.test(filteredLines[i - 1])) {
+                if (i > 2 && /^\d/.test(filteredLines[i - 2])) {
+                    filteredLines[i - 2] = filteredLines[i - 2].replace(/\n/g, '') + filteredLines[i - 1];
+                    filteredLines.splice(i - 1, 1);
+                    console.log(`Line before date format is "${filteredLines[i - 1]}". Previous line does not start with a number. Line before previous line combined with previous line.`);
+                } else {
+                    console.log(`Line before date format is "${filteredLines[i - 1]}". Previous line starts with a number. No line combined.`);
+                }
+            } else {
+                console.log(`Line before date format is "${filteredLines[i - 1]}". No previous line. No line combined.`);
+            }
+        }
+    }
     
     
     
