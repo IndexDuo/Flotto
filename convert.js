@@ -1,13 +1,13 @@
 import { exec } from 'child_process';
 import fs from 'fs';
 
-// define empty array to store all processed entries
+// Define an empty array to store all processed entries
 const result = [];
 
 // Run pdf.js using child_process module
 exec('node pdf.js', (error, stdout, stderr) => {
     if (error) {
-        console.error('Error running pdf.js: ${error.message}');
+        console.error(`Error running pdf.js: ${error.message}`);
         return;
     }
 
@@ -22,11 +22,11 @@ exec('node pdf.js', (error, stdout, stderr) => {
         try {
             const processedData = processData(data);
 
-            // add processedData to the result array
+            // Add the processedData to the result array
             result.push(...processedData);
 
             // write processed data to lottery-result.json
-            fs.writeFile('lottery-result.json', JSON.stringify(processedData, null, 2), (err) => {
+            fs.writeFile('lottery-result.json', JSON.stringify(result, null, 2), (err) => {
                 if (err) {
                     console.error(`Error writing to lottery-result.json: ${err.message}`);
                     return;
@@ -38,7 +38,7 @@ exec('node pdf.js', (error, stdout, stderr) => {
             console.error(`Error processing data: ${e.message}`);
         }
     });
-}); 
+});
 
 // define data processing logic
 function processData(data) {
@@ -66,7 +66,7 @@ function processData(data) {
         entryData.buyerAddress = lines[8].trim();  // Buyer Address
         entryData.sellerAddress = lines[9].trim();  // Seller Address
 
-        // Add the processed entryData to the result array
+        // Add the processed entryData to the processedData array
         processedData.push(entryData);
     }
 
