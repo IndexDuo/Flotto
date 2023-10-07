@@ -46,35 +46,40 @@ exec('node pdf.js', (error, stdout, stderr) => {
     });
 });
 
-// Define data processing logic
 function processData(data) {
     const processedData = [];
+    
+    // Define a regular expression to match the start of each entry
+    const entryRegex = /Entry:\s+/g;
 
-    // Split the data into individual entries
-    const entries = data.split("Entry:");
+    // Use the regular expression to split the data into individual entries
+    const entries = data.split(entryRegex);
+
+    // Remove the first empty entry (resulting from the split)
+    entries.shift();
 
     // Iterate through each entry and process it
-    for (const entry of entries) {
+    for (const entryText of entries) {
         const entryData = {};
-
-        // Extract info from the entry
-        const lines = entry.trim().split('\n');
-
-        // Process lines and populate entryData with desired fields
-        entryData.date = lines[0].trim();       // Date
-        entryData.buyer = lines[1].trim();      // Buyer
-        entryData.seller = lines[2].trim();     // Seller
-        entryData.jackpot = lines[3].trim();    // Jackpot
-        entryData.pay = lines[4].trim();        // Pay
-        entryData.prize = lines[5].trim();      // Prize
-        entryData.quickPlay = lines[6].trim() === "Quick Pick"; //QuickPlay
-        entryData.tickets = parseInt(lines[7].trim());  // Tickets
-        entryData.buyerAddress = lines[8].trim();  // Buyer Address
-        entryData.sellerAddress = lines[9].trim();  // Seller Address
-
+        
+        // Split the entry text into lines
+        const lines = entryText.trim().split('\n');
+        
+        // Process lines and populate entryData with desired fields (same as before)
+        entryData.date = lines[0].trim();
+        entryData.buyer = lines[1].trim();
+        entryData.seller = lines[2].trim();
+        entryData.jackpot = lines[3].trim();
+        entryData.pay = lines[4].trim();
+        entryData.prize = lines[5].trim();
+        entryData.quickPlay = lines[6].trim() === "Quick Pick";
+        entryData.tickets = parseInt(lines[7].trim());
+        entryData.buyerAddress = lines[8].trim();
+        entryData.sellerAddress = lines[9].trim();
+        
         // Add the processed entryData to the processedData array
         processedData.push(entryData);
     }
-
+    
     return processedData;
 }
