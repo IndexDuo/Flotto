@@ -47,6 +47,9 @@ exec('node pdf.js', (error, stdout, stderr) => {
 });
 
 function processData(data) {
+    console.log('Input data:');
+    console.log(data);
+
     const processedData = [];
 
     // Use regular expression to match each entry
