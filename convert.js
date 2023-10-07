@@ -54,27 +54,23 @@ function processData(entry) {
     // Process lines and populate entryData with desired fields
     entryData.date = lines[0].trim(); // Date
     entryData.buyer = lines[1].trim(); // Buyer
+    entryData.seller = lines[2].trim(); // Seller
+    entryData.jackpot = lines[3].trim(); // Jackpot
+    entryData.pay = lines[4].trim(); // Pay
+    entryData.prize = lines[5].trim(); // Prize
+    entryData.quickPlay = lines[6].trim() === "Quick Pick"; // QuickPlay
+    entryData.tickets = parseInt(lines[7].trim(), 10); // Tickets
 
-    // Determine the number of lines for the seller information
-    let sellerLines = 1;
-    if (lines[2] && !lines[2].includes('$')) {
-        sellerLines = 2;
-    }
-
-    // Process seller information based on the determined number of lines
-    entryData.seller = lines.slice(1, 1 + sellerLines).join(' ').trim(); // Seller
-    entryData.jackpot = lines[1 + sellerLines].trim(); // Jackpot
-    entryData.pay = lines[2 + sellerLines].trim(); // Pay
-    entryData.prize = lines[3 + sellerLines].trim(); // Prize
-    entryData.quickPlay = lines[4 + sellerLines].trim() === "Quick Pick"; // QuickPlay
-    entryData.tickets = parseInt(lines[5 + sellerLines].trim()); // Tickets
-
-    // Check if lines[7 + sellerLines] exists before accessing it
-    if (lines.length >= 8 + sellerLines) {
-        entryData.buyerAddress = lines[6 + sellerLines].trim(); // Buyer Address
-        entryData.sellerAddress = lines[7 + sellerLines].trim(); // Seller Address
+    // Check if lines[8] and lines[9] exist before accessing them
+    if (lines[8]) {
+        entryData.buyerAddress = lines[8].trim(); // Buyer Address
     } else {
         entryData.buyerAddress = ''; // Set to an empty string if not available
+    }
+
+    if (lines[9]) {
+        entryData.sellerAddress = lines[9].trim(); // Seller Address
+    } else {
         entryData.sellerAddress = ''; // Set to an empty string if not available
     }
 
