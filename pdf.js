@@ -94,7 +94,7 @@ pdf(pdfDataBuffer)
     pdfText = filteredLines.join('\n');
 
     // Write the processed text to a .txt file (output.txt)
-    fs.writeFileSync('output.txt', pdfText);
+    fs.writeFileSync('pdfoutput.txt', pdfText);
 
     console.log('Text with content between "10/06/2023 as of" and "Tickets" removed, blank lines removed, and ZIP code formatted.');
     console.log('Updated output.txt file.');
