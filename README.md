@@ -8,4 +8,11 @@
 
 ### What's each file for?
 
-1. 
+1. pdf.js
+```bash
+ This .js file turns the **lottowinners_floridalotto.pdf** to raw data and then to some regex stuff to make it prettier.
+
+ The result is updated in the **pdfoutput.txt** folder.
+
+ Every time you do **node pdf.js** in you terminal, **pdfoutput.txt** will be updated.
+```
