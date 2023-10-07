@@ -52,15 +52,22 @@ pdf(pdfDataBuffer)
         currentSection = line;
       } else {
         // Append the current line to the current section
-        currentSection += ` ${line}`;
+        currentSection += `\n${line}`;
       }
     }
 
     // Add the last section
     reformattedSections.push(currentSection.trim());
 
-    // Write the reformatted sections to a .txt file (output.txt)
-    fs.writeFileSync('output.txt', reformattedSections.join('\n\n'));
+    // Join the reformatted sections to form the final text
+    const formattedText = reformattedSections.map(section => {
+      return section
+        .replace(/(\$\d+(?:\.\d{2})?)([A-Z]\d+)/g, '$1\n$2')
+        .replace(/(?<=\d) /g, '\n');
+    }).join('\n\n');
+
+    // Write the processed text to a .txt file (output.txt)
+    fs.writeFileSync('output.txt', formattedText);
 
     console.log('Text with content between "10/06/2023 as of" and "Tickets" removed, blank lines removed, and reorganized as per your specified structure.');
     console.log('Updated output.txt file.');
