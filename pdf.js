@@ -65,7 +65,8 @@ pdf(pdfDataBuffer)
         .replace(/(\$\d+(?:\.\d{2})?)([A-Z]\d+)/g, '$1\n$2')
         .replace(/(\d{5})(?=\d)/g, '$1\n')
         .replace(/(\d{5})\s+/g, '$1 ')
-        .replace(/(?<=\d)\s+/g, '\n');
+        .replace(/(?<=\d)\s+/g, '\n')
+        .replace(/\n(\d+\s[A-Z][A-Z]+)/g, ' $1\n');
     }).join('\n\n');
 
     // Write the processed text to a .txt file (output.txt)
