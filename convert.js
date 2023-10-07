@@ -52,18 +52,23 @@ function processData(data) {
     // Define a regular expression to match the start of each entry
     const entryRegex = /Entry:\s+/g;
 
-    // Use the regular expression to split the data into individual entries
-    const entries = data.split(entryRegex);
+    // Use the regular expression to find all matches of "Entry:" followed by whitespace
+    const entryMatches = [...data.matchAll(entryRegex)];
 
-    // Remove the first empty entry (resulting from the split)
-    entries.shift();
-
-    // Iterate through each entry and process it
-    for (const entryText of entries) {
+    // Iterate through each entry match and process it
+    for (let i = 0; i < entryMatches.length; i++) {
+        const entryStartIndex = entryMatches[i].index;
+        const entryEndIndex = i + 1 < entryMatches.length
+            ? entryMatches[i + 1].index
+            : data.length;
+        
+        // Extract the text of the current entry
+        const entryText = data.slice(entryStartIndex, entryEndIndex).trim();
+        
         const entryData = {};
         
         // Split the entry text into lines
-        const lines = entryText.trim().split('\n');
+        const lines = entryText.split('\n');
         
         // Process lines and populate entryData with desired fields (same as before)
         entryData.date = lines[0].trim();
