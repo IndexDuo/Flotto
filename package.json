@@ -10,6 +10,12 @@
   "name": "knighthacks2023",
   "description": "",
   "version": "1.0.0",
+<<<<<<< HEAD
+=======
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  },
+>>>>>>> origin/casi
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
