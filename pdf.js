@@ -52,7 +52,7 @@ pdf(pdfDataBuffer)
         currentSection = line;
       } else {
         // Append the current line to the current section
-        currentSection += `\n${line}`;
+        currentSection += ` ${line}`;
       }
     }
 
@@ -60,14 +60,7 @@ pdf(pdfDataBuffer)
     reformattedSections.push(currentSection.trim());
 
     // Join the reformatted sections to form the final text
-    const formattedText = reformattedSections.map(section => {
-      return section
-        .replace(/(\$\d+(?:\.\d{2})?)([A-Z]\d+)/g, '$1\n$2')
-        .replace(/(\d{5})(?=\d)/g, '$1\n')
-        .replace(/(\d{5})\s+/g, '$1 ')
-        .replace(/(?<=\d)\s+/g, '\n')
-        .replace(/\n(\d+\s[A-Z][A-Z]+)/g, ' $1\n');
-    }).join('\n\n');
+    const formattedText = reformattedSections.join('\n\n');
 
     // Write the processed text to a .txt file (output.txt)
     fs.writeFileSync('output.txt', formattedText);
