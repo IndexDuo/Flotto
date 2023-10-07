@@ -52,22 +52,39 @@ function processData(entry) {
     }
 
     // Process lines and populate entryData with desired fields
-    entryData.date = lines[0].trim();       // Date
-    entryData.buyer = lines[1].trim();      // Buyer
-    entryData.seller = lines[2].trim();     // Seller
-    entryData.jackpot = lines[3].trim();    // Jackpot
-    entryData.pay = lines[4].trim();        // Pay
-    entryData.prize = lines[5].trim();      // Prize
-    entryData.quickPlay = lines[6].trim() === "Quick Pick"; //QuickPlay
-    entryData.tickets = parseInt(lines[7].trim());  // Tickets
-        
+    entryData.date = lines[0].trim(); // Date
+
+    // Determine the number of lines for buyer and seller
+    let buyerLines = 1;
+    let sellerLines = 1;
+
+    // Check if there is an additional line for buyer or seller
+    if (lines[2] && !lines[2].includes('$')) {
+        // Additional line for buyer
+        buyerLines = 2;
+    } else if (lines[3] && !lines[3].includes('$')) {
+        // Additional line for seller
+        sellerLines = 2;
+    }
+
+    // Process buyer and seller lines based on the determined number of lines
+    entryData.buyer = lines.slice(1, 1 + buyerLines).join(' ').trim(); // Buyer
+    entryData.seller = lines.slice(1 + buyerLines, 1 + buyerLines + sellerLines).join(' ').trim(); // Seller
+
+    entryData.jackpot = lines[1 + buyerLines + sellerLines].trim(); // Jackpot
+    entryData.pay = lines[2 + buyerLines + sellerLines].trim(); // Pay
+    entryData.prize = lines[3 + buyerLines + sellerLines].trim(); // Prize
+    entryData.quickPlay = lines[4 + buyerLines + sellerLines].trim() === "Quick Pick"; // QuickPlay
+    entryData.tickets = parseInt(lines[5 + buyerLines + sellerLines].trim()); // Tickets
+
     // Check if lines[9] exists before accessing it
-    if (lines.length >= 10) {
-        entryData.buyerAddress = lines[8].trim();  // Buyer Address
-        entryData.sellerAddress = lines[9].trim();  // Seller Address
+    if (lines.length >= 10 + buyerLines + sellerLines) {
+        entryData.buyerAddress = lines[6 + buyerLines + sellerLines].trim(); // Buyer Address
+        entryData.sellerAddress = lines[7 + buyerLines + sellerLines].trim(); // Seller Address
     } else {
         entryData.buyerAddress = ''; // Set to an empty string if not available
         entryData.sellerAddress = ''; // Set to an empty string if not available
     }
+
     return entryData;
 }
