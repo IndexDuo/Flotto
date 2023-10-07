@@ -10,8 +10,8 @@
 
 #### pdf.js
 
-This .js file turns the **lottowinners_floridalotto.pdf** to raw data and then to some regex stuff to make it prettier.
+This .js file turns the **lottowinners_floridalotto.pdf** to raw data and then do some regex stuff to make it prettier.
  
-The result is updated in the **pdfoutput.txt** folder.
+The result is updated in the **pdfoutput.txt** file.
 
 Every time you do **node pdf.js** in you terminal, **pdfoutput.txt** will be updated.
