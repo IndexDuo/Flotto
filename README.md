@@ -15,3 +15,12 @@ This .js file turns the **lottowinners_floridalotto.pdf** to raw data and then d
 The result is updated in the **pdfoutput.txt** file.
 
 Every time you do **node pdf.js** in you terminal, **pdfoutput.txt** will be updated.
+
+
+## How to push my code so it's in the main branch
+
+do "git push origin main"
+
+## How to pull the code from another branch so i have the most up-to-date code?
+
+do "git pull <branch name>"
