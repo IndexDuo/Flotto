@@ -63,8 +63,8 @@ pdf(pdfDataBuffer)
     const formattedText = reformattedSections.map(section => {
       return section
         .replace(/(\$\d+(?:\.\d{2})?)([A-Z]\d+)/g, '$1\n$2')
-        .replace(/(?<=\d) /g, '\n')
-        .replace(/(\d{5})(\d{4})/g, '$1\n$2'); // Add a newline after ZIP code
+        .replace(/(\d{5})([A-Z])/g, '$1\n$2') // Add a newline between ZIP code and rest of address
+        .replace(/(?<=\d) /g, '\n');
     }).join('\n\n');
 
     // Write the processed text to a .txt file (output.txt)
