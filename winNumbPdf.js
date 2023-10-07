@@ -7,7 +7,7 @@ const htmlContent = fs.readFileSync('dataPDF/winningNumber.htm', 'utf8')
 // Parse the HTML content with cheerio
 const $ = cheerio.load(htmlContent)
 
-const winningNumbers = {}
+const winningNumbers = []
 
 let currentType = ''
 let currentNumbers = []
