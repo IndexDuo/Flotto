@@ -42,7 +42,7 @@ pdf(pdfDataBuffer)
     for (let i = 0; i < filteredLines.length; i++) {
         if (filteredLines[i].includes("EXEMPT PURSUANT TO F.S.")) {
             if (filteredLines[i + 1] === "24.1051") {
-                filteredLines.splice(i + 1, 1);
+                filteredLines.replace(/\n/g, '');
             }else{
                 console.log("Error: Line after EXEMPT PURSUANT TO F.S. is not blank.");
             }
