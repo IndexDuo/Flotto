@@ -18,9 +18,15 @@ exec('node pdf.js', (error, stdout, stderr) => {
             return;
         }
 
+        console.log('Raw data from pdfoutput.txt:');
+        console.log(data);
+
         // process data (parse it, convert it to object)
         try {
             const processedData = processData(data);
+
+            console.log('Processed data:');
+            console.log(processedData);
 
             // Add the processedData to the result array
             result.push(...processedData);
