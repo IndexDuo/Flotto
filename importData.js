@@ -2,7 +2,7 @@ import { MongoClient } from 'mongodb';
 import fs from 'fs/promises'; // Use fs/promises for async file operations
 
 // MongoDB Atlas cluster connection string
-const uri = '';
+const uri = "mongodb+srv://indexduo:index2012512@flottery.c5klhwf.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp";
 
 // JSON file containing winningNumbers data
 const jsonFilePath = 'winningNumbers.json';
@@ -14,7 +14,7 @@ async function importData() {
     await client.connect();
     console.log('Connected to MongoDB Atlas');
 
-    const database = client.db('your-database-name');
+    const database = client.db('');
     const collection = database.collection('winningNumbers');
 
     // Read JSON data from file
