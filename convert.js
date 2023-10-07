@@ -49,26 +49,15 @@ exec('node pdf.js', (error, stdout, stderr) => {
 function processData(data) {
     const processedData = [];
     
-    // Define a regular expression to match the start of each entry
-    const entryRegex = /Entry:\s+/g;
-
-    // Use the regular expression to find all matches of "Entry:" followed by whitespace
-    const entryMatches = [...data.matchAll(entryRegex)];
-
-    // Iterate through each entry match and process it
-    for (let i = 0; i < entryMatches.length; i++) {
-        const entryStartIndex = entryMatches[i].index;
-        const entryEndIndex = i + 1 < entryMatches.length
-            ? entryMatches[i + 1].index
-            : data.length;
-        
-        // Extract the text of the current entry
-        const entryText = data.slice(entryStartIndex, entryEndIndex).trim();
-        
+    // Split the data into individual entries based on "Date:"
+    const entries = data.split("Date:");
+    
+    // Iterate through each entry and process it (start from index 1 to skip the first empty entry)
+    for (let i = 1; i < entries.length; i++) {
         const entryData = {};
         
-        // Split the entry text into lines
-        const lines = entryText.split('\n');
+        // Extract lines from the entry
+        const lines = entries[i].trim().split('\n');
         
         // Process lines and populate entryData with desired fields (same as before)
         entryData.date = lines[0].trim();
