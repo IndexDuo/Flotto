@@ -57,8 +57,20 @@ function processData(entry) {
     entryData.seller = lines[2].trim(); // Seller
     entryData.jackpot = lines[3].trim(); // Jackpot
     entryData.pay = lines[4].trim(); // Pay
-    entryData.prize = lines[5].trim(); // Prize
-    entryData.quickPlay = lines[6].trim() === "Quick Pick"; // QuickPlay
+    
+    // Check if lines[5] exists before accessing it
+    if (lines.length >= 6) {
+        entryData.prize = lines[5].trim();  // Prize
+    } else {
+        entryData.prize = ''; // Set to an empty string if not available
+    }
+    
+   // Check if lines[6] exists before accessing it
+    if (lines.length >= 7) {
+        entryData.quickPlay = lines[6].trim() === "Quick Pick"; // QuickPlay
+    } else {
+        entryData.quickPlay = false; // Set to false if not available
+    }
    
     // Check if lines[7] exists before accessing it
     if (lines.length >= 8) {
@@ -66,7 +78,7 @@ function processData(entry) {
     } else {
         entryData.tickets = null; // Set to null if not available
     }
-    
+
     // Check if lines[8] and lines[9] exist before accessing them
     if (lines[8]) {
         entryData.buyerAddress = lines[8].trim(); // Buyer Address
