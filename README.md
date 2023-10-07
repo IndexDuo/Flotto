@@ -8,7 +8,7 @@
 
 ### What's each file for?
 
-1. pdf.js
+#### pdf.js
 
 This .js file turns the **lottowinners_floridalotto.pdf** to raw data and then to some regex stuff to make it prettier.
  
