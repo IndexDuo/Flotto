@@ -38,30 +38,30 @@ pdf(pdfDataBuffer)
     // Add a newline after the 5th digit of the ZIP code
     pdfText = pdfText.replace(/(\d{5})(\d+)/g, '$1\n$2');
 
-    // Loop through each line of the text
-    for (let i = 0; i < filteredLines.length; i++) {
-        const line = filteredLines[i];
+   // Loop through each line of the text
+for (let i = 1; i < filteredLines.length; i++) {
+    const line = filteredLines[i];
 
-        // Define a regular expression to match the date format (e.g., 10/06/2023)
-        const datePattern = /\d{1,2}\/\d{1,2}\/\d{4}/;
+    // Define a regular expression to match the date format (e.g., 10/06/2023)
+    const datePattern = /\d{1,2}\/\d{1,2}\/\d{4}/;
 
-        // Check if the line matches the date format
-        if (datePattern.test(line)) {
-            // Get the previous line
-            const previousLine = filteredLines[i - 1];
+    // Check if the line matches the date format
+    if (datePattern.test(line)) {
+        // Get the previous line
+        const previousLine = filteredLines[i - 1];
 
-            // Define a regular expression to match the start of a line with a number
-            const numberPattern = /^\d/;
+        // Define a regular expression to match the start of a line with a number
+        const numberPattern = /^\d/;
 
-            // Check if the previous line starts with a number
-            if (!numberPattern.test(previousLine)) {
-                // Get the index of where the number starts within the previous line
-                const numberIndex = previousLine.search(/\d/);
-                console.log(numberIndex);
-            }
-            
+        // Check if the previous line starts with a number
+        if (!numberPattern.test(previousLine)) {
+            // Get the index of where the number starts within the previous line
+            const numberIndex = previousLine.search(/\d/);
+            console.log(numberIndex);
         }
     }
+}
+
 
     // Join the filtered lines to form the final text
     pdfText = filteredLines.join('\n');
