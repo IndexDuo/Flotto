@@ -47,50 +47,21 @@ function processData(entry) {
     const lines = entry.trim().split('\n');
 
     // Check if the entry is unclaimed or expired, and skip it
-    if (lines[1].trim() === 'UNCLAIMED AT THIS TIME' || lines[1].trim() === 'EXPIRED') {
+    if (lines[1]?.trim() === 'UNCLAIMED AT THIS TIME' || lines[1]?.trim() === 'EXPIRED') {
         return null; // Skip this entry and move to the next one
     }
 
     // Process lines and populate entryData with desired fields
-    entryData.date = lines[0].trim(); // Date
-    entryData.buyer = lines[1].trim(); // Buyer
-    entryData.seller = lines[2].trim(); // Seller
-    entryData.jackpot = lines[3].trim(); // Jackpot
-    entryData.pay = lines[4].trim(); // Pay
-    
-    // Check if lines[5] exists before accessing it
-    if (lines.length >= 6) {
-        entryData.prize = lines[5].trim();  // Prize
-    } else {
-        entryData.prize = ''; // Set to an empty string if not available
-    }
-    
-   // Check if lines[6] exists before accessing it
-    if (lines.length >= 7) {
-        entryData.quickPlay = lines[6].trim() === "Quick Pick"; // QuickPlay
-    } else {
-        entryData.quickPlay = false; // Set to false if not available
-    }
-   
-    // Check if lines[7] exists before accessing it
-    if (lines.length >= 8) {
-        entryData.tickets = parseInt(lines[7].trim(), 10);  // Tickets
-    } else {
-        entryData.tickets = null; // Set to null if not available
-    }
-
-    // Check if lines[8] and lines[9] exist before accessing them
-    if (lines[8]) {
-        entryData.buyerAddress = lines[8].trim(); // Buyer Address
-    } else {
-        entryData.buyerAddress = ''; // Set to an empty string if not available
-    }
-
-    if (lines[9]) {
-        entryData.sellerAddress = lines[9].trim(); // Seller Address
-    } else {
-        entryData.sellerAddress = ''; // Set to an empty string if not available
-    }
+    entryData.date = lines[0]?.trim() || '';       // Date
+    entryData.buyer = lines[1]?.trim() || '';      // Buyer
+    entryData.seller = lines[2]?.trim() || '';     // Seller
+    entryData.jackpot = lines[3]?.trim() || '';    // Jackpot
+    entryData.pay = lines[4]?.trim() || '';        // Pay
+    entryData.prize = lines[5]?.trim() || '';      // Prize
+    entryData.quickPlay = (lines[6]?.trim() === "Quick Pick") || false; // QuickPlay
+    entryData.tickets = parseInt(lines[7]?.trim(), 10) || null;  // Tickets
+    entryData.buyerAddress = lines[8]?.trim() || '';  // Buyer Address
+    entryData.sellerAddress = lines[9]?.trim() || '';  // Seller Address
 
     return entryData;
 }
