@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
     "mongodb": "^6.1.0",
-    "pdf-parse": "^1.1.1"
+    "pdf-parse": "^1.1.1",
+    "prettier": "^2.8.8"
   },
   "type": "module",
   "name": "knighthacks2023",
@@ -19,8 +21,5 @@
   "bugs": {
     "url": "https://github.com/IndexDDuo/KnightHacks2023/issues"
   },
-  "homepage": "https://github.com/IndexDDuo/KnightHacks2023#readme",
-  "devDependencies": {
-    "prettier": "^3.0.3"
-  }
+  "homepage": "https://github.com/IndexDDuo/KnightHacks2023#readme"
 }
