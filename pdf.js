@@ -38,6 +38,8 @@ pdf(pdfDataBuffer)
     // Add a newline after the 5th digit of the ZIP code
     pdfText = pdfText.replace(/(\d{5})(\d+)/g, '$1\n$2');
 
+    
+
     // Write the processed text to a .txt file (output.txt)
     fs.writeFileSync('output.txt', pdfText);
 
