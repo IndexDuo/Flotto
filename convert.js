@@ -1,6 +1,9 @@
 import { exec } from 'child_process';
 import fs from 'fs';
 
+// define empty array to store all processed entries
+const result = [];
+
 // Run pdf.js using child_process module
 exec('node pdf.js', (error, stdout, stderr) => {
     if (error) {
@@ -11,7 +14,7 @@ exec('node pdf.js', (error, stdout, stderr) => {
     // read data from pdfoutput.txt
     fs.readFile('pdfoutput.txt', 'utf8', (err, data) => {
         if (err) {
-            console.error('Error reading pdfoutput.txt: ${err.message}');
+            console.error(`Error reading pdfoutput.txt: ${err.message}`);
             return;
         }
 
@@ -19,24 +22,27 @@ exec('node pdf.js', (error, stdout, stderr) => {
         try {
             const processedData = processData(data);
 
+            // add processedData to the result array
+            result.push(...processedData);
+
             // write processed data to lottery-result.json
             fs.writeFile('lottery-result.json', JSON.stringify(processedData, null, 2), (err) => {
                 if (err) {
-                    console.error('Error writing to lottery-result.json: ${err.message}');
+                    console.error(`Error writing to lottery-result.json: ${err.message}`);
                     return;
                 }
 
                 console.log('Data has been converted and saved to lottery-result.json');
             })
         } catch (e) {
-            console.error('Error processing data: ${e.message}');
+            console.error(`Error processing data: ${e.message}`);
         }
     });
 }); 
 
 // define data processing logic
 function processData(data) {
-    const result = [];
+    const processedData = [];
 
     // split the data into individual entries
     const entries = data.split("Entry:");
@@ -61,8 +67,8 @@ function processData(data) {
         entryData.sellerAddress = lines[9].trim();  // Seller Address
 
         // Add the processed entryData to the result array
-        result.push(entryData);
+        processedData.push(entryData);
     }
 
-    return result;
+    return processedData;
 }
