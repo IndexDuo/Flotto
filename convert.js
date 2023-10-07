@@ -46,10 +46,10 @@ function processData(entry) {
     // Split the entry into lines
     const lines = entry.trim().split('\n');
 
-    // Check if the entry is unclaimed or expired, and skip it
+    /* // Check if the entry is unclaimed or expired, and skip it
     if (lines[1].trim() === 'UNCLAIMED AT THIS TIME' || lines[1].trim() === 'EXPIRED') {
         return null; // Skip this entry and move to the next one
-    }
+    } */
 
     // Process lines and populate entryData with desired fields
     entryData.date = lines[0].trim();       // Date
@@ -69,6 +69,6 @@ function processData(entry) {
         entryData.buyerAddress = ''; // Set to an empty string if not available
         entryData.sellerAddress = ''; // Set to an empty string if not available
     }
-    
+
     return entryData;
 }
