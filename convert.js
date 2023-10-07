@@ -1,80 +1,68 @@
 import { exec } from 'child_process';
 import fs from 'fs';
 
-// Initialize an empty array to store all processed entries
-const result = [];
-
 // Run pdf.js using child_process module
 exec('node pdf.js', (error, stdout, stderr) => {
     if (error) {
-        console.error(`Error running pdf.js: ${error.message}`);
+        console.error('Error running pdf.js: ${error.message}');
         return;
     }
 
-    // Read data from pdfoutput.txt
+    // read data from pdfoutput.txt
     fs.readFile('pdfoutput.txt', 'utf8', (err, data) => {
         if (err) {
-            console.error(`Error reading pdfoutput.txt: ${err.message}`);
+            console.error('Error reading pdfoutput.txt: ${err.message}');
             return;
         }
 
-        console.log('Raw data from pdfoutput.txt:');
-        console.log(data);
-
-        // Process data (parse it, convert it to object)
+        // process data (parse it, convert it to object)
         try {
             const processedData = processData(data);
 
-            console.log('Processed data:');
-            console.log(processedData);
-
-            // Append the processedData to the result array
-            result.push(...processedData);
-
-            // Write the entire result array to lottery-result.json
-            fs.writeFile('lottery-result.json', JSON.stringify(result, null, 2), (err) => {
+            // write processed data to lottery-result.json
+            fs.writeFile('lottery-result.json', JSON.stringify(processedData, null, 2), (err) => {
                 if (err) {
-                    console.error(`Error writing to lottery-result.json: ${err.message}`);
+                    console.error('Error writing to lottery-result.json: ${err.message}');
                     return;
                 }
 
                 console.log('Data has been converted and saved to lottery-result.json');
-            });
+            })
         } catch (e) {
-            console.error(`Error processing data: ${e.message}`);
+            console.error('Error processing data: ${e.message}');
         }
     });
-});
+}); 
 
+// define data processing logic
 function processData(data) {
-    console.log('Input data:');
-    console.log(data);
+    const result = [];
 
-    const processedData = [];
+    // split the data into individual entries
+    const entries = data.split("Entry:");
 
-    // Use regular expression to match each entry
-    const entryRegex = /Date:(.*?)Buyer:(.*?)Seller:(.*?)Jackpot:(.*?)Pay:(.*?)Prize:(.*?)Quick Pick:(.*?)Tickets:(.*?)Buyer Address:(.*?)Seller Address:(.*?)\n/g;
+    // interate through each entry and process it
+    for (const entry of entries) {
+        const entryData = {};
 
-    let match;
-    while ((match = entryRegex.exec(data)) !== null) {
-        console.log('Match found:');
-        console.log(match);
+        // extract info from the entry
+        const lines = entry.trim().split('\n');
 
-        const entryData = {
-            date: match[1].trim(),
-            buyer: match[2].trim(),
-            seller: match[3].trim(),
-            jackpot: match[4].trim(),
-            pay: match[5].trim(),
-            prize: match[6].trim(),
-            quickPlay: match[7].trim() === "Quick Pick",
-            tickets: parseInt(match[8].trim()),
-            buyerAddress: match[9].trim(),
-            sellerAddress: match[10].trim(),
-        };
+        // process lines and populate entryData with desired fields
+        entryData.date = lines[0].trim();       // Date
+        entryData.buyer = lines[1].trim();      // Buyer
+        entryData.seller = lines[2].trim();     // Seller
+        entryData.jackpot = lines[3].trim();    // Jackpot
+        entryData.pay = lines[4].trim();        // Pay
+        entryData.prize = lines[5].trim();      // Prize
+        entryData.quickPlay = lines[6].trim() === "Quick Pick"; //QuickPlay
+        entryData.tickets = parseInt(lines[7].trim());  // Tickets
+        entryData.buyerAddress = lines[8].trim();  // Buyer Address
+        entryData.sellerAddress = lines[9].trim();  // Seller Address
 
-        processedData.push(entryData);
+        // Add the processed entryData to the result array
+        result.push(entryData);
     }
 
-    return processedData;
+    return result;
 }
