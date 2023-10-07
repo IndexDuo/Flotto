@@ -64,7 +64,6 @@ function processData(entryLines) {
 
     // Check if the buyer is "EXPIRED" or "UNCLAIMED AT THIS TIME"
     if (entryLines[1].trim() === "EXPIRED" || entryLines[1].trim() === "UNCLAIMED AT THIS TIME") {
-        // Assign the buyer value accordingly
         entryData.date = entryLines[0].trim(); // Date
         entryData.buyer = entryLines[1].trim(); // Buyer
         entryData.seller = entryLines[2].trim(); // Seller
@@ -74,7 +73,17 @@ function processData(entryLines) {
         entryData.quickPick = ""; // Set quickPick to empty string
         entryData.tickets = 0; // Set tickets to 0
         entryData.buyerAddress = ""; // Set buyerAddress to empty string
-        entryData.sellerAddress = entryLines[4].trim(); // Seller Address (assuming it's in the expected position)
+        
+        // Check if the prize is present and set it accordingly
+        for (let i = 4; i < entryLines.length; i++) {
+            const trimmedLine = entryLines[i].trim();
+            if (trimmedLine.includes('$')) {
+                entryData.prize = trimmedLine;
+                // Increment line number for sellerAddress
+                entryData.sellerAddress = entryLines[i + 1].trim(); // Assuming sellerAddress is the line after prize
+                break; // Break the loop when prize is found
+            }
+        }
     } else {
         // Dynamically assign values based on line numbers and check line format
         entryLines.forEach((line, index) => {

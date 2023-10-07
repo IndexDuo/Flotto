@@ -29,11 +29,11 @@
     "seller": "SUNOCO EXPRESS",
     "jackpot": "$44,000,000",
     "pay": "",
-    "prize": "",
+    "prize": "$0.00",
     "quickPick": "",
     "tickets": 0,
     "buyerAddress": "",
-    "sellerAddress": "$0.00"
+    "sellerAddress": "Y"
   },
   {
     "date": "12/24/2022",
@@ -113,11 +113,11 @@
     "seller": "CITGO",
     "jackpot": "$1,250,000",
     "pay": "",
-    "prize": "",
+    "prize": "$0.00",
     "quickPick": "",
     "tickets": 0,
     "buyerAddress": "",
-    "sellerAddress": "$0.00"
+    "sellerAddress": "Y"
   },
   {
     "date": "9/8/2021",
@@ -884,18 +884,6 @@
     "sellerAddress": "1401 MONZA AVENUE, CORAL GABLES"
   },
   {
-    "date": "4/22/2015",
-    "buyer": "EXPIRED",
-    "seller": "THE BEER & LIQUOR STORE",
-    "jackpot": "$15,000,000",
-    "pay": "",
-    "prize": "",
-    "quickPick": "",
-    "tickets": 0,
-    "buyerAddress": "",
-    "sellerAddress": "Y1"
-  },
-  {
     "date": "3/4/2015",
     "buyer": "ARNALDO ESTEVEZ",
     "seller": "AFG ADVANCE CORPORATION",
@@ -942,28 +930,16 @@
     "sellerAddress": "1302 S 14TH STREET, LEESBURG"
   },
   {
-    "date": "11/19/2014",
-    "buyer": "EXPIRED",
-    "seller": "STATELINE LIQUORS",
-    "jackpot": "$48,000,000",
-    "pay": "",
-    "prize": "",
-    "quickPick": "",
-    "tickets": 0,
-    "buyerAddress": "",
-    "sellerAddress": "N1"
-  },
-  {
     "date": "6/28/2014",
     "buyer": "EXPIRED",
     "seller": "1534 7-ELEVEN #29325",
     "jackpot": "$12,000,000",
     "pay": "",
-    "prize": "",
+    "prize": "$0.00",
     "quickPick": "",
     "tickets": 0,
     "buyerAddress": "",
-    "sellerAddress": "$0.00"
+    "sellerAddress": "Y"
   },
   {
     "date": "5/21/2014",
