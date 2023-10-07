@@ -89,7 +89,7 @@ pdf(pdfDataBuffer)
         }
     }
     
-    
+    //starts from the first line, if the line starts with a date format,
     
     pdfText = filteredLines.join('\n');
 
