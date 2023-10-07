@@ -6,7 +6,7 @@
     "jackpot": "$3,750,000",
     "pay": "CASH OPTION",
     "prize": "$2,099,143.75",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "SEBRING, FL 33871",
     "sellerAddress": "1865 HIGHWAY 70 WEST, OKEECHOBEE"
@@ -18,7 +18,7 @@
     "jackpot": "$13,500,000",
     "pay": "CASH OPTION",
     "prize": "$7,685,905.50",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "MIAMI, FL 33175",
     "sellerAddress": "14630 SW 26TH STREET, MIAMI"
@@ -30,7 +30,7 @@
     "jackpot": "$41,000,000",
     "pay": "CASH OPTION",
     "prize": "$24,559,929.33",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "CAPE CORAL, FL 33991",
     "sellerAddress": "3015 PINE ISLAND ROAD SW, CAPE CORAL"
@@ -42,7 +42,7 @@
     "jackpot": "$15,000,000",
     "pay": "CASH OPTION",
     "prize": "$9,873,072.83",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "ORMOND BEACH, FL 32174",
     "sellerAddress": "775 S NOVA ROAD, ORMOND BEACH"
@@ -54,7 +54,7 @@
     "jackpot": "$3,500,000",
     "pay": "CASH OPTION",
     "prize": "$2,263,300.18",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "RIVIERA BEACH, FL 33404",
     "sellerAddress": "228 BLUE HERON BOULEVARD EAST,RIVIERA BEACH"
@@ -66,7 +66,7 @@
     "jackpot": "$25,000,000",
     "pay": "CASH OPTION",
     "prize": "$16,537,293.32",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "INDIALANTIC, FL 32903",
     "sellerAddress": "3061 1ST AVENUE NORTH, SAINTPETERSBURG"
@@ -78,7 +78,7 @@
     "jackpot": "$13,750,000",
     "pay": "CASH OPTION",
     "prize": "$10,400,041.67",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "TALLAHASSEE, FL 32318",
     "sellerAddress": "5810 SEVEN MILE DRIVE, WILDWOOD"
@@ -90,7 +90,7 @@
     "jackpot": "$7,250,000",
     "pay": "CASH OPTION",
     "prize": "$5,490,226.83",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "MARGATE, FL 33063",
     "sellerAddress": "7230 W ATLANTIC BOULEVARD, MARGATE"
@@ -102,7 +102,7 @@
     "jackpot": "$7,750,000",
     "pay": "CASH OPTION",
     "prize": "$6,035,178.17",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "SANFORD, FL 32771",
     "sellerAddress": "601 WELDON BOULEVARD, LAKE MARY"
@@ -114,10 +114,22 @@
     "jackpot": "$1,750,000",
     "pay": "CASH OPTION",
     "prize": "$1,367,994.41",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "WELLINGTON, FL 33414",
     "sellerAddress": "127 S STATE ROAD 7, ROYAL PALM BEACH"
+  },
+  {
+    "date": "7/14/2021",
+    "buyer": "JOSE RICARDO CALDERON SR",
+    "seller": "CASSELBERRY MEAT AND PRODUCE",
+    "jackpot": "$21,250,000",
+    "pay": "CASH OPTION",
+    "prize": "$16,473,377.39",
+    "quickPick": "Y-Free",
+    "tickets": 1,
+    "buyerAddress": "ORLANDO, FL 32839",
+    "sellerAddress": "2655 S US HIGHWAY 17-92, CASSELBERRY"
   },
   {
     "date": "12/2/2020",
@@ -126,7 +138,7 @@
     "jackpot": "$1,000,000",
     "pay": "CASH OPTION",
     "prize": "$818,945.58",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "ORLANDO, FL 32805",
     "sellerAddress": "5695 L B MCLEOD ROAD, ORLANDO"
@@ -138,7 +150,7 @@
     "jackpot": "$16,500,000",
     "pay": "CASH OPTION",
     "prize": "$13,648,711.36",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "INDIALANTIC, FL 32903",
     "sellerAddress": "1105 NE JENSEN BEACH BOULEVARD,JENSEN BEACH"
@@ -150,7 +162,7 @@
     "jackpot": "$2,500,000",
     "pay": "CASH OPTION",
     "prize": "$2,106,750.41",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "TAMARAC, FL 33321",
     "sellerAddress": "5881 UNIVERSITY DRIVE, TAMARAC"
@@ -162,7 +174,7 @@
     "jackpot": "$1,500,000",
     "pay": "CASH OPTION",
     "prize": "$1,303,179.50",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "POMPANO BEACH, FL 33064",
     "sellerAddress": "4791 NORTH DIXIE HIGHWAY, POMPANOBEACH"
@@ -174,7 +186,7 @@
     "jackpot": "$1,500,000",
     "pay": "CASH OPTION",
     "prize": "$1,299,317.23",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "BRADENTON, FL 34207",
     "sellerAddress": "6123 26TH STREET WEST, BRADENTON"
@@ -186,7 +198,7 @@
     "jackpot": "$10,000,000",
     "pay": "CASH OPTION",
     "prize": "$8,578,753.33",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "MIAMI, FL 33193",
     "sellerAddress": "16800 N KENDALL DRIVE, MIAMI"
@@ -198,7 +210,7 @@
     "jackpot": "$1,500,000",
     "pay": "CASH OPTION",
     "prize": "$1,284,201.50",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "PUNTA GORDA, FL 33950",
     "sellerAddress": "3035 TAMIAMI TRAIL, PUNTA GORDA"
@@ -210,7 +222,7 @@
     "jackpot": "$4,250,000",
     "pay": "CASH OPTION",
     "prize": "$1,792,420.10",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 2,
     "buyerAddress": "MELROSE, FL 32666",
     "sellerAddress": "1119 STATE ROAD 100, FLORAHOME"
@@ -222,7 +234,7 @@
     "jackpot": "$4,250,000",
     "pay": "CASH OPTION",
     "prize": "$1,792,420.10",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 2,
     "buyerAddress": "TAMARAC, FL 33321",
     "sellerAddress": "901 N NOB HILL ROAD, PLANTATION"
@@ -234,7 +246,7 @@
     "jackpot": "$19,000,000",
     "pay": "CASH OPTION",
     "prize": "$16,368,778.30",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "WEST PALM BEACH, FL 33403",
     "sellerAddress": "9271 PROSPERITY FARMS ROAD, LAKEPARK"
@@ -246,7 +258,7 @@
     "jackpot": "$3,500,000",
     "pay": "CASH OPTION",
     "prize": "$2,585,147.83",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "JACKSONVILLE, FL 32256",
     "sellerAddress": "408 BEACH BOULEVARD SUITE 100,JACKSONVILLE BEACH"
@@ -258,7 +270,7 @@
     "jackpot": "$3,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,226,096.45",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "PALM BAY, FL 32905",
     "sellerAddress": "2480 MINTON ROAD, WEST MELBOURNE"
@@ -270,7 +282,7 @@
     "jackpot": "$5,500,000",
     "pay": "CASH OPTION",
     "prize": "$4,122,889.83",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "MIAMI, FL 33127",
     "sellerAddress": "4870 BISCAYNE BOULEVARD, MIAMI"
@@ -282,7 +294,7 @@
     "jackpot": "$2,000,000",
     "pay": "CASH OPTION",
     "prize": "$1,507,788.86",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "JACKSONVILLE, FL 32205",
     "sellerAddress": "3673 PARK STREET, JACKSONVILLE"
@@ -294,7 +306,7 @@
     "jackpot": "$14,000,000",
     "pay": "CASH OPTION",
     "prize": "$10,432,095.33",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "LAUDERHILL, FL 33313",
     "sellerAddress": "1297 S STATE ROAD 7, NORTHLAUDERDALE"
@@ -306,7 +318,7 @@
     "jackpot": "$3,500,000",
     "pay": "CASH OPTION",
     "prize": "$2,690,417.57",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "LAUDERHILL, FL 33311",
     "sellerAddress": "5391 NORTH FEDERAL HIGHWAY, POMPANOBEACH"
@@ -318,7 +330,7 @@
     "jackpot": "$4,500,000",
     "pay": "CASH OPTION",
     "prize": "$3,301,294.50",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "JACKSONVILLE, FL 32226",
     "sellerAddress": "711 DUVAL STATION ROAD, JACKSONVILLE"
@@ -330,7 +342,7 @@
     "jackpot": "$3,000,000",
     "pay": "CASH OPTION",
     "prize": "$718,838.00",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 3,
     "buyerAddress": "ORLANDO, FL 32801",
     "sellerAddress": "1951 S NARCOOSSEE ROAD, SAINT CLOUD"
@@ -342,7 +354,7 @@
     "jackpot": "$10,000,000",
     "pay": "CASH OPTION",
     "prize": "$7,271,162.13",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "FORT LAUDERDALE, FL 33316",
     "sellerAddress": "3801 NW 9TH AVENUE, OAKLAND PARK"
@@ -354,7 +366,7 @@
     "jackpot": "$6,000,000",
     "pay": "CASH OPTION",
     "prize": "$4,086,786.05",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "MELBOURNE, FL 32940",
     "sellerAddress": "5656 S FLAMINGO ROAD, COOPER CITY"
@@ -366,7 +378,7 @@
     "jackpot": "$3,500,000",
     "pay": "CASH OPTION",
     "prize": "$2,387,807.33",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "SAINT AUGUSTINE, FL 32080",
     "sellerAddress": "1900 MIZELL ROAD, ST AUGUSTINE"
@@ -378,7 +390,7 @@
     "jackpot": "$3,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,022,343.00",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "KEY LARGO, FL 33037",
     "sellerAddress": "105300 OVERSEAS HIGHWAY, KEY LARGO"
@@ -390,7 +402,7 @@
     "jackpot": "$4,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,712,386.67",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "MIAMI, FL 33193",
     "sellerAddress": "15750 SW 72ND STREET, MIAMI"
@@ -402,7 +414,7 @@
     "jackpot": "$15,500,000",
     "pay": "CASH OPTION",
     "prize": "$10,539,204.33",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "ESTERO, FL 33928",
     "sellerAddress": "2465 GLADES CIRCLE, WESTON"
@@ -414,7 +426,7 @@
     "jackpot": "$14,500,000",
     "pay": "CASH OPTION",
     "prize": "$9,418,782.62",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "WESLEY CHAPEL, FL 33543",
     "sellerAddress": "32769 EILAND BOULEVARD, ZEPHYRHILLS"
@@ -426,7 +438,7 @@
     "jackpot": "$,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,581,598.67",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "MIDDLEBURG, FL 32068",
     "sellerAddress": "2640 BLANDING BOULEVARD, MIDDLEBURG"
@@ -438,7 +450,7 @@
     "jackpot": "$5,000,000",
     "pay": "CASH OPTION",
     "prize": "$3,298,421.67",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "SAINT PETERSBURG, FL 33710",
     "sellerAddress": "935 49TH STREET NORTH, SAINTPETERSBURG"
@@ -450,7 +462,7 @@
     "jackpot": "$6,000,000",
     "pay": "CASH OPTION",
     "prize": "$4,025,567.08",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "FORT MYERS, FL 33966",
     "sellerAddress": "6900 UNIT 19 DANIELS PARKWAY, FORTMYERS"
@@ -462,7 +474,7 @@
     "jackpot": "$6,000,000",
     "pay": "CASH OPTION",
     "prize": "$4,012,586.00",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "COLEMAN, FL 33521",
     "sellerAddress": "1221 S MAIN STREET, WILDWOOD"
@@ -474,10 +486,22 @@
     "jackpot": "$3,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,021,962.00",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "POMPANO BEACH, FL 33064",
     "sellerAddress": "2450 N FEDERAL HIGHWAY, LIGHTHOUSEPOINT"
+  },
+  {
+    "date": "6/20/2018",
+    "buyer": "VALERIE JEAN BOERNER",
+    "seller": "PUBLIX #0103",
+    "jackpot": "$2,000,000",
+    "pay": "CASH OPTION",
+    "prize": "$1,338,812.81",
+    "quickPick": "Y-Free",
+    "tickets": 1,
+    "buyerAddress": "APOLLO BEACH, FL 33572",
+    "sellerAddress": "11782 MARTIN LUTHER KING BOULEVARD,SEFFNER"
   },
   {
     "date": "6/16/2018",
@@ -486,7 +510,7 @@
     "jackpot": "$7,000,000",
     "pay": "CASH OPTION",
     "prize": "$4,687,629.33",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "TAMPA, FL 33602",
     "sellerAddress": "3928 W SILVER SPRINGS BOULEVARD,OCALA"
@@ -498,7 +522,7 @@
     "jackpot": "$10,000,000",
     "pay": "CASH OPTION",
     "prize": "$6,539,673.20",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "TALLAHASSEE, FL 32309",
     "sellerAddress": "9002 MAHAN DRIVE, TALLAHASSEE"
@@ -510,7 +534,7 @@
     "jackpot": "$5,000,000",
     "pay": "CASH OPTION",
     "prize": "$3,397,033.33",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "MIAMI, FL 33165",
     "sellerAddress": "9702 SW 40TH STREET, MIAMI"
@@ -522,7 +546,7 @@
     "jackpot": "$8,000,000",
     "pay": "CASH OPTION",
     "prize": "$5,335,428.13",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "MIDLAND CITY, AL 36350",
     "sellerAddress": "5878 HIGHWAY 231, CAMPBELLTON"
@@ -534,7 +558,7 @@
     "jackpot": "$10,000,000",
     "pay": "CASH OPTION",
     "prize": "$6,700,750.00",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "PEMBROKE PINES, FL 33028",
     "sellerAddress": "15729 PINES BOULEVARD, PEMBROKEPINES"
@@ -546,7 +570,7 @@
     "jackpot": "$11,000,000",
     "pay": "CASH OPTION",
     "prize": "$7,678,421.67",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "NORTH FORT MYERS, FL 33917",
     "sellerAddress": "5690 BAYSHORE ROAD, NORTH FORTMYERS"
@@ -558,7 +582,7 @@
     "jackpot": "$22,000,000",
     "pay": "CASH OPTION",
     "prize": "$15,314,895.87",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "JACKSONVILLE, FL 32246",
     "sellerAddress": "2615 ST JOHNS BLUFF ROAD SOUTH,JACKSONVILLE"
@@ -570,7 +594,7 @@
     "jackpot": "$7,500,000",
     "pay": "CASH OPTION",
     "prize": "$2,640,671.88",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 2,
     "buyerAddress": "HOMESTEAD, FL 33030",
     "sellerAddress": "1340 NORTH KROME AVENUE, HOMESTEAD"
@@ -582,7 +606,7 @@
     "jackpot": "$7,500,000",
     "pay": "CASH OPTION",
     "prize": "$2,640,671.89",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 2,
     "buyerAddress": "APOPKA, FL 32703",
     "sellerAddress": "851 S STATE ROAD 434, ALTAMONTESPRINGS"
@@ -594,7 +618,7 @@
     "jackpot": "$8,000,000",
     "pay": "CASH OPTION",
     "prize": "$5,503,312.78",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "FRISCO, TX 75033",
     "sellerAddress": "1020 SHORE WINDS DRIVE, FORT PIERCE"
@@ -606,7 +630,7 @@
     "jackpot": "$13,000,000",
     "pay": "CASH OPTION",
     "prize": "$8,675,247.98",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "SAINT PETERSBURG, FL 33709",
     "sellerAddress": "5577 PARK STREET NORTH, STPETERSBURG"
@@ -618,10 +642,22 @@
     "jackpot": "$13,000,000",
     "pay": "CASH OPTION",
     "prize": "$8,804,471.00",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "BOCA RATON, FL 33433",
     "sellerAddress": "1968 NE 5TH AVENUE, BOCA RATON"
+  },
+  {
+    "date": "12/21/2016",
+    "buyer": "MUHAMED OMERANOVIC",
+    "seller": "RUT'S BP",
+    "jackpot": "$12,000,000",
+    "pay": "CASH OPTION",
+    "prize": "$8,035,884.00",
+    "quickPick": "Y-Free",
+    "tickets": 1,
+    "buyerAddress": "JACKSONVILLE, FL 32211",
+    "sellerAddress": "6923 ATLANTIC BOULEVARD,JACKSONVILLE"
   },
   {
     "date": "11/12/2016",
@@ -630,7 +666,7 @@
     "jackpot": "$4,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,806,866.06",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "NORTH PALM BEACH, FL 33408",
     "sellerAddress": "11269 US HIGHWAY 1, NORTH PALM BEACH"
@@ -642,7 +678,7 @@
     "jackpot": "$18,000,000",
     "pay": "CASH OPTION",
     "prize": "$13,116,440.45",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "LAKELAND, FL 33812",
     "sellerAddress": "6175 S US HIGHWAY 98, LAKELAND"
@@ -654,7 +690,7 @@
     "jackpot": "$4,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,999,746.47",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "FORT WALTON BEACH, FL 32547",
     "sellerAddress": "798 NW BEAL PARKWAY, FORT WALTONBEACH"
@@ -666,7 +702,7 @@
     "jackpot": "$16,000,000#",
     "pay": "MULTIVALUE",
     "prize": "$8,000,000.00",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 2,
     "buyerAddress": "LAKE PARK, FL 33403",
     "sellerAddress": "9377 HIGHWAY A1A ALTERNATE, WESTPALM BEACH"
@@ -678,7 +714,7 @@
     "jackpot": "$16,000,000#",
     "pay": "MULTIVALUE",
     "prize": "$6,051,759.12",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 2,
     "buyerAddress": "SAINT AUGUSTINE, FL 32086",
     "sellerAddress": "125 JENKINS STREET, ST AUGUSTINE"
@@ -690,7 +726,7 @@
     "jackpot": "$12,000,000",
     "pay": "CASH OPTION",
     "prize": "$9,206,848.92",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "ASTOR, FL 32102",
     "sellerAddress": "1691 N WOODLAND BOULEVARD, DELAND"
@@ -702,7 +738,7 @@
     "jackpot": "$3,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,161,621.00",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "SATELLITE BEACH, FL 32937",
     "sellerAddress": "1107 SOUTH PATRICK DRIVE, SATELLITEBEACH"
@@ -714,7 +750,7 @@
     "jackpot": "$10,000,000",
     "pay": "CASH OPTION",
     "prize": "$7,216,210.00",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "WESLEY CHAPEL, FL 33544",
     "sellerAddress": "26556 WESLEY CHAPEL BOULEVARD, LUTZ"
@@ -726,7 +762,7 @@
     "jackpot": "$18,000,000",
     "pay": "CASH OPTION",
     "prize": "$13,154,177.81",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "VERO BEACH, FL 32966",
     "sellerAddress": "2040 58TH AVENUE, VERO BEACH"
@@ -738,7 +774,7 @@
     "jackpot": "$43,000,000",
     "pay": "CASH OPTION",
     "prize": "$31,042,330.67",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "LARGO, FL 33777",
     "sellerAddress": "8740 PARK BOULEVARD, SEMINOLE"
@@ -750,7 +786,7 @@
     "jackpot": "$6,000,000",
     "pay": "CASH OPTION",
     "prize": "$4,207,152.00",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "MIAMI, FL 33193",
     "sellerAddress": "11605 SW 147TH AVENUE, MIAMI"
@@ -762,7 +798,7 @@
     "jackpot": "$4,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,762,100.00",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "MIAMI, FL 33175",
     "sellerAddress": "13890 SW 56TH STREET, MIAMI"
@@ -774,7 +810,7 @@
     "jackpot": "$6,000,000",
     "pay": "CASH OPTION",
     "prize": "$4,119,882.00",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "DELRAY BEACH, FL 33444",
     "sellerAddress": "1015 S CONGRESS AVENUE, DELRAYBEACH"
@@ -786,7 +822,7 @@
     "jackpot": "$10,000,000",
     "pay": "CASH OPTION",
     "prize": "$7,057,696.67",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "BOCA RATON, FL 33434",
     "sellerAddress": "7060 W PALMETTO PARK ROAD, BOCARATON"
@@ -798,7 +834,7 @@
     "jackpot": "$28,000,000",
     "pay": "CASH OPTION",
     "prize": "$19,151,244.65",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "CORAL GABLES, FL 33146",
     "sellerAddress": "1401 MONZA AVENUE, CORAL GABLES"
@@ -810,7 +846,7 @@
     "jackpot": "$19,000,000",
     "pay": "CASH OPTION",
     "prize": "$13,451,344.86",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "MIAMI, FL 33173",
     "sellerAddress": "4401 SW 8TH STREET, MIAMI"
@@ -822,7 +858,7 @@
     "jackpot": "$6,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,067,068.25",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 2,
     "buyerAddress": "MIRAMAR, FL 33023",
     "sellerAddress": "3301 SHERIDAN STREET, HOLLYWOOD"
@@ -834,7 +870,7 @@
     "jackpot": "$6,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,067,068.25",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 2,
     "buyerAddress": "LEESBURG, FL 34748",
     "sellerAddress": "1302 S 14TH STREET, LEESBURG"
@@ -846,7 +882,7 @@
     "jackpot": "$47,000,000",
     "pay": "CASH OPTION",
     "prize": "$30,863,975.44",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "HOLLYWOOD, FL 33021",
     "sellerAddress": "2960 TAFT STREET, HOLLYWOOD"
@@ -858,7 +894,7 @@
     "jackpot": "$12,000,000",
     "pay": "CASH OPTION",
     "prize": "$7,641,141.91",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "SUNRISE, FL 33322",
     "sellerAddress": "8291 N UNIVERSITY DRIVE, TAMARAC"
@@ -870,7 +906,7 @@
     "jackpot": "$46,000,000",
     "pay": "CASH OPTION",
     "prize": "$28,759,280.93",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "ORLANDO, FL 32806",
     "sellerAddress": "2704 S FERNCREEK AVENUE, ORLANDO"
@@ -882,7 +918,7 @@
     "jackpot": "$59,000,000",
     "pay": "CASH OPTION",
     "prize": "$37,044,673.86",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "KISSIMMEE, FL 34742",
     "sellerAddress": "12298 APOPKA-VINELAND ROAD, ORLANDO"
@@ -894,7 +930,7 @@
     "jackpot": "$7,000,000",
     "pay": "CASH OPTION",
     "prize": "$4,985,879.53",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "COLEMAN, FL 33521",
     "sellerAddress": "1221 S MAIN STREET, WILDWOOD"
@@ -906,7 +942,7 @@
     "jackpot": "$16,000,000",
     "pay": "CASH OPTION",
     "prize": "$11,466,184.40",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "MIAMI BEACH, FL 33141",
     "sellerAddress": "9400 HARDING AVENUE, SURFSIDE"
@@ -918,7 +954,7 @@
     "jackpot": "$17,000,000",
     "pay": "CASH OPTION",
     "prize": "$11,718,436.93",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "KEY WEST, FL 33040",
     "sellerAddress": "3316 N ROOSEVELT BOULEVARD, KEYWEST"
@@ -930,7 +966,7 @@
     "jackpot": "$5,000,000",
     "pay": "CASH OPTION",
     "prize": "$3,584,672.19",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "TAMPA, FL 33614",
     "sellerAddress": "12026 ANDERSON ROAD, TAMPA"
@@ -942,7 +978,7 @@
     "jackpot": "$19,000,000",
     "pay": "CASH OPTION",
     "prize": "$13,631,321.17",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "COCOA, FL 32927",
     "sellerAddress": "7325 US HIGHWAY 1 NORTH, COCOA"
@@ -954,7 +990,7 @@
     "jackpot": "$4,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,791,996.12",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "FORT LAUDERDALE, FL 33324",
     "sellerAddress": "8842 W STATE ROAD 84, DAVIE"
@@ -966,7 +1002,7 @@
     "jackpot": "$4,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,902,766.85",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "PORT ORANGE, FL 32128",
     "sellerAddress": "1702 TAYLOR ROAD, PORT ORANGE"
@@ -978,7 +1014,7 @@
     "jackpot": "$4,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,871,602.80",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "PLANT CITY, FL 33563",
     "sellerAddress": "6175 S US HIGHWAY 98, LAKELAND"
@@ -990,7 +1026,7 @@
     "jackpot": "$17,000,000",
     "pay": "CASH OPTION",
     "prize": "$3,016,930.29",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 4,
     "buyerAddress": "OCOEE, FL 34761",
     "sellerAddress": "1500 N WEKIWA SPRINGS ROAD, APOPKA"
@@ -1002,7 +1038,7 @@
     "jackpot": "$17,000,000",
     "pay": "CASH OPTION",
     "prize": "$3,016,930.29",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 4,
     "buyerAddress": "FORT MYERS, FL 33919",
     "sellerAddress": "15880 SUMMERLIN ROAD, FORT MYERS"
@@ -1014,7 +1050,7 @@
     "jackpot": "$17,000,000",
     "pay": "CASH OPTION",
     "prize": "$3,016,930.29",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 4,
     "buyerAddress": "JENSEN BEACH, FL 34957",
     "sellerAddress": "1755 NW FEDERAL HIGHWAY, STUART"
@@ -1026,7 +1062,7 @@
     "jackpot": "$17,000,000",
     "pay": "CASH OPTION",
     "prize": "$3,016,930.29",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 4,
     "buyerAddress": "BOSTWICK, FL 32007",
     "sellerAddress": "2600 REID STREET, PALATKA"
@@ -1038,7 +1074,7 @@
     "jackpot": "$3,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,157,348.00",
-    "quickPlay": true,
+    "quickPick": "Y",
     "tickets": 1,
     "buyerAddress": "KISSIMMEE, FL 34746",
     "sellerAddress": "3343 SOUTH ORANGE BLOSSOM TRAIL,KISSIMMEE"
@@ -1050,7 +1086,7 @@
     "jackpot": "$3,000,000",
     "pay": "CASH OPTION",
     "prize": "$2,171,801.17",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "POMPANO BEACH, FL 33062",
     "sellerAddress": "4141 N FEDERAL HIGHWAY, BOCA RATON"
@@ -1062,7 +1098,7 @@
     "jackpot": "$10,000,000",
     "pay": "CASH OPTION",
     "prize": "$7,242,678.33",
-    "quickPlay": false,
+    "quickPick": "N",
     "tickets": 1,
     "buyerAddress": "ORLANDO, FL 32839",
     "sellerAddress": "5650 HANSEL AVENUE, EDGEWOOD"

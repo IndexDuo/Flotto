@@ -87,8 +87,8 @@ function processData(entryLines) {
                 entryData.prize = trimmedLine; // Prize
                 break;
             case 6:
-                if (trimmedLine === "Y" || trimmedLine === "N") {
-                    entryData.quickPlay = trimmedLine === "Y"; // QuickPlay
+                if (trimmedLine === "Y" || trimmedLine === "N" || trimmedLine === "Y-Free") {
+                    entryData.quickPick = trimmedLine; // QuickPick
                 }
                 break;
             case 7:
@@ -116,7 +116,7 @@ function processData(entryLines) {
         entryData.jackpot &&
         entryData.pay &&
         entryData.prize &&
-        entryData.hasOwnProperty('quickPlay') &&
+        entryData.hasOwnProperty('quickPick') &&
         entryData.hasOwnProperty('tickets') &&
         entryData.buyerAddress &&
         entryData.sellerAddress
