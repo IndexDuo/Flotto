@@ -48,6 +48,9 @@ function processData(data) {
         // extract info from the entry
         const lines = entry.trim().split('\n');
 
+        console.log("data buyer is");
+        console.log(lines[1].trim());
+        
         // Check if the entry is unclaimed or expired, and skip it
         if (lines[1].trim() === 'UNCLAIMED AT THIS TIME' || lines[1].trim() === 'EXPIRED') {
             console.log("in if statement");
