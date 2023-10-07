@@ -59,8 +59,14 @@ function processData(entry) {
     entryData.pay = lines[4].trim(); // Pay
     entryData.prize = lines[5].trim(); // Prize
     entryData.quickPlay = lines[6].trim() === "Quick Pick"; // QuickPlay
-    entryData.tickets = parseInt(lines[7].trim(), 10); // Tickets
-
+   
+    // Check if lines[7] exists before accessing it
+    if (lines.length >= 8) {
+        entryData.tickets = parseInt(lines[7].trim(), 10);  // Tickets
+    } else {
+        entryData.tickets = null; // Set to null if not available
+    }
+    
     // Check if lines[8] and lines[9] exist before accessing them
     if (lines[8]) {
         entryData.buyerAddress = lines[8].trim(); // Buyer Address
