@@ -31,9 +31,9 @@
     "pay": "",
     "prize": "$0.00",
     "quickPick": "Y",
-    "tickets": null,
+    "tickets": 1,
     "buyerAddress": "",
-    "sellerAddress": "Y"
+    "sellerAddress": "2655 N ORANGE BLOSSOM TRAIL,KISSIMMEE"
   },
   {
     "date": "12/24/2022",
@@ -115,9 +115,9 @@
     "pay": "",
     "prize": "$0.00",
     "quickPick": "Y",
-    "tickets": null,
+    "tickets": 1,
     "buyerAddress": "",
-    "sellerAddress": "Y"
+    "sellerAddress": "504 N PLANT AVENUE, PLANT CITY"
   },
   {
     "date": "9/8/2021",
@@ -937,9 +937,9 @@
     "pay": "",
     "prize": "$0.00",
     "quickPick": "Y",
-    "tickets": null,
+    "tickets": 1,
     "buyerAddress": "",
-    "sellerAddress": "Y"
+    "sellerAddress": "4741 NORTHWEST 79TH AVENUE, MIAMI"
   },
   {
     "date": "5/21/2014",

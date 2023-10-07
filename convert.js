@@ -73,24 +73,31 @@ function processData(entryLines) {
         entryData.quickPick = ""; // Set quickPick to empty string
         entryData.tickets = null; // Set tickets to null for EXPIRED/UNCLAIMED entries
         entryData.buyerAddress = ""; // Set buyerAddress to empty string
-        
+
         // Check if the prize is present and set it accordingly
         for (let i = 4; i < entryLines.length; i++) {
             const trimmedLine = entryLines[i].trim();
             if (trimmedLine.includes('$')) {
                 entryData.prize = trimmedLine;
-                // Increment line number for sellerAddress
-                entryData.sellerAddress = entryLines[i + 1].trim(); // Assuming sellerAddress is the line after prize
+                // Check if the quickPick is present and set it accordingly
+                const quickPickIndex = i + 1;
+                if (quickPickIndex < entryLines.length) {
+                    const quickPickLine = entryLines[quickPickIndex].trim();
+                    if (quickPickLine === "Y" || quickPickLine === "N" || quickPickLine === "Y-Free") {
+                        entryData.quickPick = quickPickLine;
+                    }
+                }
+                // Check if the tickets is present and set it accordingly
+                const ticketsIndex = i + 2;
+                if (ticketsIndex < entryLines.length && /^\d+$/.test(entryLines[ticketsIndex].trim())) {
+                    entryData.tickets = parseInt(entryLines[ticketsIndex].trim());
+                }
+                // Set sellerAddress as the line following tickets
+                const sellerAddressIndex = i + 3;
+                if (sellerAddressIndex < entryLines.length) {
+                    entryData.sellerAddress = entryLines[sellerAddressIndex].trim();
+                }
                 break; // Break the loop when prize is found
-            }
-        }
-
-        // Check if the quickPick is present and set it accordingly
-        for (let i = 4; i < entryLines.length; i++) {
-            const trimmedLine = entryLines[i].trim();
-            if (trimmedLine === "Y" || trimmedLine === "N" || trimmedLine === "Y-Free") {
-                entryData.quickPick = trimmedLine;
-                break; // Break the loop when quickPick is found
             }
         }
     } else {
