@@ -14,7 +14,7 @@ async function importData() {
     await client.connect();
     console.log('Connected to MongoDB Atlas');
 
-    const database = client.db('');
+    const database = client.db('florida_lottery');
     const collection = database.collection('winningNumbers');
 
     // Read JSON data from file
