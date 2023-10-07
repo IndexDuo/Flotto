@@ -67,6 +67,10 @@ pdf(pdfDataBuffer)
         }
     }
    
+    //if the line contains more than 5 digits in a row, then add a new line after the 5th digit
+    for (let i = 0; i < filteredLines.length; i++) {
+        filteredLines[i] = filteredLines[i].replace(/(\d{5})(\d+)/g, '$1\n$2');
+    }
     
     pdfText = filteredLines.join('\n');
 
