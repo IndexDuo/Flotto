@@ -1,7 +1,7 @@
 import { exec } from 'child_process';
 import fs from 'fs';
 
-// Run pdf.js using child_process module
+// Run pdf.js using the child_process module
 exec('node pdf.js', (error, stdout, stderr) => {
     if (error) {
         console.error(`Error running pdf.js: ${error.message}`);
@@ -50,10 +50,16 @@ function processData(entry) {
     // Split the entry into lines
     const lines = entry.trim().split('\n');
 
+    // Ensure that there are at least 8 lines in the entry
+    if (lines.length < 8) {
+        console.error(`Invalid entry format: ${entry}`);
+        return null;
+    }
+
     // Check if the entry is unclaimed or expired, and skip it
     if (lines[1].trim() === 'UNCLAIMED AT THIS TIME' || lines[1].trim() === 'EXPIRED') {
         return null; // Skip this entry and move to the next one
-    } 
+    }
 
     // Process lines and populate entryData with desired fields
     entryData.date = lines[0].trim();       // Date
@@ -65,7 +71,7 @@ function processData(entry) {
     entryData.quickPlay = lines[6].trim() === "Quick Pick"; // QuickPlay
     entryData.tickets = parseInt(lines[7].trim());  // Tickets
 
-    // Check if lines[9] exists before accessing it
+    // Ensure that lines[9] exists before accessing it
     if (lines.length >= 10) {
         entryData.buyerAddress = lines[8].trim();  // Buyer Address
         entryData.sellerAddress = lines[9].trim();  // Seller Address
