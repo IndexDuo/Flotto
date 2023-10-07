@@ -17,24 +17,21 @@ exec('node pdf.js', (error, stdout, stderr) => {
 
         // Split the data into lines
         const lines = data.split('\n');
-        let currentEntry = []; // Store lines for the current entry
+        let currentEntry = [];
         const entries = [];
 
         for (const line of lines) {
             // Use a regular expression to match the date format MM/DD/YYYY
-            if (/^\d{2}\/\d{2}\/\d{4}$/.test(line.trim())) {
+            if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(line.trim())) {
                 // If a new date is encountered, process the previous entry
                 if (currentEntry.length > 0) {
                     const entry = processData(currentEntry);
                     if (entry) {
                         entries.push(entry);
                     }
-                    // Start a new entry with the current line as the date
-                    currentEntry = [line];
-                } else {
-                    // If there's no previous entry, start a new one
-                    currentEntry.push(line);
                 }
+                // Start a new entry with the current line as the date
+                currentEntry = [line];
             } else {
                 // Add the line to the current entry
                 currentEntry.push(line);
@@ -72,7 +69,7 @@ function processData(entryLines) {
     entryData.jackpot = entryLines[3].trim();    // Jackpot
     entryData.pay = entryLines[4].trim();        // Pay
     entryData.prize = entryLines[5].trim();      // Prize
-    entryData.quickPlay = entryLines[6].trim() === "Quick Pick"; //QuickPlay
+    entryData.quickPlay = entryLines[6].trim() === "Y"; // QuickPlay
     entryData.tickets = parseInt(entryLines[7].trim());  // Tickets
     entryData.buyerAddress = entryLines[8].trim();  // Buyer Address
     entryData.sellerAddress = entryLines[9].trim();
