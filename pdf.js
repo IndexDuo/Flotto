@@ -38,7 +38,7 @@ pdf(pdfDataBuffer)
     // Add a newline after the 5th digit of the ZIP code
     pdfText = pdfText.replace(/(\d{5})(\d+)/g, '$1\n$2');
 
-    
+    //if the line matches the date format, get the previous line and check if it starts with a number. If it does, do nothing. If it doesn't, add a newline before the number. 
 
     // Write the processed text to a .txt file (output.txt)
     fs.writeFileSync('output.txt', pdfText);
