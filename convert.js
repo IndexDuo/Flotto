@@ -54,6 +54,9 @@ function processData(data) {
 
     let match;
     while ((match = entryRegex.exec(data)) !== null) {
+        console.log('Match found:');
+        console.log(match);
+
         const entryData = {
             date: match[1].trim(),
             buyer: match[2].trim(),
