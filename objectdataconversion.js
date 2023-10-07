@@ -45,5 +45,3 @@ exec('node pdf.js', (error, stdout, stderr) => {
   // Continue with data conversion once pdf.mjs is done
   convertDataToObject();
 });
-
-//hi
