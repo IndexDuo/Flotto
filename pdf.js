@@ -72,6 +72,10 @@ pdf(pdfDataBuffer)
         filteredLines[i] = filteredLines[i].replace(/(\d{5})(\d+)/g, '$1\n$2');
     }
     
+    //if the line before the equals to the date format, then check if the previous line start with a number, if not, then check if the line before that starts with a number, if so, then combine the two lines into one line by adding the previous line to the current line after removing the new line character
+    
+    
+    
     pdfText = filteredLines.join('\n');
 
     // Write the processed text to a .txt file (output.txt)
