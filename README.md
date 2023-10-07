@@ -6,6 +6,9 @@
 2. do  npm i in your terminal
 3. to run the .js files,  do node "file-name"
 
+very very important!!
+after
+
 ### What's each file for?
 
 #### pdf.js
@@ -24,3 +27,4 @@ do "git push origin main"
 ## How to pull the code from another branch so i have the most up-to-date code?
 
 do "git pull -branch name here-"
+
