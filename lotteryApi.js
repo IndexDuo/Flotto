@@ -193,10 +193,12 @@ app.post('/calculateWinningChance', async (req, res) => {
 });
 
 function calculateChance(matchingNumbersCount, totalDrawings, requiredMatches) {
-    const combinations = binomialCoefficient(6, requiredMatches);
-    const nonMatchingCount = totalDrawings - matchingNumbersCount;
-    const nonMatchingCombinations = binomialCoefficient(6, 6 - requiredMatches);
-    const chance = (combinations * nonMatchingCombinations) / binomialCoefficient(6, 6);
+    const nonMatchingCount = 6 - requiredMatches;
+    const matchingCombinations = binomialCoefficient(matchingNumbersCount, requiredMatches);
+    const nonMatchingCombinations = binomialCoefficient(totalDrawings - matchingNumbersCount, nonMatchingCount);
+    const totalCombinations = binomialCoefficient(totalDrawings, 6);
+
+    const chance = (matchingCombinations * nonMatchingCombinations) / totalCombinations;
     return (chance * 100).toFixed(2);
 }
 
@@ -212,6 +214,7 @@ function binomialCoefficient(n, k) {
     }
     return result;
 }
+
 
 app.get('/getData/winResults', async (req, res) => {
     const client = new MongoClient(uri, {
