@@ -1,7 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 
-module.explorts = {
+export default {
+  content: ["./index.html", "./map.js"],
   theme: {
+    extend: {},
     colors: {
       'jisoo': '#3d2645',
       'roseanne': '#000000',
@@ -9,12 +11,6 @@ module.explorts = {
       'lisa': 'e0fbfc',
       'blackpink': 'f0eff4',
     },
-  },
-}
-export default {
-  content: ["./index.html", "./map.js"],
-  theme: {
-    extend: {},
   },
   plugins: [],
 };
