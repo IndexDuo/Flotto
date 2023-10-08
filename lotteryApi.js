@@ -171,7 +171,8 @@ app.post('/calculateWinningChance/2', async (req, res) => {
         const database = client.db('florida_lottery')
         const collection = database.collection('winningNumbers') // Reference to the collection
 
-        // if member enters 1 number then
+        const chances={};
+        // if member enters 1 number then the chance of winning is 1/53
 
     } catch (err) {
         console.error(err)
