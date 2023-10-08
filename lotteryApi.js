@@ -164,6 +164,24 @@ app.get('/getData/winResults', async (req, res) => {
         quickPick: item.quickPick,
         tickets: item.tickets
     }));
+
+app.post('/calculateWinningChance', (req, res) => {
+    try {
+        const selectedNumbers = req.body.selectedNumbers.split(',').map(Number);
+
+        // Retrieve the count of past winning numbers that match the user's input
+        const matchingNumbersCount = await LotteryNumber.countDocuments({ numbers: { $all: selectedNumbers } });
+
+        // Calculate the winning chance as a percentage
+        const totalDrawings = await LotteryNumber.countDocuments();
+        const chance = (matchingNumbersCount / totalDrawings) * 100;
+
+        res.json({ chance });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
   
       // Respond with the retrieved data as JSON
       res.status(200).json(filteredData);
