@@ -12,23 +12,29 @@ function processJsonArray(jsonArray) {
 
     if (buyerAddress && typeof buyerAddress === 'string') {
       console.error(`buyerAddress at index ${index} is not a string.`)
-      return
-    }
+      //this is where it messes up
+      const buyerAddress = jsonData[0].buyerAddress
 
-    // Sanitize the buyerAddress string by removing non-digit characters
-    const sanitizedAddress = buyerAddress.replace(/[^0-9]/g, '')
-
-    // Loop through the sanitized string to find 5 consecutive numbers
-    let zipcodes = ''
-    for (let i = 0; i < sanitizedAddress.length; i++) {
-      zipcodes += sanitizedAddress[i]
-      if (zipcodes.length === 5) {
-        break // Stop when you find 5 consecutive numbers
+      if (typeof buyerAddress !== 'string') {
+        console.error('buyerAddress is not a string.')
+        return
       }
-    }
 
-    if (zipcodes.length === 5) {
-      addToSanitizedZipCodes(zipcodes)
+      // Sanitize the buyerAddress string by removing non-digit characters
+      const sanitizedAddress = buyerAddress.replace(/[^0-9]/g, '')
+
+      // Loop through the sanitized string to find 5 consecutive numbers
+      let zipcodes = ''
+      for (let i = 0; i < sanitizedAddress.length; i++) {
+        zipcodes += sanitizedAddress[i]
+        if (zipcodes.length === 5) {
+          break // Stop when you find 5 consecutive numbers
+        }
+      }
+
+      if (zipcodes.length === 5) {
+        addToSanitizedZipCodes(zipcodes)
+      }
     }
   }
 }
