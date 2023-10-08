@@ -4,7 +4,7 @@ const sanitizedZipcodes = []
 //finding the zipcode in json
 const jsonFilePath = './dataJSON/lottery-result.json'
 
-import function addToSanitizedZipCodes(zipcodes) {
+function addToSanitizedZipCodes(zipcodes) {
   sanitizedZipcodes.push(zipcodes)
 }
 

@@ -1,3 +1,4 @@
+import fs from 'fs'
 import sanitizedZipcodes from './mapData.js'
 
 console.log(sanitizedZipcodes)
