@@ -42,7 +42,7 @@ fetch(
 )
   .then((response) => response.json())
   .then((data) => {
-    const coodinates = data.results.map((result) => ({
+    const coordinates = data.results.map((result) => ({
       lat: result.geometry.location.lat,
       lng: result.geometry.location.lng,
     }))
