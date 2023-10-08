@@ -160,7 +160,7 @@ app.post('/calculateWinningChance', async (req, res) => {
 
         const statistics = {}; // Store the statistics data
 
-        // Query your MongoDB Atlas collection for statistics data
+/*         // Query your MongoDB Atlas collection for statistics data
         const rawData = await collection.find({}).toArray();
 
         // Filter the data for numbers and times
@@ -180,10 +180,17 @@ app.post('/calculateWinningChance', async (req, res) => {
             if (statistics[number]) {
                 matchingNumbersCount += statistics[number].times;
             }
-        });
+        }); */
 
         // Calculate the winning chance as a percentage
-        const chance = (matchingNumbersCount / totalDrawings) * 100;
+        const chances = {
+            allSix: '0.00000435587%',
+            fiveOutOfSix: '0.00122835786%',
+            fourOutOfSix: '0.07063044737%',
+            threeOutOfSix: '1.42857142857%',
+            twoOutOfSix: '0.11655011655%',
+            oneOutOfSix: '11.320754717%',
+          }
 
         res.json({ chance });
     } catch (error) {
