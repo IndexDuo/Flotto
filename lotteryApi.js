@@ -145,7 +145,7 @@ app.post('/calculateWinningChance', async (req, res) => {
 
         console.log('Selected Numbers:', selectedNumbers);
 
-        client = new MongoClient(uri, {
+        const client = new MongoClient(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -169,11 +169,10 @@ app.post('/calculateWinningChance', async (req, res) => {
 
         console.log('Total Drawings:', totalDrawings);
 
-        // Loop through selectedNumbers and calculate odds for each
-        selectedNumbers.forEach((number) => {
-            const numberAsInt = parseInt(number, 10); // Convert the number to an integer
-            if (!isNaN(numberAsInt) && statistics[numberAsInt]) {
-                matchingNumbersCount += statistics[numberAsInt].times;
+        rawData.forEach((drawing) => {
+            const matchedNumbers = drawing.numbers.filter(num => selectedNumbers.includes(num));
+            if (matchedNumbers.length >= 3) {
+                matchingNumbersCount++;
             }
         });
 
@@ -220,7 +219,6 @@ function calculateChance(matchingNumbersCount, totalDrawings, requiredMatches) {
     const probability = (matchingNumbersCount / totalDrawings);
     return (chance * probability * 100).toFixed(2);
 }
-
 
 function binomialCoefficient(n, k) {
     if (k === 0 || k === n) return 1;
