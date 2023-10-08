@@ -111,6 +111,31 @@ app.get('/getData/winningNumber/stats', async (req, res) => {
 app.get('/statistics', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'statistics.html'));
   });
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+  });
+
+// For CSS files
+app.get('/style.css', (req, res) => {
+    res.setHeader('Content-Type', 'text/css');
+    res.sendFile(__dirname + '/style.css'); // Add a slash before 'style.css'
+});
+
+app.get('/assets/images/cloud3.svg', (req, res) => {
+    res.sendFile(__dirname + '/assets/images/cloud3.svg'); // Add a slash before 'style.css'
+});
+
+
+app.get('/dist/output.css', (req, res) => {
+    res.sendFile(__dirname + '/dist/output.css'); 
+});
+
+// For JavaScript files
+app.get('/map.js', (req, res) => {
+    res.setHeader('Content-Type', 'application/javascript');
+    res.sendFile(__dirname + '/map.js'); // Add a slash before 'map.js'
+});
+
 
 app.get('/getData/winResults', async (req, res) => {
     const client = new MongoClient(uri, {
