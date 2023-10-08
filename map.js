@@ -38,7 +38,7 @@ const apiKey = 'AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
 const zipString = zipArray.join('|')
 
 fetch(
-  'https://maps.googleapis.com/maps/api/geocode/json?address={32839|29588}&key=AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
+  'https://maps.googleapis.com/maps/api/geocode/json?address={[32839][29588]}&key=AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
 )
   .then((response) => response.json())
   .then((data) => {
@@ -50,17 +50,6 @@ fetch(
     console.log(coordinates)
 
     // Check if there are results
-    if (coordinates.length > 0) {
-      const firstResult = coordinates[0] // Assuming you want the first result
-      const northeastLatLng = {
-        lat: data.results[0].geometry.bounds.northeast.lat,
-        lng: data.results[0].geometry.bounds.northeast.lng,
-      }
-
-      console.log('Northeast Coordinates:', northeastLatLng)
-    } else {
-      console.error('No coordinates found in the response.')
-    }
 
     console.log('hello')
   })
