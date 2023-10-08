@@ -12,6 +12,8 @@ fs.readFile(jsonFilePath, 'utf8', (err, data) => {
   try {
     const jsonData = JSON.parse(data)
 
+    const buyerAddress = jsonData.buyerAddress
+
     if (typeof buyerAddress !== 'string') {
       console.error('buyerAddress is not a string.')
       return
