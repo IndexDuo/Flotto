@@ -6,7 +6,8 @@ function addToSanitizedZipCodes(zipcodes) {
 }
 
 function processJsonArray(jsonArray) {
-  jsonArray.forEach((jsonObj, index) => {
+  for (const index in jsonArray) {
+    const jsonObj = jsonArray[index]
     const buyerAddress = jsonObj.buyerAddress
 
     if (typeof buyerAddress !== 'string') {
@@ -29,7 +30,7 @@ function processJsonArray(jsonArray) {
     if (zipcodes.length === 5) {
       addToSanitizedZipCodes(zipcodes)
     }
-  })
+  }
 }
 
 export { sanitizedZipcodes, processJsonArray }
