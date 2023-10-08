@@ -4,6 +4,10 @@ const sanitizedZipcodes = []
 //finding the zipcode in json
 const jsonFilePath = './dataJSON/lottery-result.json'
 
+function addToSanitizedZipCodes(zipcodes) {
+  sanitizedZipcodes.push(zipcodes)
+}
+
 fs.readFile(jsonFilePath, 'utf8', (err, data) => {
   if (err) {
     console.error('Error reading JSON file:', err)
@@ -40,7 +44,7 @@ fs.readFile(jsonFilePath, 'utf8', (err, data) => {
       }
 
       if (zipcodes.length === 5) {
-        sanitizedZipcodes.push(zipcodes)
+        addToSanitizedZipCodes(zipcodes)
       } else {
         console.log(`No 5 consecutive numbers found at index ${index}.`)
       }
@@ -50,6 +54,6 @@ fs.readFile(jsonFilePath, 'utf8', (err, data) => {
   }
 })
 
-console.log(sanitizedZipcodes)
+console.log(sanitizedZipcodes[1])
 
 export default sanitizedZipcodes
