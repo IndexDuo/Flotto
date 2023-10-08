@@ -195,14 +195,23 @@ app.get('/getData/winResults/zipcodes', async (req, res) => {
     // Query your MongoDB Atlas collection for data
     const rawData = await collection.find({}).toArray()
 
-    console.log('Raw Data:', rawData)
+    // console.log('Raw Data:', rawData)
 
     // Extract zipcodes from the rawData array. first get the winnerAddress by using map function rawData.map((item) => item.winnerAddress). within the winnerAddress string, test if the string is empty or not. if not empty, then replace all non-digit characters with empt string. then use the same method as in map.js to extract the first 5 digits of the string. then push the zipcodes into the zipcodes array.
     const zipcodes = rawData
       .map((item) => item.winnerAddress)
       .filter((item) => item !== '')
-      .map((item) => item.replace(/[^0-9]/g, ''))
-      .map((item) => item.slice(0, 5))
+      .map((item) => {
+        if (typeof item === 'string') {
+          item = item.replace(/[^0-9]/g, '') // Remove non-digit characters
+          if (item.length >= 5) {
+            return item.slice(0, 5) // Extract the first 5 digits
+          }
+        }
+        return '' // Invalid or empty item
+      })
+      .filter((item) => item !== '') // Remove empty zipcodes
+    console.log(zipcodes)
 
     res.status(200).json(zipcodes)
   } catch (err) {
