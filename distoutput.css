@@ -985,7 +985,7 @@ footer {
 .container p {
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .container form {
@@ -1004,13 +1004,13 @@ footer {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .container form button[type="submit"] {
-  background-color: #007bff;
+  background-color: #3d2645;
   color: #fff;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border: none;
   border-radius: 3px;
   cursor: pointer;
@@ -1018,7 +1018,7 @@ footer {
 }
 
 .container form button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #000000;
 }
 
 .hover\:bg-white:hover {
