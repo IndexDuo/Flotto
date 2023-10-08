@@ -10,3 +10,15 @@ footer {
     height: 100%;
     width: 100%;
 }
+
+.number-cell {
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    background-color: #333; /* Background color for the circular ball */
+    color: #fff; /* Text color */
+    border-radius: 50%; /* Make it a circle */
+    text-align: center; /* Center align the text horizontally */
+    vertical-align: middle; /* Center align the text vertically */
+    line-height: 30px; /* Center align the text vertically */
+    font-weight: bold; /* Make the text bold */
+  }
