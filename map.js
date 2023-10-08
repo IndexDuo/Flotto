@@ -26,7 +26,7 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
     console.log(data)
     zipArray = data
     // Process the data using your processJsonArray function
-    // processJsonArray(data)
+    processJsonArray(data)
     // console.log(sanitizedZipcodes)
   })
   .catch((error) => {
