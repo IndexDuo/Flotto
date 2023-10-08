@@ -4,8 +4,6 @@ import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 // In map.js
 // import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 
-var zipArray = []
-
 // Make an API request to fetch your statistical data from the server
 
 fetch('http://localhost:3000/getData/winResults/zipcodes')
@@ -23,35 +21,42 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
     }
 
     //data is an array with all the zipcodes
-    // console.log(data)
-    zipArray = data
+    console.log(data)
     // Process the data using your processJsonArray function
-    processJsonArray(data)
+    // processJsonArray(data)
     // console.log(sanitizedZipcodes)
   })
   .catch((error) => {
     console.error('Error fetching data from the API:', error)
   })
 
+const zipArray = data
 const apiKey = 'AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
 
-const zipString = zipArray.join('|')
+
 
 fetch(
-  'https://maps.googleapis.com/maps/api/geocode/json?address=[{"32839"},{"29588"}]&key=AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
+  'https://maps.googleapis.com/maps/api/geocode/json?address=${zipString}&key=${apiKey}'
 )
   .then((response) => response.json())
   .then((data) => {
-    const coordinates = data.results.map((result) => ({
+    const coodinates = data.results.map((result) => ({
       lat: result.geometry.location.lat,
       lng: result.geometry.location.lng,
     }))
 
-    console.log(coordinates)
+    var map = L.map('map').setView([28.241, -83.183], 7)
 
-    // Check if there are results
+    //base map layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map)
 
-    console.log('hello')
+    for (const index in coodinates) {
+      const coord = coordinates[index]
+      L.marker([coord.lat, coord.lng]).addTo(map)
+    }
   })
   .catch((error) => {
     console.error('Error:', error)
