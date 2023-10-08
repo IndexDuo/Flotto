@@ -2,7 +2,7 @@
 import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 
 // Make a GET request to a relative URL on the same domain as your site
-fetch('/getData/winResults')
+fetch('/getData/winResults/zipcodes')
   .then((response) => {
     if (!response.ok) {
       throw new Error('Network response was not ok')
