@@ -3,7 +3,7 @@ import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 
 const jsonFilePath = './dataJSON/lottery-result.json'
 
-fs.readFileSync(jsonFilePath, 'utf8', (err, data) => {
+const maybe = fs.readFileSync(jsonFilePath, 'utf8', (err, data) => {
   if (err) {
     console.error('Error reading JSON file:', err)
     return
@@ -17,7 +17,7 @@ fs.readFileSync(jsonFilePath, 'utf8', (err, data) => {
   }
 })
 
-processJsonArray(jsonArray)
+processJsonArray(maybe)
 console.log(sanitizedZipcodes)
 //var map = L.map('map').setView([28.241, -83.183], 7)
 
