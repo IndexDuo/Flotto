@@ -39,9 +39,6 @@ const zipString = zipArray.join('|')
 
 
 
-
-
-
 fetch(
   'https://maps.googleapis.com/maps/api/geocode/json?address={29588|32839}&key=AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
 )
