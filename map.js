@@ -1,28 +1,28 @@
-import fs from 'fs'
+// In map.js
 import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 
-const jsonFilePath = './dataJSON/lottery-result.json'
+// Make a GET request to a relative URL on the same domain as your site
+fetch('/getData/winResults')
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    return response.json()
+  })
+  .then((data) => {
+    // Check if the response data is an array
+    if (!Array.isArray(data)) {
+      console.error('API response data is not an array.')
+      return
+    }
 
-const maybe = fs.readFileSync(jsonFilePath, 'utf8', (err, data) => {
-  if (err) {
-    console.error('Error reading JSON file:', err)
-    return
-  }
-
-  const jsonArray = JSON.parse(data)
-
-  if (!Array.isArray(jsonArray)) {
-    console.error('JSON data is not an array.')
-    return
-  }
-})
-
-processJsonArray(maybe)
-console.log(sanitizedZipcodes)
-
-
-
-
+    // Process the data using your processJsonArray function
+    processJsonArray(data)
+    console.log(sanitizedZipcodes)
+  })
+  .catch((error) => {
+    console.error('Error fetching data from the API:', error)
+  })
 
 //var map = L.map('map').setView([28.241, -83.183], 7)
 
