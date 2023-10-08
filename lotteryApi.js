@@ -195,13 +195,22 @@ app.get('/getData/winResults/zipcodes', async (req, res) => {
     // Query your MongoDB Atlas collection for data
     const rawData = await collection.find({}).toArray()
 
+    console.log('Raw Data:', rawData)
+
     // Extract zipcodes from the rawData
     const zipcodes = rawData
       .map((item) => item.winnerAddress)
-      .filter(
-        (address) => typeof address === 'string' && /^\d{5}$/.test(address)
-      )
+      .filter((address) => {
+        const trimmedAddress = address.trim()
+        const isZipcode = /^\d{5}$/.test(trimmedAddress)
+        if (!isZipcode) {
+          console.log('Invalid Zipcode:', trimmedAddress)
+        }
+        return isZipcode
+      })
       .map((address) => address.trim())
+
+    console.log('Valid Zipcodes:', zipcodes)
 
     // Respond with the zipcodes as JSON
     res.status(200).json(zipcodes)
