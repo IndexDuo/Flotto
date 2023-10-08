@@ -160,11 +160,14 @@ app.post('/calculateWinningChance', async (req, res) => {
 
         // Query your MongoDB Atlas collection for statistics data
         const rawData = await collection.find({}).toArray();
-
+        
         console.log('Raw Data:', rawData);
 
-        // Calculate the total count of matching numbers
+        // Calculate the total count of matching numbers and the total drawings
         let matchingNumbersCount = 0;
+        const totalDrawings = rawData.length;
+
+        console.log('Total Drawings:', totalDrawings);
 
         // Loop through selectedNumbers and calculate odds for each
         selectedNumbers.forEach((number) => {
@@ -201,12 +204,10 @@ app.post('/calculateWinningChance', async (req, res) => {
 });
 
 function calculateChance(matchingNumbersCount, totalDrawings, requiredMatches) {
-    const nonMatchingCount = 6 - requiredMatches;
-    const matchingCombinations = binomialCoefficient(matchingNumbersCount, requiredMatches);
-    const nonMatchingCombinations = binomialCoefficient(totalDrawings - matchingNumbersCount, nonMatchingCount);
-    const totalCombinations = binomialCoefficient(totalDrawings, 6);
-
-    const chance = (matchingCombinations * nonMatchingCombinations) / totalCombinations;
+    const combinations = binomialCoefficient(6, requiredMatches);
+    const nonMatchingCount = totalDrawings - matchingNumbersCount;
+    const nonMatchingCombinations = binomialCoefficient(6, 6 - requiredMatches);
+    const chance = (combinations * nonMatchingCombinations) / binomialCoefficient(6, 6);
     return (chance * 100).toFixed(2);
 }
 
