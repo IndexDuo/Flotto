@@ -141,7 +141,7 @@ app.get('/map.js', (req, res) => {
 // this is the calculation provided by chatgpt - - not tested 
 app.post('/calculateWinningChance', async (req, res) => {
     try {
-        const selectedNumbers = req.body.selectedNumbers.split(',').map(Number);
+        const selectedNumbers = req.body.selectedNumbers.split(',').map(String); // Convert selectedNumbers to strings
 
         console.log('Selected Numbers:', selectedNumbers);
 
@@ -157,64 +157,67 @@ app.post('/calculateWinningChance', async (req, res) => {
         const collection = database.collection('winningNumbers'); // Reference to the collection
 
         // Initialize matching numbers counts for each scenario
-// Initialize matching numbers counts for each scenario
-let matchingNumbersCountAllSix = 0;
-let matchingNumbersCountFiveOutOfSix = 0;
-let matchingNumbersCountFourOutOfSix = 0;
-let matchingNumbersCountThreeOutOfSix = 0;
-let matchingNumbersCountTwoOutOfSix = 0;
-let matchingNumbersCountOneOutOfSix = 0;
+        let matchingNumbersCountAllSix = 0;
+        let matchingNumbersCountFiveOutOfSix = 0;
+        let matchingNumbersCountFourOutOfSix = 0;
+        let matchingNumbersCountThreeOutOfSix = 0;
+        let matchingNumbersCountTwoOutOfSix = 0;
+        let matchingNumbersCountOneOutOfSix = 0;
 
-// Query your MongoDB Atlas collection for statistics data
-const rawData = await collection.find({}).toArray();
+        // Convert selectedNumbers to strings
+        const selectedNumbersAsString = selectedNumbers.map(String);
 
-console.log('Raw Data:', rawData);
+        // Query your MongoDB Atlas collection for statistics data
+        const rawData = await collection.find({}).toArray();
 
-rawData.forEach((drawing) => {
-    const matchedNumbers = selectedNumbers.filter(num => drawing.numbers.includes(num));
+        console.log('Raw Data:', rawData);
 
-    if (matchedNumbers.length === 6) {
-        matchingNumbersCountAllSix++;
-        matchingNumbersCountFiveOutOfSix++;
-        matchingNumbersCountFourOutOfSix++;
-        matchingNumbersCountThreeOutOfSix++;
-        matchingNumbersCountTwoOutOfSix++;
-        matchingNumbersCountOneOutOfSix++;
-    } else if (matchedNumbers.length === 5) {
-        matchingNumbersCountFiveOutOfSix++;
-        matchingNumbersCountFourOutOfSix++;
-        matchingNumbersCountThreeOutOfSix++;
-        matchingNumbersCountTwoOutOfSix++;
-        matchingNumbersCountOneOutOfSix++;
-    } else if (matchedNumbers.length === 4) {
-        matchingNumbersCountFourOutOfSix++;
-        matchingNumbersCountThreeOutOfSix++;
-        matchingNumbersCountTwoOutOfSix++;
-        matchingNumbersCountOneOutOfSix++;
-    } else if (matchedNumbers.length === 3) {
-        matchingNumbersCountThreeOutOfSix++;
-        matchingNumbersCountTwoOutOfSix++;
-        matchingNumbersCountOneOutOfSix++;
-    } else if (matchedNumbers.length === 2) {
-        matchingNumbersCountTwoOutOfSix++;
-        matchingNumbersCountOneOutOfSix++;
-    } else if (matchedNumbers.length === 1) {
-        matchingNumbersCountOneOutOfSix++;
-    }
-});
+        rawData.forEach((drawing) => {
+            const matchedNumbers = drawing.numbers.filter(num => selectedNumbersAsString.includes(num.toString()));
 
-console.log('Matching Numbers Count (All Six):', matchingNumbersCountAllSix);
-console.log('Matching Numbers Count (Five Out Of Six):', matchingNumbersCountFiveOutOfSix);
-console.log('Matching Numbers Count (Four Out Of Six):', matchingNumbersCountFourOutOfSix);
-console.log('Matching Numbers Count (Three Out Of Six):', matchingNumbersCountThreeOutOfSix);
-console.log('Matching Numbers Count (Two Out Of Six):', matchingNumbersCountTwoOutOfSix);
-console.log('Matching Numbers Count (One Out Of Six):', matchingNumbersCountOneOutOfSix);
+            if (matchedNumbers.length === 6) {
+                matchingNumbersCountAllSix++;
+                matchingNumbersCountFiveOutOfSix++;
+                matchingNumbersCountFourOutOfSix++;
+                matchingNumbersCountThreeOutOfSix++;
+                matchingNumbersCountTwoOutOfSix++;
+                matchingNumbersCountOneOutOfSix++;
+            } else if (matchedNumbers.length === 5) {
+                matchingNumbersCountFiveOutOfSix++;
+                matchingNumbersCountFourOutOfSix++;
+                matchingNumbersCountThreeOutOfSix++;
+                matchingNumbersCountTwoOutOfSix++;
+                matchingNumbersCountOneOutOfSix++;
+            } else if (matchedNumbers.length === 4) {
+                matchingNumbersCountFourOutOfSix++;
+                matchingNumbersCountThreeOutOfSix++;
+                matchingNumbersCountTwoOutOfSix++;
+                matchingNumbersCountOneOutOfSix++;
+            } else if (matchedNumbers.length === 3) {
+                matchingNumbersCountThreeOutOfSix++;
+                matchingNumbersCountTwoOutOfSix++;
+                matchingNumbersCountOneOutOfSix++;
+            } else if (matchedNumbers.length === 2) {
+                matchingNumbersCountTwoOutOfSix++;
+                matchingNumbersCountOneOutOfSix++;
+            } else if (matchedNumbers.length === 1) {
+                matchingNumbersCountOneOutOfSix++;
+            }
+        });
+
+        console.log('Matching Numbers Count (All Six):', matchingNumbersCountAllSix);
+        console.log('Matching Numbers Count (Five Out Of Six):', matchingNumbersCountFiveOutOfSix);
+        console.log('Matching Numbers Count (Four Out Of Six):', matchingNumbersCountFourOutOfSix);
+        console.log('Matching Numbers Count (Three Out Of Six):', matchingNumbersCountThreeOutOfSix);
+        console.log('Matching Numbers Count (Two Out Of Six):', matchingNumbersCountTwoOutOfSix);
+        console.log('Matching Numbers Count (One Out Of Six):', matchingNumbersCountOneOutOfSix);
+
         // Calculate winning chances for each scenario
         const totalDrawings = rawData.length;
         const chances = {
             allSix: calculateChance(matchingNumbersCountAllSix, totalDrawings, 6),
             fiveOutOfSix: calculateChance(matchingNumbersCountFiveOutOfSix, totalDrawings, 5),
-            fourOutOfSix: calculateChance(matchingNumbersCountFourOutOfSix, totalDrawings, 4), // Adjust as needed
+            fourOutOfSix: calculateChance(matchingNumbersCountFourOutOfSix, totalDrawings, 4),
             threeOutOfSix: calculateChance(matchingNumbersCountThreeOutOfSix, totalDrawings, 3),
             twoOutOfSix: calculateChance(matchingNumbersCountTwoOutOfSix, totalDrawings, 2),
             oneOutOfSix: calculateChance(matchingNumbersCountOneOutOfSix, totalDrawings, 1),
@@ -264,6 +267,7 @@ function binomialCoefficient(n, k) {
     }
     return result;
 }
+
 
 app.get('/getData/winResults', async (req, res) => {
     const client = new MongoClient(uri, {
