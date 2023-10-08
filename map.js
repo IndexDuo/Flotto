@@ -1,5 +1,7 @@
-// ... (fetch for zipArray)
+// Declare zipArray in a higher scope
+var zipArray = []
 
+// Make an API request to fetch your statistical data from the server
 fetch('http://localhost:3000/getData/winResults/zipcodes')
   .then((response) => {
     if (!response.ok) {
@@ -19,9 +21,6 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
 
     // Call a function or perform operations that depend on zipArray here
     // For example, you can call processJsonArray or do something else
-
-    // console.log(zipArray);
-    // processJsonArray(zipArray);
 
     // Continue with your other code here
     const apiKey = 'AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
