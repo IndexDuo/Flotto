@@ -45,6 +45,7 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
                 coordinates.push({ lat, lng })
               }
             }
+            console.log(coordinates)
           }
         })
         .catch((error) => {
@@ -53,7 +54,7 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
         .finally(() => {
           // Check if all fetch requests are completed
           if (coordinates.length === zipArray.length) {
-            console.log(coordinates)
+            // console.log(coordinates)
             // Continue with your code that depends on the coordinates array
           }
         })
