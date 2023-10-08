@@ -206,8 +206,9 @@ app.get('/getData/winResults/zipcodes', async (req, res) => {
       // Check if a zip code was found and return it, or return an empty string if not found
       return zipCodeMatch ? zipCodeMatch[0] : ''
     })
+    const nonEmptyZipcodes = zipcodes.filter((zipcode) => zipcode !== '')
 
-    res.status(200).json(zipcodes)
+    res.status(200).json(nonEmptyZipcodes)
   } catch (err) {
     console.error(err)
     res.status(500).json({ error: 'Internal server error' })
