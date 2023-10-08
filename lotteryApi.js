@@ -171,8 +171,9 @@ app.post('/calculateWinningChance', async (req, res) => {
 
         // Loop through selectedNumbers and calculate odds for each
         selectedNumbers.forEach((number) => {
-            if (statistics[number]) {
-                matchingNumbersCount += statistics[number].times;
+            const numberAsInt = parseInt(number, 10); // Convert the number to an integer
+            if (!isNaN(numberAsInt) && statistics[numberAsInt]) {
+                matchingNumbersCount += statistics[numberAsInt].times;
             }
         });
 
@@ -232,6 +233,7 @@ function binomialCoefficient(n, k) {
     }
     return result;
 }
+
 
 
 app.get('/getData/winResults', async (req, res) => {
