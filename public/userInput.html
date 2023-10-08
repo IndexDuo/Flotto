@@ -95,7 +95,7 @@
     <!-- Input Form -->
     <div class="container">
         <p>Enter your desired numbers:</p>
-        <form id="lotteryForm">
+        <form id="lotteryForm" onsubmit="return validateForm()">
           <label for="numbers">Numbers (comma-separated):</label>
           <input type="text" id="numbers" name="numbers" required>
           <button type="submit">Calculate Winning Chance</button>
@@ -199,6 +199,28 @@
       </footer>
 
     <script>
+        function validateForm() {
+            // Get the input value
+            const numbersInput = document.getElementById("numbers");
+            const numbersValue = numbersInput.value.trim();
+
+            // Split the input value by commas
+            const numbersArray = numbersValue.split(",");
+
+            // Remove empty elements and trim each number
+            const validNumbers = numbersArray.filter(number => number.trim() !== "");
+
+            // Check if there are exactly 6 valid numbers
+            if (validNumbers.length === 6) {
+            // Form is valid, allow submission
+                return true;
+            } else {
+                // Show an error message and prevent form submission
+                alert("Please enter exactly 6 numbers separated by commas.");
+                return false;
+            }
+        }
+        
         // JavaScript code for handling form submission and displaying results
         document.querySelector('#lotteryForm').addEventListener('submit', function (e) {
             e.preventDefault();
