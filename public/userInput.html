@@ -246,15 +246,29 @@
             return response.json();
         })
         .then((data) => {
-            // Display the winning chance result on the webpage
-            const winningChanceElement = document.querySelector('#winning-chance');
-            winningChanceElement.textContent = data.chances.allSix; // You can change this to the appropriate property you want to display
+            // Display the winning chance results on the webpage
+            const resultContainer = document.querySelector('#result-container');
+            resultContainer.innerHTML = ''; // Clear any previous results
+
+            // Loop through the 'chances' object and display each key-value pair
+            for (const key in data.chances) {
+                if (data.chances.hasOwnProperty(key)) {
+                    const value = data.chances[key];
+                    const resultElement = document.createElement('p');
+                    resultElement.textContent = `${key}: ${value}`;
+                    resultContainer.appendChild(resultElement);
+                }
+            }
         })
         .catch((error) => {
             // Handle errors and display error messages to the user
             console.error('Error:', error);
         });
 });
+
+
+
+
     
     </script>
 </body>
