@@ -93,11 +93,13 @@
     <p>Enter your desired numbers:</p>
 
     <!-- Input Form -->
-    <form id="lotteryForm" class="bg-lisa p-4 rounded-lg shadow-md">
-        <label for="numbers" class="block text-jennie font-semibold">Numbers (comma-separated):</label>
-        <input type="text" id="numbers" name="numbers" required class="w-full py-2 px-3 border border-jennie rounded-md mt-2 focus:outline-none focus:ring focus:border-jennie">
-        <button type="submit" class="bg-jennie text-white py-2 px-4 rounded-md mt-4 hover:bg-jisoo transition duration-300">Calculate Winning Chance</button>
-    </form>
+    <div class="flex justify-center items-center h-screen">
+        <form id="lotteryForm" class="bg-lisa p-4 rounded-lg shadow-md text-1g">
+            <label for="numbers" class="block text-jennie font-semibold">Numbers (comma-separated):</label>
+            <input type="text" id="numbers" name="numbers" required class="w-full py-2 px-3 border border-jennie rounded-md mt-2 focus:outline-none focus:ring focus:border-jennie">
+            <button type="submit" class="bg-jennie text-white py-2 px-4 rounded-md mt-4 hover:bg-jisoo transition duration-300">Calculate Winning Chance</button>
+        </form>
+    </div>      
     
 
     <!-- Display Winning Chance Result -->
