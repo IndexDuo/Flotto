@@ -147,7 +147,7 @@ app.post('/calculateWinningChance', async (req, res) => {
     try {
         const selectedNumbers = req.body.selectedNumbers.split(',').map(Number);
 
-        client = new MongoClient(uri, {
+      /*   client = new MongoClient(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -159,7 +159,7 @@ app.post('/calculateWinningChance', async (req, res) => {
         const collection = database.collection('winningNumbers'); // Reference to the collection
 
         const statistics = {}; // Store the statistics data
-
+ */
 /*         // Query your MongoDB Atlas collection for statistics data
         const rawData = await collection.find({}).toArray();
 
@@ -199,7 +199,7 @@ app.post('/calculateWinningChance', async (req, res) => {
             oneOutOfSix: '11.320754717%',
           }
 
-        res.json({ chance });
+        res.json({ chances });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal server error' });
