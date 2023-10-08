@@ -3,12 +3,7 @@ import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 
 // Make an API request to fetch your statistical data from the server
 
-
-
-
-
-
-fetch('/getData/winResults/zipcodes')
+fetch('http://localhost:3000/getData/winResults/zipcodes')
   .then((response) => {
     if (!response.ok) {
       throw new Error('Network response was not ok')
@@ -22,6 +17,7 @@ fetch('/getData/winResults/zipcodes')
       return
     }
 
+    console.log(data)
     // Process the data using your processJsonArray function
     processJsonArray(data)
     console.log(sanitizedZipcodes)
