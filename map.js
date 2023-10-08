@@ -1,5 +1,5 @@
 // In map.js
-import { data } from 'cheerio/lib/api/attributes.js'
+// import { data } from 'cheerio/lib/api/attributes.js'
 import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 // In map.js
 // import { sanitizedZipcodes, processJsonArray } from './mapData.js'
