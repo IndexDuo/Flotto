@@ -203,7 +203,9 @@ app.get('/getData/winResults/zipcodes', async (req, res) => {
       .filter((address) => typeof address === 'string' && address.trim() !== '') // Filter out empty or non-string addresses
       .map((address) => {
         const sanitizedAddress = address.replace(/[^0-9]/g, '') // Remove non-digit characters
+        console.log('hello before' + sanitizedAddress)
         if (sanitizedAddress.length >= 5) {
+          console.log('hello' + sanitizedAddress)
           return sanitizedAddress.slice(0, 5) // Extract the first 5 digits
         }
         return '' // Invalid or empty zipcode
