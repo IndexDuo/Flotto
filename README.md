@@ -11,7 +11,7 @@ Using Florida Lottery data to help you choose your next numbers
 
 ### Features
 
-- Test your chances
+- Test your chances by inputing numbers into the form
 - See a map of cities with the most winners
 - See a list of the most common winning numbers
 
