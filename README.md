@@ -7,7 +7,7 @@
 
 ## General Info
 
-Desc
+Using Florida Lottery data to help you choose your next numbers
 
 ### Features
 
