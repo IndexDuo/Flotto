@@ -28,8 +28,6 @@ function processJsonArray(jsonArray) {
 
     if (zipcodes.length === 5) {
       addToSanitizedZipCodes(zipcodes)
-    } else {
-      console.log(`No 5 consecutive numbers found at index ${index}.`)
     }
   })
 }

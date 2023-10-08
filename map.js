@@ -10,15 +10,14 @@ fs.readFile(jsonFilePath, 'utf8', (err, data) => {
   }
 
   const jsonArray = JSON.parse(data)
-  console.log(jsonArray)
 
   if (!Array.isArray(jsonArray)) {
     console.error('JSON data is not an array.')
     return
   }
-})
 
-processJsonArray(jsonArray)
+  processJsonArray(jsonArray)
+})
 console.log(sanitizedZipcodes)
 //var map = L.map('map').setView([28.241, -83.183], 7)
 
