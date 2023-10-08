@@ -146,6 +146,43 @@ app.get('/map.js', (req, res) => {
   res.sendFile(__dirname + '/map.js') // Add a slash before 'map.js'
 })
 
+app.post('/calculateWinningChance/2', async (req, res) => {
+    try {
+        const selectedNumbers = req.body.selectedNumbers.split(',').map(String) // Convert selectedNumbers to strings
+
+        console.log('Selected Numbers:', selectedNumbers)
+
+        const client = new MongoClient(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
+
+        try {
+            await client.connect()
+            console.log('Connected to MongoDB Atlas')
+        } catch (err) {
+            console.error(err)
+            res.status(500).json({ error: 'Internal server error' })
+        } finally {
+            // Close the MongoDB connection
+            client.close()
+        }
+
+        const database = client.db('florida_lottery')
+        const collection = database.collection('winningNumbers') // Reference to the collection
+
+        // if member enters 1 number then
+
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ error: 'Internal server error' })
+    } finally {
+        // Close the MongoDB connection
+        client.close()
+    }
+})
+
+
 // this is the calculation provided by chatgpt - - not tested
 app.post('/calculateWinningChance', async (req, res) => {
   try {
