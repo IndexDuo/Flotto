@@ -23,7 +23,7 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
     }
 
     //data is an array with all the zipcodes
-    console.log(data)
+    // console.log(data)
     zipArray = data
     // Process the data using your processJsonArray function
     processJsonArray(data)
@@ -37,7 +37,7 @@ const apiKey = 'AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
 
 const zipString = zipArray.join('|')
 
-app.get(
+fetch(
   'https://maps.googleapis.com/maps/api/geocode/json?address=${zipString}&key=${apiKey}'
 )
   .then((response) => response.json())
@@ -48,7 +48,7 @@ app.get(
     }))
 
     console.log(coordinates)
-    console.log("hello")
+    console.log('hello')
 
     // var map = L.map('map').setView([28.241, -83.183], 7)
 
