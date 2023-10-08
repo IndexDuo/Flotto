@@ -143,6 +143,8 @@ app.post('/calculateWinningChance', async (req, res) => {
     try {
         const selectedNumbers = req.body.selectedNumbers.split(',').map(Number);
 
+        console.log('Selected Numbers:', selectedNumbers);
+
         client = new MongoClient(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
@@ -159,6 +161,8 @@ app.post('/calculateWinningChance', async (req, res) => {
         // Query your MongoDB Atlas collection for statistics data
         const rawData = await collection.find({}).toArray();
 
+        console.log('Raw Data:', rawData);
+
         // Calculate the total count of matching numbers
         let matchingNumbersCount = 0;
 
@@ -168,6 +172,8 @@ app.post('/calculateWinningChance', async (req, res) => {
                 matchingNumbersCount += statistics[number].times;
             }
         });
+
+        console.log('Matching Numbers Count:', matchingNumbersCount);
 
         // Calculate winning chances for each scenario
         const chances = {
@@ -179,6 +185,8 @@ app.post('/calculateWinningChance', async (req, res) => {
             oneOutOfSix: calculateChance(matchingNumbersCount, totalDrawings, 1),
         };
 
+        console.log('Chances:', chances);
+
         res.json(chances);
     } catch (error) {
         console.error('Error:', error);
@@ -187,6 +195,7 @@ app.post('/calculateWinningChance', async (req, res) => {
         if (client) {
             // Close the MongoDB connection if 'client' is defined
             client.close();
+            console.log('MongoDB connection closed');
         }
     }
 });
