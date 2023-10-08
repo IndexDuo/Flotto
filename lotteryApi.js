@@ -194,13 +194,17 @@ app.get('/getData/winResults/zipcodes', async (req, res) => {
 
     // Query your MongoDB Atlas collection for data
     const rawData = await collection.find({}).toArray()
-    const filteredDataAddress = rawData.map((item) => ({
-      winnerAddress: item.buyerAddress,
-    }))
-    const zipcodes= [];
 
-    // Respond with the retrieved data as JSON
-    res.status(200).json(filteredDataAddress)
+    // Extract zipcodes from the rawData
+    const zipcodes = rawData
+      .map((item) => item.winnerAddress)
+      .filter(
+        (address) => typeof address === 'string' && /^\d{5}$/.test(address)
+      )
+      .map((address) => address.trim())
+
+    // Respond with the zipcodes as JSON
+    res.status(200).json(zipcodes)
   } catch (err) {
     console.error(err)
     res.status(500).json({ error: 'Internal server error' })
