@@ -20,7 +20,7 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
     console.log(data)
     // Process the data using your processJsonArray function
     processJsonArray(data)
-    console.log(sanitizedZipcodes)
+    // console.log(sanitizedZipcodes)
   })
   .catch((error) => {
     console.error('Error fetching data from the API:', error)
