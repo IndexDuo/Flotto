@@ -182,6 +182,13 @@ app.post('/calculateWinningChance', async (req, res) => {
             }
         }); */
 
+        let allSix = 0;
+        let fiveOutOfSix = 0;
+        let fourOutOfSix = 0;
+        let threeOutOfSix = 0;
+        let twoOutOfSix = 0;
+        let oneOutOfSix = 0;
+    
         // Calculate the winning chance as a percentage
         const chances = {
             allSix: '0.00000435587%',
