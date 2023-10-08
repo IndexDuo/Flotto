@@ -177,29 +177,14 @@ app.post('/calculateWinningChance', async (req, res) => {
 
             if (matchedNumbers.length === 6) {
                 matchingNumbersCountAllSix++;
-                matchingNumbersCountFiveOutOfSix++;
-                matchingNumbersCountFourOutOfSix++;
-                matchingNumbersCountThreeOutOfSix++;
-                matchingNumbersCountTwoOutOfSix++;
-                matchingNumbersCountOneOutOfSix++;
             } else if (matchedNumbers.length === 5) {
                 matchingNumbersCountFiveOutOfSix++;
-                matchingNumbersCountFourOutOfSix++;
-                matchingNumbersCountThreeOutOfSix++;
-                matchingNumbersCountTwoOutOfSix++;
-                matchingNumbersCountOneOutOfSix++;
             } else if (matchedNumbers.length === 4) {
                 matchingNumbersCountFourOutOfSix++;
-                matchingNumbersCountThreeOutOfSix++;
-                matchingNumbersCountTwoOutOfSix++;
-                matchingNumbersCountOneOutOfSix++;
             } else if (matchedNumbers.length === 3) {
                 matchingNumbersCountThreeOutOfSix++;
-                matchingNumbersCountTwoOutOfSix++;
-                matchingNumbersCountOneOutOfSix++;
             } else if (matchedNumbers.length === 2) {
                 matchingNumbersCountTwoOutOfSix++;
-                matchingNumbersCountOneOutOfSix++;
             } else if (matchedNumbers.length === 1) {
                 matchingNumbersCountOneOutOfSix++;
             }
@@ -267,6 +252,7 @@ function binomialCoefficient(n, k) {
     }
     return result;
 }
+
 
 
 app.get('/getData/winResults', async (req, res) => {
