@@ -1,5 +1,6 @@
 import fs from 'fs'
 
+export const sanitizedZipcodes = []
 //finding the zipcode in json
 const jsonFilePath = './dataJSON/lottery-result.json'
 
@@ -17,7 +18,7 @@ fs.readFile(jsonFilePath, 'utf8', (err, data) => {
       return
     }
 
-    // 4. Loop through each JSON object
+    // Loop through each JSON object
     jsonArray.forEach((jsonObj, index) => {
       const buyerAddress = jsonObj.buyerAddress
 
@@ -26,10 +27,10 @@ fs.readFile(jsonFilePath, 'utf8', (err, data) => {
         return
       }
 
-      // 5. Sanitize the buyerAddress string by removing non-digit characters
+      // Sanitize the buyerAddress string by removing non-digit characters
       const sanitizedAddress = buyerAddress.replace(/[^0-9]/g, '')
 
-      // 6. Loop through the sanitized string to find 5 consecutive numbers
+      // Loop through the sanitized string to find 5 consecutive numbers
       let zipcodes = ''
       for (let i = 0; i < sanitizedAddress.length; i++) {
         zipcodes += sanitizedAddress[i]
@@ -40,6 +41,7 @@ fs.readFile(jsonFilePath, 'utf8', (err, data) => {
 
       if (zipcodes.length === 5) {
         console.log(`Found 5 consecutive numbers at index ${index}:`, zipcodes)
+        sanitizedZipcodes.push(zipcodes)
       } else {
         console.log(`No 5 consecutive numbers found at index ${index}.`)
       }
