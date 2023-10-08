@@ -20,6 +20,10 @@ app.get('/userForm', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/userInput.html'))
   })
 
+  app.get('', (req, res) => {
+    res.sendFile(path.join(__dirname, '/index.html'))
+  })
+
 app.get('/getData/winningNumber', async (req, res) => {
     const client = new MongoClient(uri, {
         useNewUrlParser: true,
