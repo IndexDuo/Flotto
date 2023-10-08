@@ -20,6 +20,10 @@ app.get('/userForm', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/userInput.html'))
 })
 
+app.get('', (req, res) => {
+  res.sendFile(path.join(__dirname, '/index.html'))
+})
+
 app.get('/getData/winningNumber', async (req, res) => {
   const client = new MongoClient(uri, {
     useNewUrlParser: true,
@@ -119,6 +123,10 @@ app.get('/getData/winningNumber/stats', async (req, res) => {
   }
 })
 
+app.get('/getData/coordinates', async (req, res) => {
+  res.sendFile(path.join(__dirname, 'coordinates.json'))
+})
+
 app.get('/statistics', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'statistics.html'))
 })
@@ -197,10 +205,10 @@ app.post('/calculateWinningChance/2', async (req, res) => {
 
 // this is the calculation provided by chatgpt - - not tested
 app.post('/calculateWinningChance', async (req, res) => {
-    try {
-        const selectedNumbers = req.body.selectedNumbers.split(',').map(Number);
+  try {
+    const selectedNumbers = req.body.selectedNumbers.split(',').map(Number)
 
-        client = new MongoClient(uri, {
+    /*   client = new MongoClient(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -212,9 +220,9 @@ app.post('/calculateWinningChance', async (req, res) => {
     const collection = database.collection('winningNumbers') // Reference to the collection
 
         const statistics = {}; // Store the statistics data
-
-    // Query your MongoDB Atlas collection for statistics data
-    const rawData = await collection.find({}).toArray()
+ */
+    /*         // Query your MongoDB Atlas collection for statistics data
+        const rawData = await collection.find({}).toArray();
 
         // Filter the data for numbers and times
         rawData.forEach((item) => {
@@ -233,22 +241,36 @@ app.post('/calculateWinningChance', async (req, res) => {
             if (statistics[number]) {
                 matchingNumbersCount += statistics[number].times;
             }
-        });
+        }); */
 
-        // Calculate the winning chance as a percentage
-        const chance = (matchingNumbersCount / totalDrawings) * 100;
+    let allSix = 0
+    let fiveOutOfSix = 0
+    let fourOutOfSix = 0
+    let threeOutOfSix = 0
+    let twoOutOfSix = 0
+    let oneOutOfSix = 0
 
-        res.json({ chance });
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    } finally {
-        if (client) {
-            // Close the MongoDB connection if 'client' is defined
-            client.close();
-        }
+    // Calculate the winning chance as a percentage
+    const chances = {
+      allSix: '0.00000435587%',
+      fiveOutOfSix: '0.00122835786%',
+      fourOutOfSix: '0.07063044737%',
+      threeOutOfSix: '1.42857142857%',
+      twoOutOfSix: '0.11655011655%',
+      oneOutOfSix: '11.320754717%',
     }
-});
+
+    res.json({ chances })
+  } catch (error) {
+    console.error('Error:', error)
+    res.status(500).json({ error: 'Internal server error' })
+  } finally {
+    if (client) {
+      // Close the MongoDB connection if 'client' is defined
+      client.close()
+    }
+  }
+})
 
 app.get('/getData/winResults', async (req, res) => {
   const client = new MongoClient(uri, {
@@ -289,6 +311,45 @@ app.get('/getData/winResults', async (req, res) => {
   }
 })
 
+app.get('/getData/winResults/zipcodes', async (req, res) => {
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+
+  try {
+    await client.connect()
+    console.log('Connected to MongoDB Atlas')
+
+    const database = client.db('florida_lottery')
+    const collection = database.collection('lotteryResult')
+
+    // Query your MongoDB Atlas collection for data
+    const rawData = await collection.find({}).toArray()
+
+    // Extract zipcodes from the rawData array
+    const addresses = rawData.map((item) => ({
+      winnerAddress: item.buyerAddress,
+    }))
+    const zipcodes = addresses.map((addressObj) => {
+      const winnerAddress = addressObj.winnerAddress
+      // Use a regular expression to match the zip code pattern (5 digits)
+      const zipCodeMatch = winnerAddress.match(/\d{5}/)
+      // Check if a zip code was found and return it, or return an empty string if not found
+      return zipCodeMatch ? zipCodeMatch[0] : ''
+    })
+    const nonEmptyZipcodes = zipcodes.filter((zipcode) => zipcode !== '')
+
+    res.status(200).json(nonEmptyZipcodes)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Internal server error' })
+  } finally {
+    // Close the MongoDB connection
+    client.close()
+  }
+})
+
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+  console.log(`Server is running on port ${port}`)
+})
