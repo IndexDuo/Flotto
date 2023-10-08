@@ -10,6 +10,8 @@ very very important!!
 after you do npm i, be sure to go to your node_modules\pdf-parse\index.js
 and change let isDebugMode = !module.parent; to let isDebugMode = false;
 
+use "npx tailwindcss -i ./style.css -o ./dist/output.css --watch" for tailwind
+
 ### What's each file for?
 
 #### pdf.js
