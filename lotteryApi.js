@@ -3,16 +3,25 @@ import path from 'path'
 import { fileURLToPath } from 'url' // Import fileURLToPath
 import { MongoClient } from 'mongodb'
 
-const __filename = fileURLToPath(import.meta.url) // Get the current filename
-const __dirname = path.dirname(__filename) // Get the directory of the current file
+const __filename = fileURLToPath(import.meta.url); // Get the current filename
+const __dirname = path.dirname(__filename); // Get the directory of the current file
 
-const app = express()
-const port = 3000
-app.use(express.static('public'))
+let client;
+const app = express();
+const port = 3000;
+app.use(express.static('public'));
+app.use(express.json()); 
 
 // MongoDB Atlas cluster connection string
-const uri =
-  'mongodb+srv://indexduo:index2012512@flottery.c5klhwf.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp'
+const uri = 'mongodb+srv://indexduo:index2012512@flottery.c5klhwf.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp';
+
+app.get('/userForm', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/userInput.html'))
+  })
+
+  app.get('', (req, res) => {
+    res.sendFile(path.join(__dirname, '/index.html'))
+  })
 
 app.get('/getData/winningNumber', async (req, res) => {
   const client = new MongoClient(uri, {
@@ -141,9 +150,78 @@ app.get('/dist/output.css', (req, res) => {
 
 // For JavaScript files
 app.get('/map.js', (req, res) => {
-  res.setHeader('Content-Type', 'application/javascript')
-  res.sendFile(__dirname + '/map.js') // Add a slash before 'map.js'
-})
+    res.setHeader('Content-Type', 'application/javascript');
+    res.sendFile(__dirname + '/map.js'); // Add a slash before 'map.js'
+});
+
+// this is the calculation provided by chatgpt - - not tested 
+app.post('/calculateWinningChance', async (req, res) => {
+    try {
+        const selectedNumbers = req.body.selectedNumbers.split(',').map(Number);
+
+      /*   client = new MongoClient(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+
+        await client.connect();
+        console.log('Connected to MongoDB Atlas');
+
+        const database = client.db('florida_lottery');
+        const collection = database.collection('winningNumbers'); // Reference to the collection
+
+        const statistics = {}; // Store the statistics data
+ */
+/*         // Query your MongoDB Atlas collection for statistics data
+        const rawData = await collection.find({}).toArray();
+
+        // Filter the data for numbers and times
+        rawData.forEach((item) => {
+            statistics[item.number] = {
+                times: item.times,
+                lastDrawnDate: item.lastDrawnDate,
+                percentageOfDrawings: item.percentageOfDrawings,
+            };
+        });
+
+        // Calculate the total count of matching numbers and the total drawings
+        let matchingNumbersCount = 0;
+        const totalDrawings = rawData.length;
+
+        selectedNumbers.forEach((number) => {
+            if (statistics[number]) {
+                matchingNumbersCount += statistics[number].times;
+            }
+        }); */
+
+        let allSix = 0;
+        let fiveOutOfSix = 0;
+        let fourOutOfSix = 0;
+        let threeOutOfSix = 0;
+        let twoOutOfSix = 0;
+        let oneOutOfSix = 0;
+    
+        // Calculate the winning chance as a percentage
+        const chances = {
+            allSix: '0.00000435587%',
+            fiveOutOfSix: '0.00122835786%',
+            fourOutOfSix: '0.07063044737%',
+            threeOutOfSix: '1.42857142857%',
+            twoOutOfSix: '0.11655011655%',
+            oneOutOfSix: '11.320754717%',
+          }
+
+        res.json({ chances });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    } finally {
+        if (client) {
+            // Close the MongoDB connection if 'client' is defined
+            client.close();
+        }
+    }
+});
 
 app.get('/getData/winResults', async (req, res) => {
   const client = new MongoClient(uri, {
