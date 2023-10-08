@@ -180,6 +180,7 @@ app.post('/calculateWinningChance', async (req, res) => {
 
         // Calculate the winning chance as a percentage
         const chance = (matchingNumbersCount / totalDrawings) * 100;
+        console.log("hello im at line 183");
 
         res.json({ chance });
     } catch (error) {
