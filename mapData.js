@@ -1,7 +1,7 @@
 import fs from 'fs'
 
 //finding the zipcode in json
-const jsonFilePath = '/dataJSON/lottery-rresult.json'
+const jsonFilePath = './dataJSON/lottery-result.json'
 
 fs.readFile(jsonFilePath, 'utf8', (err, data) => {
   if (err) {
