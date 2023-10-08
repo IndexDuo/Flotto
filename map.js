@@ -1,4 +1,8 @@
+// window.addEventListener('DOMContentLoaded', myFunction, false)
+
+// function myFunction() {
 // Declare zipArray in a higher scope
+import fs from 'fs'
 var zipArray = []
 
 // Make an API request to fetch your statistical data from the server
@@ -57,9 +61,29 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
             console.log(coordinates)
             // Continue with your code that depends on the coordinates array
           }
+          const jsonData = JSON.stringify(coordinates)
+          fs.writeFileSync('coordinates.json', jsonData, 'utf-8')
         })
     })
+
+    // Initialize the map
+    //   var map = L.map('map').setView([28.241, -83.183], 7)
+
+    //   // Add a base map layer (e.g., OpenStreetMap)
+    //   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //     attribution:
+    //       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    //   }).addTo(map)
+
+    //   // Add markers for each coordinate
+    //   var markers = []
+    //   coordinates.forEach((coord) => {
+    //     var marker = L.marker([coord.lat, coord.lng]).addTo(map)
+    //     markers.push(marker)
+    //   })
+
+    //   // Create a marker cluster group for better performance
+    //   var markerCluster = L.markerClusterGroup()
+    //   markerCluster.addLayers(markers)
+    //   map.addLayer(markerCluster)
   })
-
-
-  

@@ -113,9 +113,14 @@ app.get('/getData/winningNumber/stats', async (req, res) => {
   }
 })
 
+app.get('/getData/coordinates', async (req, res) => {
+  res.sendFile(path.join(__dirname, 'coordinates.json'))
+})
+
 app.get('/statistics', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'statistics.html'))
 })
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
