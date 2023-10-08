@@ -4,6 +4,8 @@ import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 // In map.js
 // import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 
+const zipArray = []
+
 // Make an API request to fetch your statistical data from the server
 
 fetch('http://localhost:3000/getData/winResults/zipcodes')
@@ -22,6 +24,7 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
 
     //data is an array with all the zipcodes
     console.log(data)
+    zipArray = data
     // Process the data using your processJsonArray function
     // processJsonArray(data)
     // console.log(sanitizedZipcodes)
@@ -30,7 +33,6 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
     console.error('Error fetching data from the API:', error)
   })
 
-const zipArray = data
 const apiKey = 'AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
 
 const zipString = zipArray.join('|')
