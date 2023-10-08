@@ -38,7 +38,7 @@ const apiKey = 'AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
 const zipString = zipArray.join('|')
 
 fetch(
-  'https://maps.googleapis.com/maps/api/geocode/json?address=zipString&key=AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
+  'https://maps.googleapis.com/maps/api/geocode/json?address=${zipArray}&key=AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
 )
   .then((response) => response.json())
   .then((data) => {
