@@ -50,7 +50,8 @@ fetch(
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map)
 
-    coodinates.forEach((coord) => {
+    for (const index in coodinates) {
+      const coord = coordinates[index]
       L.marker([coord.lat, coord.lng]).addTo(map)
-    })
+    }
   })
