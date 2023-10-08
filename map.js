@@ -37,7 +37,7 @@ const apiKey = 'AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
 
 const zipString = zipArray.join('|')
 
-fetch(
+app.get(
   'https://maps.googleapis.com/maps/api/geocode/json?address=${zipString}&key=${apiKey}'
 )
   .then((response) => response.json())
@@ -48,27 +48,28 @@ fetch(
     }))
 
     console.log(coordinates)
+    console.log("hello")
 
-    var map = L.map('map').setView([28.241, -83.183], 7)
+    // var map = L.map('map').setView([28.241, -83.183], 7)
 
-    //base map layer
-    L.tileLayer(
-      'https://%7Bs%7D.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png',
-      {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }
-    ).addTo(map)
+    // //base map layer
+    // L.tileLayer(
+    //   'https://%7Bs%7D.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png',
+    //   {
+    //     attribution:
+    //       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    //   }
+    // ).addTo(map)
 
-    const markers = L.markerClusterGroup()
+    // const markers = L.markerClusterGroup()
 
-    for (const index in coordinates) {
-      const coord = coordinates[index]
-      const marker = L.marker([coord.lat, coord.lng])
-      markers.addLayer(marker)
-    }
+    // for (const index in coordinates) {
+    //   const coord = coordinates[index]
+    //   const marker = L.marker([coord.lat, coord.lng])
+    //   markers.addLayer(marker)
+    // }
 
-    map.addLayer(markers)
+    // map.addLayer(markers)
   })
   .catch((error) => {
     console.error('Error:', error)
