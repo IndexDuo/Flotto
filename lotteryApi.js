@@ -1,28 +1,28 @@
-import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url'; // Import fileURLToPath
-import { MongoClient } from 'mongodb';
+import express from 'express'
+import path from 'path'
+import { fileURLToPath } from 'url' // Import fileURLToPath
+import { MongoClient } from 'mongodb'
 
+const __filename = fileURLToPath(import.meta.url) // Get the current filename
+const __dirname = path.dirname(__filename) // Get the directory of the current file
 
-const __filename = fileURLToPath(import.meta.url); // Get the current filename
-const __dirname = path.dirname(__filename); // Get the directory of the current file
-
-let client;
-const app = express();
-const port = 3000;
-app.use(express.static('public'));
-app.use(express.json()); 
+let client
+const app = express()
+const port = 3000
+app.use(express.static('public'))
+app.use(express.json())
 
 // MongoDB Atlas cluster connection string
-const uri = 'mongodb+srv://indexduo:index2012512@flottery.c5klhwf.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp';
+const uri =
+  'mongodb+srv://indexduo:index2012512@flottery.c5klhwf.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp'
 
 app.get('/userForm', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/userInput.html'))
-  })
+  res.sendFile(path.join(__dirname, '/public/userInput.html'))
+})
 
-  app.get('', (req, res) => {
-    res.sendFile(path.join(__dirname, '/index.html'))
-  })
+app.get('', (req, res) => {
+  res.sendFile(path.join(__dirname, '/index.html'))
+})
 
 app.get('/getData/winningNumber', async (req, res) => {
   const client = new MongoClient(uri, {
@@ -130,7 +130,6 @@ app.get('/getData/coordinates', async (req, res) => {
 app.get('/statistics', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'statistics.html'))
 })
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
@@ -151,29 +150,78 @@ app.get('/dist/output.css', (req, res) => {
 
 // For JavaScript files
 app.get('/map.js', (req, res) => {
-    res.setHeader('Content-Type', 'application/javascript');
-    res.sendFile(__dirname + '/map.js'); // Add a slash before 'map.js'
-});
+  res.setHeader('Content-Type', 'application/javascript')
+  res.sendFile(__dirname + '/map.js') // Add a slash before 'map.js'
+})
 
-// this is the calculation provided by chatgpt - - not tested 
-app.post('/calculateWinningChance', async (req, res) => {
+app.post('/calculateWinningChance/2', async (req, res) => {
+  try {
+    const selectedNumbers = req.body.selectedNumbers.split(',').map(String) // Convert selectedNumbers to strings
+
+    console.log('Selected Numbers:', selectedNumbers)
+
+    if (selectedNumbers.length !== 6) {
+      res.status(400).json({ error: 'Invalid input. Please enter 6 numbers.' })
+      return
+    }
+
+    const client = new MongoClient(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+
     try {
-        const selectedNumbers = req.body.selectedNumbers.split(',').map(Number);
+      await client.connect()
+      console.log('Connected to MongoDB Atlas')
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({ error: 'Internal server error' })
+    } finally {
+      // Close the MongoDB connection
+      client.close()
+    }
 
-      /*   client = new MongoClient(uri, {
+    const database = client.db('florida_lottery')
+    const collection = database.collection('winningNumbers') // Reference to the collection
+
+    const chances = {
+      allSix: '0.00000435587%',
+      fiveOutOfSix: '0.00122835786%',
+      fourOutOfSix: '0.07063044737%',
+      threeOutOfSix: '1.42857142857%',
+      twoOutOfSix: '0.11655011655%',
+      oneOutOfSix: '11.320754717%',
+    }
+
+    res.status(200).json({ chances })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Internal server error' })
+  } finally {
+    // Close the MongoDB connection
+    client.close()
+  }
+})
+
+// this is the calculation provided by chatgpt - - not tested
+app.post('/calculateWinningChance', async (req, res) => {
+  try {
+    const selectedNumbers = req.body.selectedNumbers.split(',').map(Number)
+
+    /*   client = new MongoClient(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
 
-        await client.connect();
-        console.log('Connected to MongoDB Atlas');
+    await client.connect()
+    console.log('Connected to MongoDB Atlas')
 
-        const database = client.db('florida_lottery');
-        const collection = database.collection('winningNumbers'); // Reference to the collection
+    const database = client.db('florida_lottery')
+    const collection = database.collection('winningNumbers') // Reference to the collection
 
         const statistics = {}; // Store the statistics data
  */
-/*         // Query your MongoDB Atlas collection for statistics data
+    /*         // Query your MongoDB Atlas collection for statistics data
         const rawData = await collection.find({}).toArray();
 
         // Filter the data for numbers and times
@@ -195,34 +243,34 @@ app.post('/calculateWinningChance', async (req, res) => {
             }
         }); */
 
-        let allSix = 0;
-        let fiveOutOfSix = 0;
-        let fourOutOfSix = 0;
-        let threeOutOfSix = 0;
-        let twoOutOfSix = 0;
-        let oneOutOfSix = 0;
-    
-        // Calculate the winning chance as a percentage
-        const chances = {
-            allSix: '0.00000435587%',
-            fiveOutOfSix: '0.00122835786%',
-            fourOutOfSix: '0.07063044737%',
-            threeOutOfSix: '1.42857142857%',
-            twoOutOfSix: '0.11655011655%',
-            oneOutOfSix: '11.320754717%',
-          }
+    let allSix = 0
+    let fiveOutOfSix = 0
+    let fourOutOfSix = 0
+    let threeOutOfSix = 0
+    let twoOutOfSix = 0
+    let oneOutOfSix = 0
 
-        res.json({ chances });
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    } finally {
-        if (client) {
-            // Close the MongoDB connection if 'client' is defined
-            client.close();
-        }
+    // Calculate the winning chance as a percentage
+    const chances = {
+      allSix: '0.00000435587%',
+      fiveOutOfSix: '0.00122835786%',
+      fourOutOfSix: '0.07063044737%',
+      threeOutOfSix: '1.42857142857%',
+      twoOutOfSix: '0.11655011655%',
+      oneOutOfSix: '11.320754717%',
     }
-});
+
+    res.json({ chances })
+  } catch (error) {
+    console.error('Error:', error)
+    res.status(500).json({ error: 'Internal server error' })
+  } finally {
+    if (client) {
+      // Close the MongoDB connection if 'client' is defined
+      client.close()
+    }
+  }
+})
 
 app.get('/getData/winResults', async (req, res) => {
   const client = new MongoClient(uri, {
