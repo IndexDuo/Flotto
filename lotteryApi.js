@@ -147,42 +147,53 @@ app.get('/map.js', (req, res) => {
 })
 
 app.post('/calculateWinningChance/2', async (req, res) => {
-    try {
-        const selectedNumbers = req.body.selectedNumbers.split(',').map(String) // Convert selectedNumbers to strings
+  try {
+    const selectedNumbers = req.body.selectedNumbers.split(',').map(String) // Convert selectedNumbers to strings
 
-        console.log('Selected Numbers:', selectedNumbers)
+    console.log('Selected Numbers:', selectedNumbers)
 
-        const client = new MongoClient(uri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        })
-
-        try {
-            await client.connect()
-            console.log('Connected to MongoDB Atlas')
-        } catch (err) {
-            console.error(err)
-            res.status(500).json({ error: 'Internal server error' })
-        } finally {
-            // Close the MongoDB connection
-            client.close()
-        }
-
-        const database = client.db('florida_lottery')
-        const collection = database.collection('winningNumbers') // Reference to the collection
-
-        const chances={};
-        // if member enters 1 number then the chance of winning is 1/53
-
-    } catch (err) {
-        console.error(err)
-        res.status(500).json({ error: 'Internal server error' })
-    } finally {
-        // Close the MongoDB connection
-        client.close()
+    if (selectedNumbers.length !== 6) {
+      res.status(400).json({ error: 'Invalid input. Please enter 6 numbers.' })
+      return
     }
-})
 
+    const client = new MongoClient(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+
+    try {
+      await client.connect()
+      console.log('Connected to MongoDB Atlas')
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({ error: 'Internal server error' })
+    } finally {
+      // Close the MongoDB connection
+      client.close()
+    }
+
+    const database = client.db('florida_lottery')
+    const collection = database.collection('winningNumbers') // Reference to the collection
+
+    const chances = {
+      allSix: '0.00000435587%',
+      fiveOutOfSix: '0.00122835786%',
+      fourOutOfSix: '0.07063044737%',
+      threeOutOfSix: '1.42857142857%',
+      twoOutOfSix: '0.11655011655%',
+      oneOutOfSix: '11.320754717%',
+    }
+
+    res.status(200).json({ chances })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Internal server error' })
+  } finally {
+    // Close the MongoDB connection
+    client.close()
+  }
+})
 
 // this is the calculation provided by chatgpt - - not tested
 app.post('/calculateWinningChance', async (req, res) => {
