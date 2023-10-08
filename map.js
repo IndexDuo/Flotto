@@ -1,7 +1,13 @@
 // In map.js
 import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 
-// Make a GET request to a relative URL on the same domain as your site
+// Make an API request to fetch your statistical data from the server
+
+
+
+
+
+
 fetch('/getData/winResults/zipcodes')
   .then((response) => {
     if (!response.ok) {
