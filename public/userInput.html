@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input</title>
+</head>
+<body>
+    <h1>Lottery Winning Chance Calculator</h1>
+    <p>Enter your desired numbers:</p>
+
+    <!-- Input Form -->
+    <form id="lotteryForm">
+        <label for="numbers">Numbers (comma-separated):</label>
+        <input type="text" id="numbers" name="numbers" required>
+        <button type="submit">Calculate Winning Chance</button>
+    </form>
+
+    <!-- Display Winning Chance Result -->
+    <div id="result"></div>
+
+    <script>
+        // JavaScript code for handling form submission and displaying results
+        document.querySelector('#lotteryForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get user input (selected numbers)
+            const selectedNumbers = document.querySelector('#numbers').value;
+
+            // Make an API request to calculate winning chance
+            fetch('/calculateWinningChance', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ selectedNumbers }),
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    // Display the winning chance result on the webpage
+                    document.querySelector('#result').textContent = `Winning Chance: ${data.chance}%`;
+                })
+                .catch((error) => {
+                    // Handle errors and display error messages to the user
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
