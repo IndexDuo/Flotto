@@ -12,14 +12,12 @@ footer {
 }
 
 .number-cell {
-    width: 24px; /* Adjust the width as needed */
-    height: 24px; /* Adjust the height as needed */
+    width: 5px; /* Adjust the width as needed */
+    height: 5px; /* Adjust the height as needed */
     background-color: #333; /* Background color for the circular ball */
     color: #fff; /* Text color */
     border-radius: 50%; /* Make it a circle */
     text-align: center; /* Center align the text horizontally */
-    line-height: 24px; /* Center align the text vertically */
+    line-height: 5px; /* Center align the text vertically */
     font-weight: bold; /* Make the text bold */
-    margin: 5px;
-    padding: 5px;
   }
