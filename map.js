@@ -19,6 +19,11 @@ const maybe = fs.readFileSync(jsonFilePath, 'utf8', (err, data) => {
 
 processJsonArray(maybe)
 console.log(sanitizedZipcodes)
+
+
+
+
+
 //var map = L.map('map').setView([28.241, -83.183], 7)
 
 // base map layer
