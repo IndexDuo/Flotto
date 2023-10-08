@@ -198,8 +198,7 @@ app.get('/getData/winResults/zipcodes', async (req, res) => {
     // console.log('Raw Data:', rawData)
 
     // Extract zipcodes from the rawData array. first get the winnerAddress by using map function rawData.map((item) => item.winnerAddress). within the winnerAddress string, test if the string is empty or not. if not empty, then replace all non-digit characters with empt string. then use the same method as in map.js to extract the first 5 digits of the string. then push the zipcodes into the zipcodes array.
-    const zipcodes = []
-    zipcodes = rawData
+    const zipcodes = rawData
       .map((item) => item.winnerAddress)
       .filter((item) => item !== '')
       .map((item) => {
