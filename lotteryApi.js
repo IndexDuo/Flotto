@@ -11,7 +11,7 @@ let client;
 const app = express();
 const port = 3000;
 app.use(express.static('public'));
-app.use(express.json()); 
+app.use(express.json());
 
 // MongoDB Atlas cluster connection string
 const uri = 'mongodb+srv://indexduo:index2012512@flottery.c5klhwf.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp';
@@ -220,6 +220,60 @@ app.get('/getData/winResults', async (req, res) => {
         quickPick: item.quickPick,
         tickets: item.tickets
     }));
+
+    app.post('/calculateWinningChance', async (req, res) => {
+        try {
+            const selectedNumbers = req.body.selectedNumbers.split(',').map(Number);
+    
+            client = new MongoClient(uri, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            });
+    
+            await client.connect();
+            console.log('Connected to MongoDB Atlas');
+    
+            const database = client.db('florida_lottery');
+            const collection = database.collection('winningNumbers'); // Reference to the collection
+    
+            const statistics = {}; // Store the statistics data
+    
+            // Query your MongoDB Atlas collection for statistics data
+            const rawData = await collection.find({}).toArray();
+    
+            // Filter the data for numbers and times
+            rawData.forEach((item) => {
+                statistics[item.number] = {
+                    times: item.times,
+                    lastDrawnDate: item.lastDrawnDate,
+                    percentageOfDrawings: item.percentageOfDrawings,
+                };
+            });
+    
+            // Calculate the total count of matching numbers and the total drawings
+            let matchingNumbersCount = 0;
+            const totalDrawings = rawData.length;
+    
+            selectedNumbers.forEach((number) => {
+                if (statistics[number]) {
+                    matchingNumbersCount += statistics[number].times;
+                }
+            });
+    
+            // Calculate the winning chance as a percentage
+            const chance = (matchingNumbersCount / totalDrawings) * 100;
+    
+            res.json({ chance });
+        } catch (error) {
+            console.error('Error:', error);
+            res.status(500).json({ error: 'Internal server error' });
+        } finally {
+            if (client) {
+                // Close the MongoDB connection if 'client' is defined
+                client.close();
+            }
+        }
+    });
   
       // Respond with the retrieved data as JSON
       res.status(200).json(filteredData);
