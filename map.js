@@ -47,6 +47,8 @@ fetch(
       lng: result.geometry.location.lng,
     }))
 
+    console.log(coordinates)
+
     var map = L.map('map').setView([28.241, -83.183], 7)
 
     //base map layer
