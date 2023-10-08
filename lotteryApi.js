@@ -196,9 +196,10 @@ app.get('/getData/winResults/zipcodes', async (req, res) => {
     const rawData = await collection.find({}).toArray()
 
     // Extract zipcodes from the rawData array
-    const zipcodes = rawData.map((item) => ({
+    const addresses = rawData.map((item) => ({
       winnerAddress: item.buyerAddress,
     }))
+
 
     res.status(200).json(zipcodes)
   } catch (err) {
