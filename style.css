@@ -15,15 +15,11 @@ footer {
     display: block;
     margin: 0 auto;
   }
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  
+  .container {
     max-width: 400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px; /* Reduced padding from 20px to 10px */
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -63,3 +59,4 @@ footer {
   .container form button[type="submit"]:hover {
     background-color: #0056b3;
   }
+  

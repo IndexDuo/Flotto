@@ -94,21 +94,12 @@
 
     <!-- Input Form -->
     <div class="container">
-        <div class="flex justify-center items-center h-screen">
-          <div class="p-4">
-            <p class="text-lg font-semibold">Enter your desired numbers:</p>
-            <form id="lotteryForm" class="mt-4">
-              <label for="numbers" class="block text-gray-700">Numbers (comma-separated):</label>
-              <input type="text" id="numbers" name="numbers" required
-                     class="w-full mt-2 px-4 py-2 appearance-none border-2 rounded-md focus:ring focus:ring-indigo-200
-                            bg-slate-400 text-gray-800">
-              <button type="submit"
-                      class="mt-2 px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-200">
-                Calculate Winning Chance
-              </button>
-            </form>
-          </div>
-        </div>
+        <p>Enter your desired numbers:</p>
+        <form id="lotteryForm">
+          <label for="numbers">Numbers (comma-separated):</label>
+          <input type="text" id="numbers" name="numbers" required>
+          <button type="submit">Calculate Winning Chance</button>
+        </form>
       </div>
       
     

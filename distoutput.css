@@ -975,13 +975,10 @@ footer {
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   max-width: 400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
+  /* Reduced padding from 20px to 10px */
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -1035,3 +1032,4 @@ footer {
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
+  
