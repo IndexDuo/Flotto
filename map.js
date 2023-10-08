@@ -1,4 +1,4 @@
-const fs = require('fs')
+import fs from 'fs'
 
 //finding the zipcode in json
 const jsonFilePath = '/dataJSON/lottery-rresult.json'
