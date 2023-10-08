@@ -145,11 +145,9 @@ app.get('/map.js', (req, res) => {
 // this is the calculation provided by chatgpt - - not tested 
 app.post('/calculateWinningChance', async (req, res) => {
     try {
-        const selectedNumbers = req.body.selectedNumbers.split(',').map(String); // Convert selectedNumbers to strings
+        const selectedNumbers = req.body.selectedNumbers.split(',').map(Number);
 
-        console.log('Selected Numbers:', selectedNumbers);
-
-        const client = new MongoClient(uri, {
+        client = new MongoClient(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -160,9 +158,34 @@ app.post('/calculateWinningChance', async (req, res) => {
         const database = client.db('florida_lottery');
         const collection = database.collection('winningNumbers'); // Reference to the collection
 
-        console.log('Chances:', chances);
+        const statistics = {}; // Store the statistics data
 
-        res.json(chances);
+        // Query your MongoDB Atlas collection for statistics data
+        const rawData = await collection.find({}).toArray();
+
+        // Filter the data for numbers and times
+        rawData.forEach((item) => {
+            statistics[item.number] = {
+                times: item.times,
+                lastDrawnDate: item.lastDrawnDate,
+                percentageOfDrawings: item.percentageOfDrawings,
+            };
+        });
+
+        // Calculate the total count of matching numbers and the total drawings
+        let matchingNumbersCount = 0;
+        const totalDrawings = rawData.length;
+
+        selectedNumbers.forEach((number) => {
+            if (statistics[number]) {
+                matchingNumbersCount += statistics[number].times;
+            }
+        });
+
+        // Calculate the winning chance as a percentage
+        const chance = (matchingNumbersCount / totalDrawings) * 100;
+
+        res.json({ chance });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal server error' });
@@ -170,7 +193,6 @@ app.post('/calculateWinningChance', async (req, res) => {
         if (client) {
             // Close the MongoDB connection if 'client' is defined
             client.close();
-            console.log('MongoDB connection closed');
         }
     }
 });
