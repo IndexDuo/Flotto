@@ -2,13 +2,14 @@ import fs from 'fs'
 import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 
 const jsonFilePath = './dataJSON/lottery-result.json'
-const jsonArray = JSON.parse(data)
 
-fs.readFile(jsonFilePath, 'utf8', (err, data) => {
+fs.readFileSync(jsonFilePath, 'utf8', (err, data) => {
   if (err) {
     console.error('Error reading JSON file:', err)
     return
   }
+
+  const jsonArray = JSON.parse(data)
 
   if (!Array.isArray(jsonArray)) {
     console.error('JSON data is not an array.')
