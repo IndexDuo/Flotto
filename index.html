@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lottery</title>
     <!--Main and Tailwind CSS Files-->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="./dist/output.css" />
     <!--Map css and js sources-->
     <link
@@ -101,31 +101,206 @@
         Most Common Numbers
       </h2>
       <div class="flex items-center justify-center p-10">
-        <table class="table-fixed border-collapse border border-slate-400 p-10">
-          <thead>
-            <tr>
-              <th class="border border-slate-300">Number</th>
-              <th class="border border-slate-300">Percentage of Times Drawn</th>
-              <th class="border border-slate-300">Times Drawn</th>
-              <th class="border border-slate-300">Last Drawn Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-slate-300">Test</td>
-              <td class="border border-slate-300">Test</td>
-              <td class="border border-slate-300">Test</td>
-              <td class="border border-slate-300">Test</td>
-            </tr>
-          </tbody>
-        </table>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottery Statistics</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-semibold mb-4">Lottery Number Statistics</h1>
+        <!-- Add a container for displaying the statistics -->
+        <div class="bg-white rounded shadow overflow-hidden">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" onclick="sortTable(0)" data-index="0">
+                  Number
+                  <span class="ml-2" id="sort-icon-0"></span>
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" onclick="sortTable(1)" data-index="1">
+                  Percentage of Times Drawn
+                  <span class="ml-2" id="sort-icon-1"></span>
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" onclick="sortTable(2)" data-index="2">
+                  Times Drawn
+                  <span class="ml-2" id="sort-icon-2"></span>
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" onclick="sortTable(3)" data-index="3">
+                  Last Drawn Date
+                  <span class="ml-2" id="sort-icon-3"></span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <!-- Data will be populated here -->
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+    <script>
+// JavaScript to populate the table and enable sorting
+const tableBody = document.querySelector('tbody');
+const tableHeaders = document.querySelectorAll('th');
+let sortColumn = -1; // Default sorting column (none)
+let originalOrder = []; // Store the original order of items
+
+// Function to populate the table with data
+function populateTable(data) {
+  tableBody.innerHTML = '';
+
+  data.forEach((item) => {
+    if (item) {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td class="px-6 py-4 whitespace-nowrap">
+          <div class="text-sm text-gray-900">${item.number}</div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <div class="text-sm text-gray-900">${item.percentageOfDrawings}</div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <div class="text-sm text-gray-900">${item.times}</div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <div class="text-sm text-gray-900">${item.lastDrawnDate}</div>
+        </td>
+      `;
+
+      tableBody.appendChild(row);
+    } else {
+      console.error('Invalid data item:', item);
+    }
+  });
+}
+
+
+// a sort icon will be displayed next to the column name that is being sorted. if the column is sorted in ascending order, the sort icon will be an up arrow. if the column is sorted in descending order, the sort icon will be a down arrow. if the column is not sorted, the sort icon will be a horizontal line.
+
+
+// Function to update the sort icon
+function updateSortIcon(header, isAscending) {
+  // Remove any existing sort icon
+  const icon = header.querySelector('.sort-icon');
+  if (icon) {
+    header.removeChild(icon);
+  }
+
+  // Create a new icon element
+  const newIcon = document.createElement('i');
+  newIcon.classList.add('sort-icon', 'fas', 'fa-sort');
+  
+  // Determine which icon class to add based on the sorting state
+  if (sortColumn === header.cellIndex) {
+    if (isAscending) {
+      newIcon.classList.remove('fa-sort');
+      newIcon.classList.add('fa-sort-up');
+    } else {
+      newIcon.classList.remove('fa-sort');
+      newIcon.classList.add('fa-sort-down');
+    }
+  }
+
+  // Append the new icon to the header
+  header.appendChild(newIcon);
+}
+
+
+// sort the table by a specific column when the header is clicked on. when the header is clicked on again, reverse the order. for example, if the heading Number is clicked on, the table will be sorted by number in ascending order. if Number is clicked on again, the table will be sorted by number in descending order. If the percentage of times drawn is clicked on, remove the percentage sign and sort by the number in ascending order, but keep the percentage sign in the table. If the percentage of times drawn is clicked on again, remove the percentage sign and sort by the number in descending order, but keep the percentage sign in the table. If the times drawn is clicked on, the table will be sorted by the times drawn in ascending order. If the times drawn is clicked on again, the table will be sorted by the times drawn in descending order. If the last drawn date is clicked on, use sortByDateAsc() function to sort the table by date in ascending order. If the last drawn date is clicked on again, use sortByDateDesc() function to sort the table by date in descending order.
+
+tableHeaders.forEach((header, index) => {
+  header.addEventListener('click', () => {
+    if (sortColumn === index) {
+      // Reverse the order
+      originalOrder.reverse();
+    } else {
+      // Sort the data by the selected column
+      switch (index) {
+        case 0: // Number
+          originalOrder.sort((a, b) => a.number - b.number);
+          break;
+        case 1: // Percentage of Times Drawn
+          originalOrder.sort((a, b) => a.percentageOfDrawings - b.percentageOfDrawings);
+          break;
+        case 2: // Times Drawn
+          originalOrder.sort((a, b) => a.times - b.times);
+          break;
+        case 3: // Last Drawn Date
+          originalOrder.sort((a, b) => new Date(a.lastDrawnDate) - new Date(b.lastDrawnDate));
+          break;
+        default:
+          console.error('Invalid column index:', index);
+          break;
+      }
+    }
+
+    // Update the sort column
+    sortColumn = index;
+
+    // Update the sort icon
+    tableHeaders.forEach((header, i) => {
+      if (i === index) {
+        updateSortIcon(header, sortColumn === index && originalOrder[0].__index__ === 0);
+      } else {
+        updateSortIcon(header, false);
+      }
+    });
+
+    // Populate the table with the sorted data
+    populateTable(originalOrder.map((item) => item));
+  });
+});
+
+// Add the initial sort icon to each header
+tableHeaders.forEach((header) => {
+  const icon = document.createElement('i');
+  icon.classList.add('sort-icon', 'fas', 'fa-sort');
+  header.appendChild(icon);
+});
+
+// Make an API request to fetch your statistical data from the server
+fetch('/getData/winningNumber/stats')
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then((statisticalData) => {
+    if (Array.isArray(statisticalData)) {
+      // Store the original order of the items
+      originalOrder = statisticalData.map((item, index) => ({ ...item, __index__: index }));
+
+      // Populate the table initially
+      populateTable(statisticalData);
+    } else {
+      console.error('Invalid data format. Expected an array.');
+    }
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+
+
+    </script>
+</body>
+</html>
+
       </div>
     </div>
     <!-- Footer -->
     <footer class="w-full">
       <div
         class="h-96 bg-cover bg-no-repeat bg-center relative"
-        style="background-image: url('assets/images/cloud3.svg')"
+        style="background-image: url('/assets/images/cloud3.svg')"
       >
         <div
           class="absolute inset-0 flex flex-col items-center justify-center text-center"
@@ -210,6 +385,7 @@
         </div>
       </div>
     </footer>
-    <script src="map.js"></script>
+    <script src="/map.js"></script>
+    
   </body>
 </html>
