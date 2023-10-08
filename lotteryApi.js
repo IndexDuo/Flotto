@@ -159,29 +159,28 @@ app.post('/calculateWinningChance', async (req, res) => {
         // Query your MongoDB Atlas collection for statistics data
         const rawData = await collection.find({}).toArray();
 
-        // Filter the data for numbers and times
-        rawData.forEach((item) => {
-            statistics[item.number] = {
-                times: item.times,
-                lastDrawnDate: item.lastDrawnDate,
-                percentageOfDrawings: item.percentageOfDrawings,
-            };
-        });
-
         // Calculate the total count of matching numbers and the total drawings
         let matchingNumbersCount = 0;
         const totalDrawings = rawData.length;
 
+        // Loop through selectedNumbers and calculate odds for each
         selectedNumbers.forEach((number) => {
             if (statistics[number]) {
                 matchingNumbersCount += statistics[number].times;
             }
         });
 
-        // Calculate the winning chance as a percentage
-        const chance = (matchingNumbersCount / totalDrawings) * 100;
+        // Calculate winning chances for each scenario
+        const chances = {
+            allSix: calculateChance(matchingNumbersCount, totalDrawings, 6),
+            fiveOutOfSix: calculateChance(matchingNumbersCount, totalDrawings, 5),
+            fourOutOfSix: calculateChance(matchingNumbersCount, totalDrawings, 4),
+            threeOutOfSix: calculateChance(matchingNumbersCount, totalDrawings, 3),
+            twoOutOfSix: calculateChance(matchingNumbersCount, totalDrawings, 2),
+            oneOutOfSix: calculateChance(matchingNumbersCount, totalDrawings, 1),
+        };
 
-        res.json({ chance });
+        res.json(chances);
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal server error' });
@@ -192,6 +191,27 @@ app.post('/calculateWinningChance', async (req, res) => {
         }
     }
 });
+
+function calculateChance(matchingNumbersCount, totalDrawings, requiredMatches) {
+    const combinations = binomialCoefficient(6, requiredMatches);
+    const nonMatchingCount = totalDrawings - matchingNumbersCount;
+    const nonMatchingCombinations = binomialCoefficient(6, 6 - requiredMatches);
+    const chance = (combinations * nonMatchingCombinations) / binomialCoefficient(6, 6);
+    return (chance * 100).toFixed(2);
+}
+
+function binomialCoefficient(n, k) {
+    if (k === 0 || k === n) return 1;
+    if (k < 0 || k > n) return 0;
+
+    let result = 1;
+    if (k > n - k) k = n - k;
+    for (let i = 0; i < k; ++i) {
+        result *= (n - i);
+        result /= (i + 1);
+    }
+    return result;
+}
 
 app.get('/getData/winResults', async (req, res) => {
     const client = new MongoClient(uri, {
