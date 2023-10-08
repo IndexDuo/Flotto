@@ -1,5 +1,5 @@
-// In map.js
-import { sanitizedZipcodes, processJsonArray } from './mapData.js'
+// // In map.js
+// import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 
 // Make an API request to fetch your statistical data from the server
 
@@ -17,9 +17,10 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
       return
     }
 
+    //data is an array with all the zipcodes
     console.log(data)
     // Process the data using your processJsonArray function
-    processJsonArray(data)
+    // processJsonArray(data)
     // console.log(sanitizedZipcodes)
   })
   .catch((error) => {
