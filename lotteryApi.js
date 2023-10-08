@@ -1,7 +1,8 @@
-import express from 'express'
-import path from 'path'
-import { fileURLToPath } from 'url' // Import fileURLToPath
-import { MongoClient } from 'mongodb'
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url'; // Import fileURLToPath
+import { MongoClient } from 'mongodb';
+
 
 const __filename = fileURLToPath(import.meta.url); // Get the current filename
 const __dirname = path.dirname(__filename); // Get the directory of the current file
