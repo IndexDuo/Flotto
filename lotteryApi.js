@@ -190,7 +190,11 @@ app.post('/calculateWinningChance', async (req, res) => {
 
         // Format results as percentages
         for (const key in chances) {
-            chances[key] = chances[key].toFixed(2) + '%';
+            if (!isNaN(chances[key])) {
+                chances[key] = parseFloat(chances[key]).toFixed(2) + '%';
+            } else {
+                chances[key] = 'N/A';
+            }
         }
 
         console.log('Chances:', chances);
