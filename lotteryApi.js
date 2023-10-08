@@ -156,36 +156,53 @@ app.post('/calculateWinningChance', async (req, res) => {
         const database = client.db('florida_lottery');
         const collection = database.collection('winningNumbers'); // Reference to the collection
 
-        const statistics = {}; // Store the statistics data
+        // Initialize matching numbers counts for each scenario
+        let matchingNumbersCountAllSix = 0;
+        let matchingNumbersCountFiveOutOfSix = 0;
+        let matchingNumbersCountFourOutOfSix = 0; // Add this line
+        let matchingNumbersCountThreeOutOfSix = 0;
+        let matchingNumbersCountTwoOutOfSix = 0;
+        let matchingNumbersCountOneOutOfSix = 0;
 
         // Query your MongoDB Atlas collection for statistics data
         const rawData = await collection.find({}).toArray();
-        
+
         console.log('Raw Data:', rawData);
-
-        // Calculate the total count of matching numbers and the total drawings
-        let matchingNumbersCount = 0;
-        const totalDrawings = rawData.length;
-
-        console.log('Total Drawings:', totalDrawings);
 
         rawData.forEach((drawing) => {
             const matchedNumbers = drawing.numbers.filter(num => selectedNumbers.includes(num));
-            if (matchedNumbers.length > 0) { // Check if there is at least one match
-                matchingNumbersCount++;
+
+            if (matchedNumbers.length === 6) {
+                matchingNumbersCountAllSix++;
+            } else if (matchedNumbers.length === 5) {
+                matchingNumbersCountFiveOutOfSix++;
+            } else if (matchedNumbers.length === 4) { // Add this condition for four out of six
+                matchingNumbersCountFourOutOfSix++;
+            } else if (matchedNumbers.length === 3) {
+                matchingNumbersCountThreeOutOfSix++;
+            } else if (matchedNumbers.length === 2) {
+                matchingNumbersCountTwoOutOfSix++;
+            } else if (matchedNumbers.length === 1) {
+                matchingNumbersCountOneOutOfSix++;
             }
         });
 
-        console.log('Matching Numbers Count:', matchingNumbersCount);
+        console.log('Matching Numbers Count (All Six):', matchingNumbersCountAllSix);
+        console.log('Matching Numbers Count (Five Out Of Six):', matchingNumbersCountFiveOutOfSix);
+        console.log('Matching Numbers Count (Four Out Of Six):', matchingNumbersCountFourOutOfSix);
+        console.log('Matching Numbers Count (Three Out Of Six):', matchingNumbersCountThreeOutOfSix);
+        console.log('Matching Numbers Count (Two Out Of Six):', matchingNumbersCountTwoOutOfSix);
+        console.log('Matching Numbers Count (One Out Of Six):', matchingNumbersCountOneOutOfSix);
 
         // Calculate winning chances for each scenario
+        const totalDrawings = rawData.length;
         const chances = {
-            allSix: calculateChance(matchingNumbersCount, totalDrawings, 6),
-            fiveOutOfSix: calculateChance(matchingNumbersCount, totalDrawings, 5),
-            fourOutOfSix: calculateChance(matchingNumbersCount, totalDrawings, 4),
-            threeOutOfSix: calculateChance(matchingNumbersCount, totalDrawings, 3),
-            twoOutOfSix: calculateChance(matchingNumbersCount, totalDrawings, 2),
-            oneOutOfSix: calculateChance(matchingNumbersCount, totalDrawings, 1),
+            allSix: calculateChance(matchingNumbersCountAllSix, totalDrawings, 6),
+            fiveOutOfSix: calculateChance(matchingNumbersCountFiveOutOfSix, totalDrawings, 5),
+            fourOutOfSix: calculateChance(matchingNumbersCountFourOutOfSix, totalDrawings, 4), // Adjust as needed
+            threeOutOfSix: calculateChance(matchingNumbersCountThreeOutOfSix, totalDrawings, 3),
+            twoOutOfSix: calculateChance(matchingNumbersCountTwoOutOfSix, totalDrawings, 2),
+            oneOutOfSix: calculateChance(matchingNumbersCountOneOutOfSix, totalDrawings, 1),
         };
 
         // Format results as percentages
@@ -232,8 +249,6 @@ function binomialCoefficient(n, k) {
     }
     return result;
 }
-
-
 
 app.get('/getData/winResults', async (req, res) => {
     const client = new MongoClient(uri, {
