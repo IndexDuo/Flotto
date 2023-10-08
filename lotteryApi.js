@@ -215,11 +215,12 @@ app.post('/calculateWinningChance', async (req, res) => {
 
 function calculateChance(matchingNumbersCount, totalDrawings, requiredMatches) {
     const combinations = binomialCoefficient(6, requiredMatches);
-    const nonMatchingCount = totalDrawings - matchingNumbersCount;
-    const nonMatchingCombinations = binomialCoefficient(6, 6 - requiredMatches);
+    const nonMatchingCombinations = binomialCoefficient(6 - requiredMatches, 6 - requiredMatches);
     const chance = (combinations * nonMatchingCombinations) / binomialCoefficient(6, 6);
-    return (chance * 100).toFixed(2);
+    const probability = (matchingNumbersCount / totalDrawings);
+    return (chance * probability * 100).toFixed(2);
 }
+
 
 function binomialCoefficient(n, k) {
     if (k === 0 || k === n) return 1;
