@@ -20,6 +20,6 @@ footer {
     text-align: center; /* Center align the text horizontally */
     line-height: 24px; /* Center align the text vertically */
     font-weight: bold; /* Make the text bold */
-    margin: 0;
-    padding: 0;
+    margin: 5px;
+    padding: 5px;
   }
