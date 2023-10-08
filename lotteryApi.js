@@ -165,15 +165,15 @@ app.get('/getData/winResults', async (req, res) => {
         tickets: item.tickets
     }));
 
-app.post('/calculateWinningChance', (req, res) => {
+app.post('/calculateWinningChance', async (req, res) => {
     try {
         const selectedNumbers = req.body.selectedNumbers.split(',').map(Number);
 
         // Retrieve the count of past winning numbers that match the user's input
-        const matchingNumbersCount = await LotteryNumber.countDocuments({ numbers: { $all: selectedNumbers } });
+        const matchingNumbersCount = await florida_lottery.winningNumbers({ numbers: { $all: selectedNumbers } });
 
         // Calculate the winning chance as a percentage
-        const totalDrawings = await LotteryNumber.countDocuments();
+        const totalDrawings = await florida_lottery.winningNumbers();
         const chance = (matchingNumbersCount / totalDrawings) * 100;
 
         res.json({ chance });
