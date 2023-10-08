@@ -1,8 +1,10 @@
 // In map.js
-import { data } from 'cheerio/lib/api/attributes.js'
+// import { data } from 'cheerio/lib/api/attributes.js'
 import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 // In map.js
 // import { sanitizedZipcodes, processJsonArray } from './mapData.js'
+
+var zipArray = []
 
 // Make an API request to fetch your statistical data from the server
 
@@ -22,6 +24,7 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
 
     //data is an array with all the zipcodes
     console.log(data)
+    zipArray = data
     // Process the data using your processJsonArray function
     // processJsonArray(data)
     // console.log(sanitizedZipcodes)
@@ -30,7 +33,6 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
     console.error('Error fetching data from the API:', error)
   })
 
-const zipArray = data
 const apiKey = 'AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
 
 const zipString = zipArray.join('|')
@@ -48,15 +50,23 @@ fetch(
     var map = L.map('map').setView([28.241, -83.183], 7)
 
     //base map layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map)
+    L.tileLayer(
+      'https://%7Bs%7D.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png',
+      {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }
+    ).addTo(map)
+
+    const markers = L.markerClusterGroup()
 
     for (const index in coodinates) {
       const coord = coordinates[index]
-      L.marker([coord.lat, coord.lng]).addTo(map)
+      const marker = L.marker([coord.lat, coord.lng])
+      markers.addLayer(marker)
     }
+
+    map.addLayer(markers)
   })
   .catch((error) => {
     console.error('Error:', error)
