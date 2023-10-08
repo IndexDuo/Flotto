@@ -171,7 +171,7 @@ app.post('/calculateWinningChance', async (req, res) => {
 
         rawData.forEach((drawing) => {
             const matchedNumbers = drawing.numbers.filter(num => selectedNumbers.includes(num));
-            if (matchedNumbers.length >= 3) {
+            if (matchedNumbers.length > 0) { // Check if there is at least one match
                 matchingNumbersCount++;
             }
         });
