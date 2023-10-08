@@ -62,7 +62,7 @@ fetch(
 
     const markers = L.markerClusterGroup()
 
-    for (const index in coodinates) {
+    for (const index in coordinates) {
       const coord = coordinates[index]
       const marker = L.marker([coord.lat, coord.lng])
       markers.addLayer(marker)
