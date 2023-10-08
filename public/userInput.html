@@ -105,7 +105,10 @@
     
 
     <!-- Display Winning Chance Result -->
-    <div id="result"></div>
+    <div id="result-container">
+        <p>Winning Chance: <span id="winning-chance">Calculating...</span></p>
+    </div>
+      
   </div>
 
       <!-- Footer -->
@@ -223,34 +226,36 @@
         
         // JavaScript code for handling form submission and displaying results
         document.querySelector('#lotteryForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+    e.preventDefault();
 
-            // Get user input (selected numbers)
-            const selectedNumbers = document.querySelector('#numbers').value;
+    // Get user input (selected numbers)
+    const selectedNumbers = document.querySelector('#numbers').value;
 
-            // Make an API request to calculate winning chance
-            fetch('/calculateWinningChance', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ selectedNumbers }),
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    // Display the winning chance result on the webpage
-                    document.querySelector('#result').textContent = `All Six: ${data.chance[0]}%`;
-                })
-                .catch((error) => {
-                    // Handle errors and display error messages to the user
-                    console.error('Error:', error);
-                });
+    // Make an API request to calculate winning chance
+    fetch('/calculateWinningChance', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ selectedNumbers }),
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            // Display the winning chance result on the webpage
+            const winningChanceElement = document.querySelector('#winning-chance');
+            winningChanceElement.textContent = data.chances.allSix; // You can change this to the appropriate property you want to display
+        })
+        .catch((error) => {
+            // Handle errors and display error messages to the user
+            console.error('Error:', error);
         });
+});
+    
     </script>
 </body>
 </html>
