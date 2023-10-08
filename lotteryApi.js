@@ -196,17 +196,9 @@ app.get('/getData/winResults/zipcodes', async (req, res) => {
     const rawData = await collection.find({}).toArray()
 
     // Extract zipcodes from the rawData array
-    const zipcodes = rawData
-      .map((item) => item.winnerAddress) // Extract winnerAddress
-      .filter((address) => typeof address === 'string' && address.trim() !== '') // Filter out empty or non-string addresses
-      .map((address) => {
-        const sanitizedAddress = address.replace(/[^0-9]/g, '') // Remove non-digit characters
-        if (sanitizedAddress.length >= 5) {
-          return sanitizedAddress.slice(0, 5) // Extract the first 5 digits
-        }
-        return null // Invalid or empty zipcode
-      })
-      .filter((zipcode) => zipcode !== null) // Remove null (invalid) zipcodes
+    const zipcodes = rawData.map((item) => ({
+      winnerAddress: item.buyerAddress,
+    }))
 
     res.status(200).json(zipcodes)
   } catch (err) {
