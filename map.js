@@ -35,25 +35,27 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data)
-          // Extract coordinates and add them to the coordinates array
-          coordinates.push(
-            ...data.results.map((result) => ({
-              lat: result.geometry.location.lat,
-              lng: result.geometry.location.lng,
-            }))
-          )
+          if (data.status === 'OK' && data.results.length > 0) {
+            const result = data.results[0] // Assuming you want the first result
+
+            if (result.geometry && result.geometry.bounds) {
+              const northeast = result.geometry.bounds.northeast
+              if (northeast) {
+                const { lat, lng } = northeast
+                coordinates.push({ lat, lng })
+              }
+            }
+          }
         })
         .catch((error) => {
           console.error(`Error fetching data for zipcode ${zipcode}:`, error)
         })
+        .finally(() => {
+          // Check if all fetch requests are completed
+          if (coordinates.length === zipArray.length) {
+            console.log(coordinates)
+            // Continue with your code that depends on the coordinates array
+          }
+        })
     })
-
-    // After all fetch requests are completed, you can work with the coordinates array here
-    console.log(coordinates)
-
-    // ... Rest of your code
-  })
-  .catch((error) => {
-    console.error('Error fetching data from the API:', error)
   })
