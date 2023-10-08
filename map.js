@@ -4,7 +4,7 @@ import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 // In map.js
 // import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 
-const zipArray = []
+var zipArray = []
 
 // Make an API request to fetch your statistical data from the server
 
