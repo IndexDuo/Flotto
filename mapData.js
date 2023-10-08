@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-export const sanitizedZipcodes = []
+const sanitizedZipcodes = []
 //finding the zipcode in json
 const jsonFilePath = './dataJSON/lottery-result.json'
 
@@ -50,3 +50,5 @@ fs.readFile(jsonFilePath, 'utf8', (err, data) => {
     console.error('Error parsing JSON:', error)
   }
 })
+
+export default sanitizedZipcodes

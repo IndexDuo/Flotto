@@ -1,4 +1,4 @@
-import { sanitizedZipcodes } from '../mapData'
+import sanitizedZipcodes from './mapData.js'
 
 console.log(sanitizedZipcodes)
 //var map = L.map('map').setView([28.241, -83.183], 7)
