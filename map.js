@@ -38,7 +38,7 @@ const apiKey = 'AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
 const zipString = zipArray.join('|')
 
 fetch(
-  'https://maps.googleapis.com/maps/api/geocode/json?address=${zipString}&key=${apiKey}'
+  'https://maps.googleapis.com/maps/api/geocode/json?address=zipString&key=AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
 )
   .then((response) => response.json())
   .then((data) => {
@@ -48,28 +48,21 @@ fetch(
     }))
 
     console.log(coordinates)
+
+    // Check if there are results
+    if (coordinates.length > 0) {
+      const firstResult = coordinates[0] // Assuming you want the first result
+      const northeastLatLng = {
+        lat: data.results[0].geometry.bounds.northeast.lat,
+        lng: data.results[0].geometry.bounds.northeast.lng,
+      }
+
+      console.log('Northeast Coordinates:', northeastLatLng)
+    } else {
+      console.error('No coordinates found in the response.')
+    }
+
     console.log('hello')
-
-    // var map = L.map('map').setView([28.241, -83.183], 7)
-
-    // //base map layer
-    // L.tileLayer(
-    //   'https://%7Bs%7D.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png',
-    //   {
-    //     attribution:
-    //       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    //   }
-    // ).addTo(map)
-
-    // const markers = L.markerClusterGroup()
-
-    // for (const index in coordinates) {
-    //   const coord = coordinates[index]
-    //   const marker = L.marker([coord.lat, coord.lng])
-    //   markers.addLayer(marker)
-    // }
-
-    // map.addLayer(markers)
   })
   .catch((error) => {
     console.error('Error:', error)
