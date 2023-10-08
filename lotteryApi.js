@@ -16,6 +16,10 @@ app.use(express.json());
 // MongoDB Atlas cluster connection string
 const uri = 'mongodb+srv://indexduo:index2012512@flottery.c5klhwf.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp';
 
+app.get('/userForm', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/userInput.html'))
+  })
+
 app.get('/getData/winningNumber', async (req, res) => {
     const client = new MongoClient(uri, {
         useNewUrlParser: true,
