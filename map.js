@@ -2,6 +2,7 @@ import fs from 'fs'
 import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 
 const jsonFilePath = './dataJSON/lottery-result.json'
+const jsonArray = JSON.parse(data)
 
 fs.readFile(jsonFilePath, 'utf8', (err, data) => {
   if (err) {
@@ -9,15 +10,13 @@ fs.readFile(jsonFilePath, 'utf8', (err, data) => {
     return
   }
 
-  const jsonArray = JSON.parse(data)
-
   if (!Array.isArray(jsonArray)) {
     console.error('JSON data is not an array.')
     return
   }
-
-  processJsonArray(jsonArray)
 })
+
+processJsonArray(jsonArray)
 console.log(sanitizedZipcodes)
 //var map = L.map('map').setView([28.241, -83.183], 7)
 
