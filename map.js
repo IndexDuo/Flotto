@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 // In map.js
 import { data } from 'cheerio/lib/api/attributes.js'
 import { sanitizedZipcodes, processJsonArray } from './mapData.js'
+=======
+// // In map.js
+// import { sanitizedZipcodes, processJsonArray } from './mapData.js'
+>>>>>>> 3bb615f0a6c393b5cff0c9af9ab24ce4c49d2578
 
 // Make an API request to fetch your statistical data from the server
 
@@ -18,9 +23,10 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
       return
     }
 
+    //data is an array with all the zipcodes
     console.log(data)
     // Process the data using your processJsonArray function
-    processJsonArray(data)
+    // processJsonArray(data)
     // console.log(sanitizedZipcodes)
   })
   .catch((error) => {
