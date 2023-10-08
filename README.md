@@ -39,4 +39,4 @@ node lotteryApi.js
 npx tailwindcss -i ./style.css -o ./dist/output.css --watch
 ```
 
-for tailwind 6. open localhost:3000 in your browser
+6. open localhost:3000 in your browser
