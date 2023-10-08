@@ -13,6 +13,7 @@ fs.readFile(jsonFilePath, 'utf8', (err, data) => {
     const jsonData = JSON.parse(data)
     console.log(jsonData)
 
+    //this is where it messes up
     const buyerAddress = jsonData.buyerAddress
 
     if (typeof buyerAddress !== 'string') {
