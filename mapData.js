@@ -38,11 +38,8 @@ fs.readFile(jsonFilePath, 'utf8', (err, data) => {
         }
       }
 
-      if (consecutiveNumbers.length === 5) {
-        console.log(
-          `Found 5 consecutive numbers at index ${index}:`,
-          consecutiveNumbers
-        )
+      if (zipcodes.length === 5) {
+        console.log(`Found 5 consecutive numbers at index ${index}:`, zipcodes)
       } else {
         console.log(`No 5 consecutive numbers found at index ${index}.`)
       }
