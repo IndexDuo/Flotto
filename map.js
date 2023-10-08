@@ -55,3 +55,6 @@ fetch(
       L.marker([coord.lat, coord.lng]).addTo(map)
     }
   })
+  .catch((error) => {
+    console.error('Error:', error)
+  })
