@@ -199,7 +199,13 @@ app.get('/getData/winResults/zipcodes', async (req, res) => {
     const addresses = rawData.map((item) => ({
       winnerAddress: item.buyerAddress,
     }))
-
+    const zipcodes = addresses.map((addressObj) => {
+      const winnerAddress = addressObj.winnerAddress
+      // Use a regular expression to match the zip code pattern (5 digits)
+      const zipCodeMatch = winnerAddress.match(/\d{5}/)
+      // Check if a zip code was found and return it, or return an empty string if not found
+      return zipCodeMatch ? zipCodeMatch[0] : ''
+    })
 
     res.status(200).json(zipcodes)
   } catch (err) {
