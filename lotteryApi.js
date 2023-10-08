@@ -201,7 +201,7 @@ app.get('/getData/winResults/zipcodes', async (req, res) => {
     const zipcodes = rawData
       .map((item) => item.winnerAddress)
       .filter((item) => item !== '')
-      .map((item) => item.replace(/[^0-9]/g, ''))
+      .map((item) => item.toString().replace(/[^0-9]/g, ''))
       .map((item) => item.slice(0, 5))
 
     res.status(200).json(zipcodes)
