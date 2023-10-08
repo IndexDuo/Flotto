@@ -159,24 +159,24 @@ app.post('/calculateWinningChance', async (req, res) => {
         // Initialize matching numbers counts for each scenario
         let matchingNumbersCountAllSix = 0;
         let matchingNumbersCountFiveOutOfSix = 0;
-        let matchingNumbersCountFourOutOfSix = 0; // Add this line
+        let matchingNumbersCountFourOutOfSix = 0;
         let matchingNumbersCountThreeOutOfSix = 0;
         let matchingNumbersCountTwoOutOfSix = 0;
         let matchingNumbersCountOneOutOfSix = 0;
-
+        
         // Query your MongoDB Atlas collection for statistics data
         const rawData = await collection.find({}).toArray();
-
+        
         console.log('Raw Data:', rawData);
-
+        
         rawData.forEach((drawing) => {
-            const matchedNumbers = drawing.numbers.filter(num => selectedNumbers.includes(num));
-
+            const matchedNumbers = selectedNumbers.filter(num => drawing.numbers.includes(num));
+        
             if (matchedNumbers.length === 6) {
                 matchingNumbersCountAllSix++;
             } else if (matchedNumbers.length === 5) {
                 matchingNumbersCountFiveOutOfSix++;
-            } else if (matchedNumbers.length === 4) { // Add this condition for four out of six
+            } else if (matchedNumbers.length === 4) {
                 matchingNumbersCountFourOutOfSix++;
             } else if (matchedNumbers.length === 3) {
                 matchingNumbersCountThreeOutOfSix++;
@@ -186,7 +186,6 @@ app.post('/calculateWinningChance', async (req, res) => {
                 matchingNumbersCountOneOutOfSix++;
             }
         });
-
         console.log('Matching Numbers Count (All Six):', matchingNumbersCountAllSix);
         console.log('Matching Numbers Count (Five Out Of Six):', matchingNumbersCountFiveOutOfSix);
         console.log('Matching Numbers Count (Four Out Of Six):', matchingNumbersCountFourOutOfSix);
