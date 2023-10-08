@@ -43,7 +43,7 @@
                 })
                 .then((data) => {
                     // Display the winning chance result on the webpage
-                    document.querySelector('#result').textContent = `Winning Chance: ${data.chance}%`;
+                    document.querySelector('#result').textContent = `All Six: ${data.chance[0]}%`;
                 })
                 .catch((error) => {
                     // Handle errors and display error messages to the user
