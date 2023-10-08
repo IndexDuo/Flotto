@@ -5,6 +5,7 @@ import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 // import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 
 // Make an API request to fetch your statistical data from the server
+var zipArray = []
 
 fetch('http://localhost:3000/getData/winResults/zipcodes')
   .then((response) => {
@@ -19,9 +20,10 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
       console.error('API response data is not an array.')
       return
     }
+    zipArray = data
 
     //data is an array with all the zipcodes
-    console.log(data)
+    // console.log(data)
     // Process the data using your processJsonArray function
     // processJsonArray(data)
     // console.log(sanitizedZipcodes)
@@ -30,10 +32,9 @@ fetch('http://localhost:3000/getData/winResults/zipcodes')
     console.error('Error fetching data from the API:', error)
   })
 
-const zipArray = data
+  // it's not possible to input multiple zipcodes at once into the google maps api, so we need to loop through the array and make a request for each zipcode. for each request, we need to get the lat and lng and add it to the map.
+
 const apiKey = 'AIzaSyCg8cry2Qy-Hgn9c9eEMRjoZeSqsjk4ymc'
-
-
 
 fetch(
   'https://maps.googleapis.com/maps/api/geocode/json?address=${zipString}&key=${apiKey}'
