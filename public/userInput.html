@@ -250,12 +250,23 @@
             const resultContainer = document.querySelector('#result-container');
             resultContainer.innerHTML = ''; // Clear any previous results
 
-            // Loop through the 'chances' object and display each key-value pair
+            // Define a mapping of keys to their display names
+            const keyMappings = {
+                allSix: 'All Six',
+                fiveOutOfSix: 'Five Out Of Six',
+                fourOutOfSix: 'Four Out Of Six',
+                threeOutOfSix: 'Three Out Of Six',
+                twoOutOfSix: 'Two Out Of Six',
+                oneOutOfSix: 'One Out Of Six',
+            };
+
+            // Loop through the 'chances' object and display each key-value pair with formatted keys
             for (const key in data.chances) {
                 if (data.chances.hasOwnProperty(key)) {
                     const value = data.chances[key];
+                    const formattedKey = keyMappings[key] || key; // Use the formatted key if available, or the original key
                     const resultElement = document.createElement('p');
-                    resultElement.textContent = `${key}: ${value}`;
+                    resultElement.textContent = `${formattedKey}: ${value}`;
                     resultContainer.appendChild(resultElement);
                 }
             }
@@ -265,6 +276,7 @@
             console.error('Error:', error);
         });
 });
+
 
 
 
