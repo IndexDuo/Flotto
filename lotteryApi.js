@@ -188,6 +188,11 @@ app.post('/calculateWinningChance', async (req, res) => {
             oneOutOfSix: calculateChance(matchingNumbersCount, totalDrawings, 1),
         };
 
+        // Format results as percentages
+        for (const key in chances) {
+            chances[key] = chances[key].toFixed(2) + '%';
+        }
+
         console.log('Chances:', chances);
 
         res.json(chances);
@@ -223,6 +228,7 @@ function binomialCoefficient(n, k) {
     }
     return result;
 }
+
 
 app.get('/getData/winResults', async (req, res) => {
     const client = new MongoClient(uri, {
