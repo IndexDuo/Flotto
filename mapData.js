@@ -10,7 +10,7 @@ function processJsonArray(jsonArray) {
     const jsonObj = jsonArray[index]
     const buyerAddress = jsonObj.buyerAddress
 
-    if (typeof buyerAddress !== 'string') {
+    if (buyerAddress && typeof buyerAddress === 'string') {
       console.error(`buyerAddress at index ${index} is not a string.`)
       return
     }
