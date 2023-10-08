@@ -4,52 +4,284 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Input</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="./dist/output.css" />
+        <!-- fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap" rel="stylesheet">
+        <style>
+          h1, h2 {
+            font-family: 'Montserrat', sans-serif;
+          }
+    
+          p {
+            font-family: 'Roboto', sans-serif;
+          }
+        </style>
 </head>
 <body>
-    <h1>Lottery Winning Chance Calculator</h1>
-    <p>Enter your desired numbers:</p>
+        <!--NavBar-->
+        <nav class="bg-lisa">
+            <div class="px-10 mx-auto">
+              <div class="flex justify-between">
+                <div>
+                  <a href="#" class="flex items-center py-4 px-3"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-6 h-6 mr-2 text-jennie"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"
+                      />
+                    </svg>
+                    <span>Flotto</span>
+                  </a>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <a href="http://localhost:3000/#map" class="py-4 px-3">Map</a>
+                  <a href="http://localhost:3000/#table" class="py-4 px-3">Numbers</a>
+                  <a href="http://localhost:3000/userForm">Test Chances</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+    <!--Landing Page-->
+    <div
+    class="h-screen py-20 bg-jisoo flex items-center justify-center flex-col gap-4 text-center relative"
+  >
+    <h1 class="text-6xl font-bold py-3 text-white">Flotto</h1>
+    <div py-6 px-6>
+      <h3 class="text-center text-white"><i>I came here to drop some money, dropping all my money</i></h3>
+      <h3 class="text-center text-white"><i>Drop some money, all this bread so yummy, yeah</i></h3>
+    </div>
+    <button
+      class="bg-jennie hover:bg-white text-white hover:text-jennie font-bold py-2 px-4 rounded-full"
+    >
+      <a href="#chance">View Chance</a>
+    </button>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="animate-bounce w-12 h-12 bg-white rounded-full shadow p-2 absolute bottom-20"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"
+      />
+    </svg>
+  </div>
+
+  <div id = "chance" class = "py-12 px-10">
+        <h2
+          class="text-4xl text-center py-3 bg-jennie text-white rounded-full p-2"
+          >
+          Lottery Winning Chance Calculator
+        </h2>
+   
+    
 
     <!-- Input Form -->
-    <form id="lotteryForm">
-        <label for="numbers">Numbers (comma-separated):</label>
-        <input type="text" id="numbers" name="numbers" required>
-        <button type="submit">Calculate Winning Chance</button>
-    </form>
+    <div class="container">
+        <p>Enter your desired numbers:</p>
+        <form id="lotteryForm" onsubmit="return validateForm()">
+          <label for="numbers">Numbers (comma-separated):</label>
+          <input type="text" id="numbers" name="numbers" required>
+          <button type="submit">Calculate Winning Chance</button>
+        </form>
+      </div>
+      
+    
 
     <!-- Display Winning Chance Result -->
-    <div id="result"></div>
+    <div id="result-container" class="text-center">
+        <p>Winning Chance: <span id="winning-chance">Calculating...</span></p>
+    </div>
+      
+  </div>
+
+      <!-- Footer -->
+      <footer class="w-full">
+        <div
+          class="h-96 bg-cover bg-no-repeat bg-center relative"
+          style="background-image: url('../assets/images/cloud3.svg')"
+        >
+          <div
+            class="absolute inset-0 flex flex-col items-center justify-center text-center"
+          >
+            <div>
+              <div
+                class="grid grid-cols-4 gap-4 items-center justify-center"
+                style="transform: translateY(150%)"
+              >
+                <div class="col-span-1">
+                  <!-- Your icon here -->
+                  <a
+                    href="https://github.com/IndexDDuo/KnightHacks2023/tree/main"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="4em"
+                      viewBox="0 0 496 512"
+                    >
+                      <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                      <style>
+                        svg {
+                          fill: #000000;
+                        }
+                      </style>
+                      <path
+                        d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+                <div class="col-span-3">
+                  <div class="grid grid-cols-3 gap-4">
+                    <div class="col-span-1">
+                      <p class="text-xl font-semibold">Casandra Alvarez</p>
+                      <p>
+                        <a
+                          href="https://github.com/ca764763"
+                          class="text-jisoo hover:underline"
+                          >GitHub</a
+                        >
+                      </p>
+                      <p>
+                        <a
+                          href="https://www.linkedin.com/in/casandra-alvarez/"
+                          class="text-jisoo hover:underline"
+                          >LinkedIn</a
+                        >
+                      </p>
+                    </div>
+                    <div class="col-span-1">
+                      <p class="text-xl font-semibold">Jing Li</p>
+                      <p>
+                        <a
+                          href="https://github.com/IndexDDuo"
+                          class="text-jisoo hover:underline"
+                          >GitHub</a
+                        >
+                      </p>
+                    </div>
+                    <div class="col-span-1">
+                      <p class="text-xl font-semibold">Lindsey Nielsen</p>
+                      <p>
+                        <a
+                          href="https://github.com/lindsey-nielsen"
+                          class="text-jisoo hover:underline"
+                          >GitHub</a
+                        >
+                      </p>
+                      <p>
+                        <a
+                          href="https://www.linkedin.com/in/lindsey-nielsen-97217b206/"
+                          class="text-jisoo hover:underline"
+                          >LinkedIn</a
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
 
     <script>
+        function validateForm() {
+            // Get the input value
+            const numbersInput = document.getElementById("numbers");
+            const numbersValue = numbersInput.value.trim();
+
+            // Split the input value by commas
+            const numbersArray = numbersValue.split(",");
+
+            // Remove empty elements and trim each number
+            const validNumbers = numbersArray.filter(number => number.trim() !== "");
+
+            // Check if there are exactly 6 valid numbers
+            if (validNumbers.length === 6) {
+            // Form is valid, allow submission
+                return true;
+            } else {
+                // Show an error message and prevent form submission
+                alert("Please enter exactly 6 numbers separated by commas.");
+                return false;
+            }
+        }
+        
         // JavaScript code for handling form submission and displaying results
         document.querySelector('#lotteryForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+    e.preventDefault();
 
-            // Get user input (selected numbers)
-            const selectedNumbers = document.querySelector('#numbers').value;
+    // Get user input (selected numbers)
+    const selectedNumbers = document.querySelector('#numbers').value;
 
-            // Make an API request to calculate winning chance
-            fetch('/calculateWinningChance', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ selectedNumbers }),
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    // Display the winning chance result on the webpage
-                    document.querySelector('#result').textContent = `Winning Chance: ${data.chance}%`;
-                })
-                .catch((error) => {
-                    // Handle errors and display error messages to the user
-                    console.error('Error:', error);
-                });
+    // Make an API request to calculate winning chance
+    fetch('/calculateWinningChance', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ selectedNumbers }),
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            // Display the winning chance results on the webpage
+            const resultContainer = document.querySelector('#result-container');
+            resultContainer.innerHTML = ''; // Clear any previous results
+
+            // Define a mapping of keys to their display names
+            const keyMappings = {
+                allSix: 'All Six',
+                fiveOutOfSix: 'Five Out Of Six',
+                fourOutOfSix: 'Four Out Of Six',
+                threeOutOfSix: 'Three Out Of Six',
+                twoOutOfSix: 'Two Out Of Six',
+                oneOutOfSix: 'One Out Of Six',
+            };
+
+            // Loop through the 'chances' object and display each key-value pair with formatted keys
+            for (const key in data.chances) {
+                if (data.chances.hasOwnProperty(key)) {
+                    const value = data.chances[key];
+                    const formattedKey = keyMappings[key] || key; // Use the formatted key if available, or the original key
+                    const resultElement = document.createElement('p');
+                    resultElement.textContent = `${formattedKey}: ${value}`;
+                    resultContainer.appendChild(resultElement);
+                }
+            }
+        })
+        .catch((error) => {
+            // Handle errors and display error messages to the user
+            console.error('Error:', error);
         });
+});
+
+
+
+
+
+    
     </script>
 </body>
 </html>

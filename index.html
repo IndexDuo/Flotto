@@ -15,11 +15,15 @@
       crossorigin=""
     />
     <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      h1, h2 {
+      h1,
+      h2 {
         font-family: 'Montserrat', sans-serif;
       }
 
@@ -61,6 +65,7 @@
           <div class="flex items-center space-x-3">
             <a href="#map" class="py-4 px-3">Map</a>
             <a href="#table" class="py-4 px-3">Numbers</a>
+            <a href="http://localhost:3000/userForm">Test Chances</a>
           </div>
         </div>
       </div>
@@ -70,9 +75,100 @@
       class="h-screen py-20 bg-jisoo flex items-center justify-center flex-col gap-4 text-center relative"
     >
       <h1 class="text-6xl font-bold py-3 text-white">Flotto</h1>
+      <div class="lottery-balls">
+        <div class="ball white-ball">
+          <span class="number"></span>
+        </div>
+        <div class="ball white-ball">
+          <span class="number"></span>
+        </div>
+        <div class="ball white-ball">
+          <span class="number"></span>
+        </div>
+        <div class="ball white-ball">
+          <span class="number"></span>
+        </div>
+        <div class="ball white-ball">
+          <span class="number"></span>
+        </div>
+        <div class="ball red-ball">
+          <span class="number"></span>
+        </div>
+      </div>
+
+      <style>
+        .lottery-balls {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 10vh;
+          /* background-color: #f5f5f5; */
+          margin-top: 5vh;
+        }
+
+        .ball {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          margin: 0 10px;
+          font-size: 24px;
+          font-weight: bold;
+          color: #fff;
+        }
+
+        .white-ball {
+          background-color: #fff;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          color: #000;
+        }
+
+        .red-ball {
+          background-color: #ff0000;
+          box-shadow: 0 2px 4px rgba(255, 0, 0, 0.2);
+        }
+      </style>
+
+      <script>
+        const balls = document.querySelectorAll('.ball')
+        const numbers = document.querySelectorAll('.number')
+
+        function generateRandomNumber() {
+          return Math.floor(Math.random() * 53) + 1
+        }
+
+        function generateUniqueNumbers() {
+          const uniqueNumbers = new Set()
+          while (uniqueNumbers.size < 6) {
+            uniqueNumbers.add(generateRandomNumber())
+          }
+          return Array.from(uniqueNumbers)
+        }
+
+        function updateNumbers() {
+          const uniqueNumbers = generateUniqueNumbers()
+          for (let i = 0; i < numbers.length; i++) {
+            numbers[i].textContent = uniqueNumbers[i]
+            // console.log(numbers[i])
+          }
+        }
+
+        function startAnimation() {
+          updateNumbers()
+          setInterval(updateNumbers, 500)
+        }
+
+        startAnimation()
+      </script>
       <div py-6 px-6>
-        <h3 class="text-center text-white"><i>I came here to drop some money, dropping all my money</i></h3>
-        <h3 class="text-center text-white"><i>Drop some money, all this bread so yummy, yeah</i></h3>
+        <h3 class="text-center text-white">
+          <i>I came here to drop some money, dropping all my money</i>
+        </h3>
+        <h3 class="text-center text-white">
+          <i>Drop some money, all this bread so yummy, yeah</i>
+        </h3>
       </div>
       <button
         class="bg-jennie hover:bg-white text-white hover:text-jennie font-bold py-2 px-4 rounded-full"
@@ -99,13 +195,16 @@
     <div class="py-12 px-10">
       <h2
         class="text-4xl text-center py-3 bg-jennie text-white rounded-full p-2"
-        >
+      >
         Next Jackpot
       </h2>
       <div class="py-6 px-6 text-center">
-        <p class="text-2xl"><strong class="text-3xl text-jisoo">Date: </strong> October 7, 2023</p>
-        <p class="text-2xl"><strong class="text-3xl text-jisoo">Prize: </strong>$8.50 Million</p>
-
+        <p class="text-2xl">
+          <strong class="text-3xl text-jisoo">Date: </strong> October 7, 2023
+        </p>
+        <p class="text-2xl">
+          <strong class="text-3xl text-jisoo">Prize: </strong>$8.50 Million
+        </p>
       </div>
     </div>
 
@@ -118,81 +217,119 @@
       </h2>
       <div class="flex items-center justify-between m-10">
         <div id="map"></div>
+
         <p
-          class="leading-loose text-lg h-96 bg-slate-100 w-1/2 text-center rounded shadow border-slate-300"
+          class="leading-loose text-lg h-auto bg-slate-100 w-1/2 text-center rounded shadow border-slate-300 p-6"
         >
-          Click the marker to get information of common places that have had
-          winning numbers!
+          <strong>Map use</strong><br /><br />
+          This map shows where the last winning numbers were located in the
+          state of Florida!
+          <br />
+          <br />
+          <em class="text-slate-400">most common: null</em>
         </p>
       </div>
     </div>
     <!--Numbers Table-->
-    <div id="table">
+    <div class="py-12 px-10" id="table">
       <h2
-        class="text-4xl text-center py-3 bg-jennie text-white rounded-full p-2"
+         class="text-4xl text-center py-3 bg-jennie text-white rounded-full p-2"
       >
         Most Common Numbers
       </h2>
       <div class="flex items-center justify-center p-10">
         <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lottery Statistics</title>
-    <!-- Include Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+        <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <title>Lottery Statistics</title>
+            <!-- Include Tailwind CSS -->
+            <link
+              href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+              rel="stylesheet"
+            />
+            <link
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+              rel="stylesheet"
+            />
+          </head>
+          <body class="bg-gray-100">
+            <div class="container mx-auto p-6">
+              <h1 class="text-3xl font-semibold mb-4">
+                Lottery Number Statistics
+              </h1>
+              <!-- Add a container for displaying the statistics -->
+              <div
+                class="bg-white rounded shadow overflow-hidden"
+                style="max-height: 400px; overflow-y: auto"
+              >
+                <table class="min-w-full divide-y divide-gray-200">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th
+                        scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        onclick="sortTable(0)"
+                        data-index="0"
+                      >
+                        Number
+                        <span class="ml-2" id="sort-icon-0"></span>
+                      </th>
+                      <th
+                        scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        onclick="sortTable(1)"
+                        data-index="1"
+                      >
+                        Percentage of Times Drawn
+                        <span class="ml-2" id="sort-icon-1"></span>
+                      </th>
+                      <th
+                        scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        onclick="sortTable(2)"
+                        data-index="2"
+                      >
+                        Times Drawn
+                        <span class="ml-2" id="sort-icon-2"></span>
+                      </th>
+                      <th
+                        scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        onclick="sortTable(3)"
+                        data-index="3"
+                      >
+                        Last Drawn Date
+                        <span class="ml-2" id="sort-icon-3"></span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="table-body">
+                    <!-- Data will be populated here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
 
-</head>
-<body class="bg-gray-100">
-    <div class="container mx-auto p-6">
-        <h1 class="text-3xl font-semibold mb-4">Lottery Number Statistics</h1>
-        <!-- Add a container for displaying the statistics -->
-        <div class="bg-white rounded shadow overflow-hidden" style="max-height: 400px; overflow-y:auto;">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-              <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" onclick="sortTable(0)" data-index="0">
-                  Number
-                  <span class="ml-2" id="sort-icon-0"></span>
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" onclick="sortTable(1)" data-index="1">
-                  Percentage of Times Drawn
-                  <span class="ml-2" id="sort-icon-1"></span>
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" onclick="sortTable(2)" data-index="2">
-                  Times Drawn
-                  <span class="ml-2" id="sort-icon-2"></span>
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" onclick="sortTable(3)" data-index="3">
-                  Last Drawn Date
-                  <span class="ml-2" id="sort-icon-3"></span>
-                </th>
-              </tr>
-            </thead>
-            <tbody id="table-body">
-              <!-- Data will be populated here -->
-            </tbody>
-          </table>
-        </div>
-    </div>
+            <script>
+              // JavaScript to populate the table and enable sorting
+              const tableBody = document.querySelector('tbody')
+              const tableHeaders = document.querySelectorAll('th')
+              let sortColumn = -1 // Default sorting column (none)
+              let originalOrder = [] // Store the original order of items
 
-    <script>
-// JavaScript to populate the table and enable sorting
-const tableBody = document.querySelector('tbody');
-const tableHeaders = document.querySelectorAll('th');
-let sortColumn = -1; // Default sorting column (none)
-let originalOrder = []; // Store the original order of items
+              // Function to populate the table with data
+              function populateTable(data) {
+                tableBody.innerHTML = ''
 
-// Function to populate the table with data
-function populateTable(data) {
-  tableBody.innerHTML = '';
-
-  data.forEach((item) => {
-    if (item) {
-      const row = document.createElement('tr');
-      row.innerHTML = `
+                data.forEach((item) => {
+                  if (item) {
+                    const row = document.createElement('tr')
+                    row.innerHTML = `
         <td class="px-6 py-4 whitespace-nowrap number-cell">
           <svg class="circular-ball" width="30" height="30" viewBox="0 0 30 30">
             <circle cx="15" cy="15" r="13" fill="#3d2645" />
@@ -208,128 +345,134 @@ function populateTable(data) {
         <td class="px-6 py-4 whitespace-nowrap">
           <div class="text-sm text-gray-900">${item.lastDrawnDate}</div>
         </td>
-      `;
+      `
 
-      tableBody.appendChild(row);
-    } else {
-      console.error('Invalid data item:', item);
-    }
-  });
-}
+                    tableBody.appendChild(row)
+                  } else {
+                    console.error('Invalid data item:', item)
+                  }
+                })
+              }
 
+              // a sort icon will be displayed next to the column name that is being sorted. if the column is sorted in ascending order, the sort icon will be an up arrow. if the column is sorted in descending order, the sort icon will be a down arrow. if the column is not sorted, the sort icon will be a horizontal line.
 
-// a sort icon will be displayed next to the column name that is being sorted. if the column is sorted in ascending order, the sort icon will be an up arrow. if the column is sorted in descending order, the sort icon will be a down arrow. if the column is not sorted, the sort icon will be a horizontal line.
+              // Function to update the sort icon
+              function updateSortIcon(header, isAscending) {
+                // Remove any existing sort icon
+                const icon = header.querySelector('.sort-icon')
+                if (icon) {
+                  header.removeChild(icon)
+                }
 
+                // Create a new icon element
+                const newIcon = document.createElement('i')
+                newIcon.classList.add('sort-icon', 'fas', 'fa-sort')
 
-// Function to update the sort icon
-function updateSortIcon(header, isAscending) {
-  // Remove any existing sort icon
-  const icon = header.querySelector('.sort-icon');
-  if (icon) {
-    header.removeChild(icon);
-  }
+                // Determine which icon class to add based on the sorting state
+                if (sortColumn === header.cellIndex) {
+                  if (isAscending) {
+                    newIcon.classList.remove('fa-sort')
+                    newIcon.classList.add('fa-sort-up')
+                  } else {
+                    newIcon.classList.remove('fa-sort')
+                    newIcon.classList.add('fa-sort-down')
+                  }
+                }
 
-  // Create a new icon element
-  const newIcon = document.createElement('i');
-  newIcon.classList.add('sort-icon', 'fas', 'fa-sort');
-  
-  // Determine which icon class to add based on the sorting state
-  if (sortColumn === header.cellIndex) {
-    if (isAscending) {
-      newIcon.classList.remove('fa-sort');
-      newIcon.classList.add('fa-sort-up');
-    } else {
-      newIcon.classList.remove('fa-sort');
-      newIcon.classList.add('fa-sort-down');
-    }
-  }
+                // Append the new icon to the header
+                header.appendChild(newIcon)
+              }
 
-  // Append the new icon to the header
-  header.appendChild(newIcon);
-}
+              // sort the table by a specific column when the header is clicked on. when the header is clicked on again, reverse the order. for example, if the heading Number is clicked on, the table will be sorted by number in ascending order. if Number is clicked on again, the table will be sorted by number in descending order. If the percentage of times drawn is clicked on, remove the percentage sign and sort by the number in ascending order, but keep the percentage sign in the table. If the percentage of times drawn is clicked on again, remove the percentage sign and sort by the number in descending order, but keep the percentage sign in the table. If the times drawn is clicked on, the table will be sorted by the times drawn in ascending order. If the times drawn is clicked on again, the table will be sorted by the times drawn in descending order. If the last drawn date is clicked on, use sortByDateAsc() function to sort the table by date in ascending order. If the last drawn date is clicked on again, use sortByDateDesc() function to sort the table by date in descending order.
 
+              tableHeaders.forEach((header, index) => {
+                header.addEventListener('click', () => {
+                  if (sortColumn === index) {
+                    // Reverse the order
+                    originalOrder.reverse()
+                  } else {
+                    // Sort the data by the selected column
+                    switch (index) {
+                      case 0: // Number
+                        originalOrder.sort((a, b) => a.number - b.number)
+                        break
+                      case 1: // Percentage of Times Drawn
+                        originalOrder.sort(
+                          (a, b) =>
+                            a.percentageOfDrawings - b.percentageOfDrawings
+                        )
+                        break
+                      case 2: // Times Drawn
+                        originalOrder.sort((a, b) => a.times - b.times)
+                        break
+                      case 3: // Last Drawn Date
+                        originalOrder.sort(
+                          (a, b) =>
+                            new Date(a.lastDrawnDate) -
+                            new Date(b.lastDrawnDate)
+                        )
+                        break
+                      default:
+                        console.error('Invalid column index:', index)
+                        break
+                    }
+                  }
 
-// sort the table by a specific column when the header is clicked on. when the header is clicked on again, reverse the order. for example, if the heading Number is clicked on, the table will be sorted by number in ascending order. if Number is clicked on again, the table will be sorted by number in descending order. If the percentage of times drawn is clicked on, remove the percentage sign and sort by the number in ascending order, but keep the percentage sign in the table. If the percentage of times drawn is clicked on again, remove the percentage sign and sort by the number in descending order, but keep the percentage sign in the table. If the times drawn is clicked on, the table will be sorted by the times drawn in ascending order. If the times drawn is clicked on again, the table will be sorted by the times drawn in descending order. If the last drawn date is clicked on, use sortByDateAsc() function to sort the table by date in ascending order. If the last drawn date is clicked on again, use sortByDateDesc() function to sort the table by date in descending order.
+                  // Update the sort column
+                  sortColumn = index
 
-tableHeaders.forEach((header, index) => {
-  header.addEventListener('click', () => {
-    if (sortColumn === index) {
-      // Reverse the order
-      originalOrder.reverse();
-    } else {
-      // Sort the data by the selected column
-      switch (index) {
-        case 0: // Number
-          originalOrder.sort((a, b) => a.number - b.number);
-          break;
-        case 1: // Percentage of Times Drawn
-          originalOrder.sort((a, b) => a.percentageOfDrawings - b.percentageOfDrawings);
-          break;
-        case 2: // Times Drawn
-          originalOrder.sort((a, b) => a.times - b.times);
-          break;
-        case 3: // Last Drawn Date
-          originalOrder.sort((a, b) => new Date(a.lastDrawnDate) - new Date(b.lastDrawnDate));
-          break;
-        default:
-          console.error('Invalid column index:', index);
-          break;
-      }
-    }
+                  // Update the sort icon
+                  tableHeaders.forEach((header, i) => {
+                    if (i === index) {
+                      updateSortIcon(
+                        header,
+                        sortColumn === index && originalOrder[0].__index__ === 0
+                      )
+                    } else {
+                      updateSortIcon(header, false)
+                    }
+                  })
 
-    // Update the sort column
-    sortColumn = index;
+                  // Populate the table with the sorted data
+                  populateTable(originalOrder.map((item) => item))
+                })
+              })
 
-    // Update the sort icon
-    tableHeaders.forEach((header, i) => {
-      if (i === index) {
-        updateSortIcon(header, sortColumn === index && originalOrder[0].__index__ === 0);
-      } else {
-        updateSortIcon(header, false);
-      }
-    });
+              // Add the initial sort icon to each header
+              tableHeaders.forEach((header) => {
+                const icon = document.createElement('i')
+                icon.classList.add('sort-icon', 'fas', 'fa-sort')
+                header.appendChild(icon)
+              })
 
-    // Populate the table with the sorted data
-    populateTable(originalOrder.map((item) => item));
-  });
-});
+              // Make an API request to fetch your statistical data from the server
+              fetch('/getData/winningNumber/stats')
+                .then((response) => {
+                  if (!response.ok) {
+                    throw new Error('Network response was not ok')
+                  }
+                  return response.json()
+                })
+                .then((statisticalData) => {
+                  if (Array.isArray(statisticalData)) {
+                    // Store the original order of the items
+                    originalOrder = statisticalData.map((item, index) => ({
+                      ...item,
+                      __index__: index,
+                    }))
 
-// Add the initial sort icon to each header
-tableHeaders.forEach((header) => {
-  const icon = document.createElement('i');
-  icon.classList.add('sort-icon', 'fas', 'fa-sort');
-  header.appendChild(icon);
-});
-
-// Make an API request to fetch your statistical data from the server
-fetch('/getData/winningNumber/stats')
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then((statisticalData) => {
-    if (Array.isArray(statisticalData)) {
-      // Store the original order of the items
-      originalOrder = statisticalData.map((item, index) => ({ ...item, __index__: index }));
-
-      // Populate the table initially
-      populateTable(statisticalData);
-    } else {
-      console.error('Invalid data format. Expected an array.');
-    }
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-
-
-
-    </script>
-</body>
-</html>
-
+                    // Populate the table initially
+                    populateTable(statisticalData)
+                  } else {
+                    console.error('Invalid data format. Expected an array.')
+                  }
+                })
+                .catch((error) => {
+                  console.error('Error:', error)
+                })
+            </script>
+          </body>
+        </html>
       </div>
     </div>
     <!-- Footer -->
@@ -420,8 +563,35 @@ fetch('/getData/winningNumber/stats')
           </div>
         </div>
       </div>
+      <script>
+        var map = L.map('map').setView([28.5384, -82.3789], 6.5)
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution:
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }).addTo(map)
+        // var marker = L.marker([27.6648, 81.5158]).addTo(map)
+
+        // Fetch the coordinates from coordinates.json
+        fetch('/getData/coordinates')
+          .then((response) => response.json())
+          .then((data) => {
+            // Loop through the array of coordinates and add markers to the map
+            data.forEach((coord) => {
+              L.circle([coord.lat, coord.lng], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: 3500,
+              }).addTo(map)
+            })
+          })
+          .catch((error) => console.error(error))
+        var popup = L.popup()
+          .setLatLng([28.6024, -81.2001])
+          .setContent('You are here.')
+          .openOn(map)
+      </script>
     </footer>
-    <script src="/map.js"></script>
-    
   </body>
 </html>

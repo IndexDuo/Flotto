@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./map.js"],
+  content: ['./index.html', './map.js', './mapData.js'],
+  content: ["./index.html", "./map.js", "/public/userInput.html"],
   theme: {
     extend: {
       colors: {
@@ -12,4 +13,4 @@ export default {
     },
   },
   plugins: [],
-};
+}
