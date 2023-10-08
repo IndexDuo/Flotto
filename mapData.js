@@ -1,5 +1,3 @@
-import fs from 'fs'
-
 const sanitizedZipcodes = []
 //finding the zipcode in json
 
@@ -7,7 +5,7 @@ function addToSanitizedZipCodes(zipcodes) {
   sanitizedZipcodes.push(zipcodes)
 }
 
-export function processJsonArray(jsonArray) {
+function processJsonArray(jsonArray) {
   jsonArray.forEach((jsonObj, index) => {
     const buyerAddress = jsonObj.buyerAddress
 
@@ -36,6 +34,4 @@ export function processJsonArray(jsonArray) {
   })
 }
 
-console.log(sanitizedZipcodes)
-
-export default sanitizedZipcodes
+export { sanitizedZipcodes, processJsonArray }

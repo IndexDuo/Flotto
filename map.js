@@ -1,5 +1,5 @@
 import fs from 'fs'
-import sanitizedZipcodes, { processJsonArray } from './mapData.js'
+import { sanitizedZipcodes, processJsonArray } from './mapData.js'
 
 const jsonFilePath = './dataJSON/lottery-result.json'
 
@@ -9,15 +9,12 @@ fs.readFile(jsonFilePath, 'utf8', (err, data) => {
     return
   }
 
-  try {
-    const jsonArray = JSON.parse(data)
+  const jsonArray = JSON.parse(data)
+  console.log(jsonArray)
 
-    if (!Array.isArray(jsonArray)) {
-      console.error('JSON data is not an array.')
-      return
-    }
-  } catch (error) {
-    console.error('Error parsing JSON:', error)
+  if (!Array.isArray(jsonArray)) {
+    console.error('JSON data is not an array.')
+    return
   }
 })
 
