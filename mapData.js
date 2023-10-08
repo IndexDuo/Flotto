@@ -11,6 +11,7 @@ fs.readFile(jsonFilePath, 'utf8', (err, data) => {
 
   try {
     const jsonData = JSON.parse(data)
+    console.log(jsonData)
 
     const buyerAddress = jsonData.buyerAddress
 
