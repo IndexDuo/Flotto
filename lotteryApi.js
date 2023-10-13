@@ -2,9 +2,22 @@ import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url' // Import fileURLToPath
 import { MongoClient } from 'mongodb'
+import { exec } from 'child_process'
 
 const __filename = fileURLToPath(import.meta.url) // Get the current filename
 const __dirname = path.dirname(__filename) // Get the directory of the current file
+
+const compileTailwind = exec(
+  'node --experimental-modules compile-tailwind.mjs',
+  (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Tailwind CSS compilation error: ${error}`)
+      return
+    }
+    console.log(`Tailwind CSS compilation success: ${stdout}`)
+    console.error(`Tailwind CSS compilation stderr: ${stderr}`)
+  }
+)
 
 let client
 const app = express()
