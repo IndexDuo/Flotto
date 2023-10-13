@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url) // Get the current filename
 const __dirname = path.dirname(__filename) // Get the directory of the current file
 
 const compileTailwind = exec(
-  'node --experimental-modules compile-tailwind.mjs',
+  'node --experimental-modules compile-tailwind.js',
   (error, stdout, stderr) => {
     if (error) {
       console.error(`Tailwind CSS compilation error: ${error}`)
