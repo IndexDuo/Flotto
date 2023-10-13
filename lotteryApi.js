@@ -14,8 +14,8 @@ const compileTailwind = exec(
       console.error(`Tailwind CSS compilation error: ${error}`)
       return
     }
-    console.log(`Tailwind CSS compilation success: ${stdout}`)
-    console.error(`Tailwind CSS compilation stderr: ${stderr}`)
+    // console.log(`Tailwind CSS compilation success: ${stdout}`)
+    // console.error(`Tailwind CSS compilation stderr: ${stderr}`)
   }
 )
 
