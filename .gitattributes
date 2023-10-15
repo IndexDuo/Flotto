@@ -2,3 +2,5 @@
 
 * linguist-vendored
 *.html linguist-vendored=false
+
+public/* linguist-vendored
