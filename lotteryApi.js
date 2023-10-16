@@ -3,11 +3,18 @@ import path from 'path'
 import { fileURLToPath } from 'url' // Import fileURLToPath
 import { MongoClient } from 'mongodb'
 import { exec } from 'child_process'
-import { http } from 'http'
+import http from 'http'
 
-const __filename = fileURLToPath(import.meta.url) // Get the current filename
-const __dirname = path.dirname(__filename) // Get the directory of the current file
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
+const app = express()
+const port = normalizePort(process.env.PORT || '3000')
+app.set('port', port)
+
+app.use(express.static('public'))
+app.use(express.json())
+app.use(express.static(path.join(__dirname, 'dist')))
 const compileTailwind = exec(
   'node --experimental-modules compile-tailwind.js',
   (error, stdout, stderr) => {
@@ -15,20 +22,14 @@ const compileTailwind = exec(
       console.error(`Tailwind CSS compilation error: ${error}`)
       return
     }
-    // console.log(`Tailwind CSS compilation success: ${stdout}`)
-    // console.error(`Tailwind CSS compilation stderr: ${stderr}`)
   }
 )
 
 let client
-const app = express()
-var port = normalizePort(process.env.PORT || '3000')
-app.set('port', port)
-app.use(express.static('public'))
-app.use(express.json())
-app.use(express.static(path.join(__dirname, 'dist')))
 
-// MongoDB Atlas cluster connection string
+// Your routes and middleware go here
+
+// Define your MongoDB Atlas cluster connection string
 const uri =
   'mongodb+srv://indexduo:index2012512@flottery.c5klhwf.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp'
 
@@ -226,39 +227,39 @@ app.post('/calculateWinningChance', async (req, res) => {
     const selectedNumbers = req.body.selectedNumbers.split(',').map(Number)
 
     /*   client = new MongoClient(uri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-
-    await client.connect()
-    console.log('Connected to MongoDB Atlas')
-
-    const database = client.db('florida_lottery')
-    const collection = database.collection('winningNumbers') // Reference to the collection
-
-        const statistics = {}; // Store the statistics data
- */
+              useNewUrlParser: true,
+              useUnifiedTopology: true,
+          });
+  
+      await client.connect()
+      console.log('Connected to MongoDB Atlas')
+  
+      const database = client.db('florida_lottery')
+      const collection = database.collection('winningNumbers') // Reference to the collection
+  
+          const statistics = {}; // Store the statistics data
+   */
     /*         // Query your MongoDB Atlas collection for statistics data
-        const rawData = await collection.find({}).toArray();
-
-        // Filter the data for numbers and times
-        rawData.forEach((item) => {
-            statistics[item.number] = {
-                times: item.times,
-                lastDrawnDate: item.lastDrawnDate,
-                percentageOfDrawings: item.percentageOfDrawings,
-            };
-        });
-
-        // Calculate the total count of matching numbers and the total drawings
-        let matchingNumbersCount = 0;
-        const totalDrawings = rawData.length;
-
-        selectedNumbers.forEach((number) => {
-            if (statistics[number]) {
-                matchingNumbersCount += statistics[number].times;
-            }
-        }); */
+          const rawData = await collection.find({}).toArray();
+  
+          // Filter the data for numbers and times
+          rawData.forEach((item) => {
+              statistics[item.number] = {
+                  times: item.times,
+                  lastDrawnDate: item.lastDrawnDate,
+                  percentageOfDrawings: item.percentageOfDrawings,
+              };
+          });
+  
+          // Calculate the total count of matching numbers and the total drawings
+          let matchingNumbersCount = 0;
+          const totalDrawings = rawData.length;
+  
+          selectedNumbers.forEach((number) => {
+              if (statistics[number]) {
+                  matchingNumbersCount += statistics[number].times;
+              }
+          }); */
 
     let allSix = 0
     let fiveOutOfSix = 0
@@ -367,6 +368,50 @@ app.get('/getData/winResults/zipcodes', async (req, res) => {
   }
 })
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`)
-})
+// Create an HTTP server
+const server = http.createServer(app)
+
+server.listen(port)
+server.on('error', onError)
+server.on('listening', onListening)
+
+function normalizePort(val) {
+  const port = parseInt(val, 10)
+
+  if (isNaN(port)) {
+    return val
+  }
+
+  if (port >= 0) {
+    return port
+  }
+
+  return false
+}
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error
+  }
+
+  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port
+
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges')
+      process.exit(1)
+      break
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use')
+      process.exit(1)
+      break
+    default:
+      throw error
+  }
+}
+
+function onListening() {
+  const addr = server.address()
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port
+  console.log('Listening on ' + bind)
+}
