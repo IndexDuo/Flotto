@@ -29,7 +29,7 @@ let client;
 // Your routes and middleware go here
 
 // Define your MongoDB Atlas cluster connection string
-const uri = 'mongodb+srv://your_username:your_password@your_cluster.mongodb.net/your_database';
+const uri = 'mongodb+srv://indexduo:index2012512@flottery.c5klhwf.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp';
 
 app.get('/your_route', async (req, res) => {
   try {
