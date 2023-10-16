@@ -155,10 +155,11 @@ app.get('/style.css', (req, res) => {
 })
 
 app.get('/assets/images/cloud3.svg', (req, res) => {
-  res.sendFile(__dirname + '/assets/images/cloud3.svg') // Add a slash before 'style.css'
+  res.sendFile(path.join(__dirname, 'assets/images/cloud3.svg')) // Add a slash before 'style.css'
 })
 
 app.get('/dist/output.css', (req, res) => {
+  res.setHeader('Content-Type', 'text/css')
   res.sendFile(__dirname + '/dist/output.css')
 })
 
