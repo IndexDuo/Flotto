@@ -3,6 +3,7 @@ import path from 'path'
 import { fileURLToPath } from 'url' // Import fileURLToPath
 import { MongoClient } from 'mongodb'
 import { exec } from 'child_process'
+import { http } from 'http'
 
 const __filename = fileURLToPath(import.meta.url) // Get the current filename
 const __dirname = path.dirname(__filename) // Get the directory of the current file
@@ -21,7 +22,8 @@ const compileTailwind = exec(
 
 let client
 const app = express()
-const port = process.env.PORT || 3000
+var port = normalizePort(process.env.PORT || '3000')
+app.set('port', port)
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'dist')))
